@@ -1,5 +1,19 @@
 {
     "title": "Workshop - Mission Control for the Mars Colony",
     "labguideVisible": true,
-    "displayMode": "terminal"
+    "uploadEnabled": false,
+    "additionalOptionsEnabled": false,
+    "splitPosition": 30,
+    "displayMode": "external",
+    "externalPage": "https://google.com",
+    "chapters": [
+        {
+            "title": "Welcome to the Mission to Mars workshop",
+            "file": "00-overview"
+        }
+        {
+            "title": "Mission 1",
+            "file": "01-mission1"
+        }
+    ]
 }
