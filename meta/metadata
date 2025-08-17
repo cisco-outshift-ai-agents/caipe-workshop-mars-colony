@@ -11,28 +11,31 @@
             "file": "00-overview"
         },
         {
-            "title": "Mission Check 1",
-            "file": "01-mission1"
+            "title": "Intro to CAIPE",
+            "file": "01-intro"
+        },
+            "title": "Bring Mission Control Online",
+            "file": "10-mission1"
         },
         {
-            "title": "Mission Check 2",
-            "file": "02-mission2"
+            "title": "Create Life",
+            "file": "20-mission2"
         },
         {
-            "title": "Mission Check 3",
-            "file": "03-mission3"
+            "title": "Scan the Skies",
+            "file": "30-mission3"
         },
         {
-            "title": "Mission Check 4",
-            "file": "04-mission4"
+            "title": "Mission Control Manual",
+            "file": "40-mission4"
         },
         {
-            "title": "Mission Check 5",
-            "file": "05-mission5"
+            "title": "Report your mission findings",
+            "file": "50-mission5"
         },
         {
-            "title": "Mission Check 6 (bonus)",
-            "file": "06-mission6"
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "60-mission6"
         }
     ]
 }
