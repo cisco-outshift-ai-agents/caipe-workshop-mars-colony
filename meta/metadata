@@ -5,15 +5,34 @@
     "additionalOptionsEnabled": true,
     "splitPosition": 50,
     "displayMode": "terminal",
-    "externalPage": "https://google.com",
     "chapters": [
         {
-            "title": "Welcome to the Mission to Mars workshop",
+            "title": "Welcome",
             "file": "00-overview"
         },
         {
-            "title": "Mission 1",
+            "title": "Mission Check 1",
             "file": "01-mission1"
+        },
+        {
+            "title": "Mission Check 2",
+            "file": "02-mission2"
+        },
+        {
+            "title": "Mission Check 3",
+            "file": "03-mission3"
+        },
+        {
+            "title": "Mission Check 4",
+            "file": "04-mission4"
+        },
+        {
+            "title": "Mission Check 5",
+            "file": "05-mission5"
+        },
+        {
+            "title": "Mission Check 6 (bonus)",
+            "file": "06-mission6"
         }
     ]
 }
