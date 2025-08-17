@@ -1,0 +1,55 @@
+{
+  "title": "Some survey",
+  "questions": [
+    {
+      "question": "What is the square of 2?",
+      "answers": [
+        {
+          "text": "I have no idea",
+          "value": "iamstupid"
+        },
+        {
+          "text": "1",
+          "value": "1"
+        },
+        {
+          "text": "20",
+          "value": "20"
+        },
+        {
+          "text": "4",
+          "value": "4"
+        },
+        {
+          "text": "It is not square, it is round",
+          "value": "not square"
+        }
+      ]
+    },
+    {
+      "question": "What is the square root of 4?",
+      "answers": [
+        {
+          "text": "I have no idea",
+          "value": "iamstupid"
+        },
+        {
+          "text": "10",
+          "value": "10"
+        },
+        {
+          "text": "20",
+          "value": "20"
+        },
+        {
+          "text": "2",
+          "value": "2"
+        },
+        {
+          "text": "Root is never square",
+          "value": "root is not square"
+        }
+      ]
+    }
+  ]
+}
