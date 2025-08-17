@@ -8,7 +8,8 @@
     "chapters": [
         {
             "title": "Welcome",
-            "file": "00-overview"
+            "file": "00-overview",
+            "panel": "none"
         },
         {
             "title": "Intro to CAIPE",
