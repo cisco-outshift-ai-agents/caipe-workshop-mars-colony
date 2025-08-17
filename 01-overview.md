@@ -3,5 +3,5 @@ You and your team have arrived on Mars to establish mission control operations w
 
 # Overview
 
-During this workshop...
+During this workshop you will...
 
