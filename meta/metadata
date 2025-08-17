@@ -13,7 +13,8 @@
         },
         {
             "title": "Intro to CAIPE",
-            "file": "01-intro"
+            "file": "01-intro",
+            "panel": "none"
         },
         {
             "title": "Bring Mission Control Online",

@@ -3,6 +3,7 @@
 Clone the ai-platform-engineering repository 
 
 ```bash
+cd $HOME/work
 git clone https://github.com/cnoe-io/ai-platform-engineering
 ```
 
