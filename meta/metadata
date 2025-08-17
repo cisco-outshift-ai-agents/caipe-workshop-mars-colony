@@ -14,6 +14,7 @@
             "title": "Intro to CAIPE",
             "file": "01-intro"
         },
+        {
             "title": "Bring Mission Control Online",
             "file": "10-mission1"
         },
