@@ -7,6 +7,10 @@
     "displayMode": "terminal",
     "chapters": [
         {
+            "title": "Labdev",
+            "file": "00-help"
+        },
+        {
             "title": "Welcome",
             "file": "00-overview"
         },
