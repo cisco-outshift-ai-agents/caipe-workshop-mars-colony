@@ -7,10 +7,6 @@
     "displayMode": "terminal",
     "chapters": [
         {
-            "title": "Labdev",
-            "file": "00-help"
-        },
-        {
             "title": "Welcome",
             "file": "00-overview"
         },
@@ -41,6 +37,10 @@
         {
             "title": "Assemble with idpbuilder (bonus)",
             "file": "60-mission6"
+        },
+        {
+            "title": "Lab dev examples",
+            "file": "99-help"
         }
     ]
 }
