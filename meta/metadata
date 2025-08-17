@@ -2,9 +2,9 @@
     "title": "Workshop - Mission Control for the Mars Colony",
     "labguideVisible": true,
     "uploadEnabled": false,
-    "additionalOptionsEnabled": false,
-    "splitPosition": 30,
-    "displayMode": "external",
+    "additionalOptionsEnabled": true,
+    "splitPosition": 50,
+    "displayMode": "terminal",
     "externalPage": "https://google.com",
     "chapters": [
         {
