@@ -1,6 +1,10 @@
 # Mission Check 1 — Bring Mission Control Online
 
-Clone the repo: git clone https://github.com/cnoe-io/ai-platform-engineering
+Clone the ai-platform-engineering repository 
+
+```bash
+git clone https://github.com/cnoe-io/ai-platform-engineering
+```
 
 Skim the docs: Introduction | AI Platform Engineering 
 
