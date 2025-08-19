@@ -4,5 +4,45 @@
     "uploadEnabled": false,
     "additionalOptionsEnabled": true,
     "splitPosition": 50,
-    "displayMode": "terminal"
+    "displayMode": "terminal",
+"chapters": [
+        {
+            "title": "Welcome",
+            "file": "00-overview",
+            "panel": "none"
+        },
+        {
+            "title": "Intro to CAIPE",
+            "file": "01-intro",
+            "panel": "none"
+        },
+        {
+            "title": "Bring Mission Control Online",
+            "file": "10-mission1"
+        },
+        {
+            "title": "Create Life",
+            "file": "20-mission2"
+        },
+        {
+            "title": "Scan the Skies",
+            "file": "30-mission3"
+        },
+        {
+            "title": "Mission Control Manual",
+            "file": "40-mission4"
+        },
+        {
+            "title": "Report your mission findings",
+            "file": "50-mission5"
+        },
+        {
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "60-mission6"
+        },
+        {
+            "title": "Lab dev examples",
+            "file": "99-help"
+        }
+    ]
 }
