@@ -26,7 +26,7 @@
         },
         {
             "title": "Scan the Skies",
-            "file": "102-mission3"
+            "file": "103-mission3"
         },
         {
             "title": "Mission Control Manual",
@@ -66,7 +66,7 @@
         },
         {
             "title": "Conclusion",
-            "file": "999-conclusion"
+            "file": "905-conclusion"
         },
         {
             "title": "Lab dev examples",
