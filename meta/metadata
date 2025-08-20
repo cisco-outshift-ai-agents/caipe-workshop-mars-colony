@@ -5,7 +5,7 @@
     "additionalOptionsEnabled": true,
     "splitPosition": 50,
     "displayMode": "terminal",
-"chapters": [
+    "chapters": [
         {
             "title": "Welcome",
             "file": "00-overview",
