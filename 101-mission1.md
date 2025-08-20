@@ -18,11 +18,11 @@ git clone https://github.com/cnoe-io/ai-platform-engineering
 
 ## Download Mission manual
 
-- Navigate to [https://cnoe-io.github.io/ai-platform-engineering/](https://cnoe-io.github.io/ai-platform-engineering/)
-- Explore the pages
-  - `Getting Started` -> `Quick Start`
-  - `Setup` -> `Docker` -> `Run with Docker Compose`
-  - `Setup` -> `IDP Builder`
+* Navigate to [https://cnoe-io.github.io/ai-platform-engineering/](https://cnoe-io.github.io/ai-platform-engineering/)
+* Explore the pages
+  * `Getting Started` -> `Quick Start`
+  * `Setup` -> `Docker` -> `Run with Docker Compose`
+  * `Setup` -> `IDP Builder`
 
 # Agentic AI Concepts
 
@@ -37,7 +37,7 @@ An AI Agent is a system that uses a Large Language Model (LLM) to decide the flo
 Reason and Act (ReAct) is a common
 design pattern used in agentic systems to help LLMs decide the next action or tool to use
 
-<img src="images/react-agent.svg" alt="Mission Control" width="400">
+<img src="images/react-agent.svg" alt="Mission Control" width="200">
 
 
 ## What is a Multi-Agent System (MAS)?
@@ -73,9 +73,10 @@ Supervisor of Supervisor agents
 <img src="images/mas-hierarchical-supervisor.svg" alt="Mission Control" width="400">
 
 **References:**
-- [Outshift blog - Deep dive into MAS](https://outshift.cisco.com/blog/architecting-jarvis-technical-deep-dive-into-its-multi-agent-system-design)
-- [LangChain - Multi-agent systems](https://langchain-ai.github.io/langgraph/concepts/multi_agent/)
-- [LangChain - Benchmarking Multi-Agent Architectures](https://blog.langchain.com/benchmarking-multi-agent-architectures/)
+
+* [Outshift blog - Deep dive into MAS](https://outshift.cisco.com/blog/architecting-jarvis-technical-deep-dive-into-its-multi-agent-system-design)
+* [LangChain - Multi-agent systems](https://langchain-ai.github.io/langgraph/concepts/multi_agent/)
+* [LangChain - Benchmarking Multi-Agent Architectures](https://blog.langchain.com/benchmarking-multi-agent-architectures/)
 
 ### CAPIE Architecture
 
@@ -86,19 +87,20 @@ Supervisor of Supervisor agents
 
 MCP (Model Context Protocol) standardizes how large language models (LLMs) can get application or API context such as tools, system prompts etc.
 
-<img src="images/mcp.svg" alt="Mission Control" width="400">
+<img src="images/mcp.svg" alt="Mission Control" width="200">
 
 ## Difference between an AI agent vs MCP server
 
 Agentic Systems landscape is evolving rapidly, understanding the distinction between AI Agents and MCP Servers is crucial for building scalable agentic systems. While MCP Servers provide a standardized interface for tools and data sources, AI Agents leverage these capabilities to perform complex reasoning, planning, and execution tasks. As MCP protocol advances the lines are blurring, as of today, AI Agents are superset of what MCP server can do but some agents are directly exposed via MCP.
 
-- [Agent Memory (Long-term and Short-term)](https://blog.langchain.com/memory-for-agents/)
-- [Prompt/Context Engineering](https://blog.langchain.com/context-engineering-for-agents/)
-- Agent Orchestration
-- [Tool Pruning via RAG](https://github.com/langchain-ai/langgraph-bigtool)
+* [Agent Memory (Long-term and Short-term)](https://blog.langchain.com/memory-for-agents/)
+* [Prompt/Context Engineering](https://blog.langchain.com/context-engineering-for-agents/)
+* Agent Orchestration
+* [Tool Pruning via RAG](https://github.com/langchain-ai/langgraph-bigtool)
 
 **Reference blog:**
-[AI Agent vs MCP Server](https://cnoe-io.github.io/ai-platform-engineering/blog/ai-agent-vs-mcp-server)
+
+* [AI Agent vs MCP Server](https://cnoe-io.github.io/ai-platform-engineering/blog/ai-agent-vs-mcp-server)
 
 ## A2A Protocol
 
@@ -108,20 +110,21 @@ The Agent2Agent (A2A) Protocol is an open standard designed to enable seamless c
 
 The AGNTCY project provides the complete infrastructure stack for agent collaboration—discovery, identity, messaging, and observability that works across any vendor or framework. It is the foundational layer that lets specialized agents find each other, verify capabilities, and work together on complex problems.
 
-- [Agent Directory](https://docs.agntcy.org/dir/overview/)
-  - [OASF Record](https://docs.agntcy.org/oasf/open-agentic-schema-framework/)
-- [SLIM](https://docs.agntcy.org/messaging/slim-core/)
-- [Agent Identity](https://docs.agntcy.org/messaging/slim-core/)
-- [Agntcy App SDK](https://github.com/agntcy/app-sdk)
-- [coffeeAgntcy](https://github.com/agntcy/coffeeAgntcy/tree/main)
+* [Agent Directory](https://docs.agntcy.org/dir/overview/)
+  * [OASF Record](https://docs.agntcy.org/oasf/open-agentic-schema-framework/)
+* [SLIM](https://docs.agntcy.org/messaging/slim-core/)
+* [Agent Identity](https://docs.agntcy.org/messaging/slim-core/)
+* [Agntcy App SDK](https://github.com/agntcy/app-sdk)
+* [coffeeAgntcy](https://github.com/agntcy/coffeeAgntcy/tree/main)
 
 > _Note: More bonus missions checks are available to try deep-dive into AGNTCY
 
 **Reference:**
-- [https://agntcy.org/](https://agntcy.org/)
+
+* [https://agntcy.org/](https://agntcy.org/)
 
 ## Misson Checks
 
-- [ ] Clone CAIPE
-- [ ] Navigate to Docs
-- [ ] Agentic AI Concepts
+* [ ] 📝 Clone CAIPE
+* [ ] 📝 Navigate to Docs
+* [ ] 📝 Agentic AI Concepts
