@@ -17,8 +17,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 ## 🧭 1. Mission Checks
 
 - **Mission Check 1 — Download Mission and Learn the Controls** 🛰️📝
-
-Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
+    - Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
 
 - **Mission Check 2 — Create Life** 🧬🤖
     - Run the **Petstore Agent** 🐾 and confirm your first AI agent is alive. 💡
