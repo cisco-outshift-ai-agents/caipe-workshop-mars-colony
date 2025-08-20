@@ -1,25 +1,21 @@
-# Overview
+# What is CAIPE (Community AI Platform Engineering)
 
-You and your team have arrived on Mars to establish mission control operations with Agentic AI. Your goal is to set up communication and weather monitoring systems to ensure life in the new habitat runs smoothly and can communicate back to Earth in a series of mission checks.
+<img src="images/caipe.svg" width="128" height="128" alt="CAIPE Logo" style="display: block; margin: 0 auto;">
 
-## Description
-This hands-on workshop takes you from cloning the CAIPE (Community AI Platform Engineering) repo all the way to running CAIPE on your local machine or VM.
+**Reference:** [https://cnoe-io.github.io/ai-platform-engineering/](https://cnoe-io.github.io/ai-platform-engineering/)
 
-Using the Mars Colony theme, each Mission Check builds on the last — starting small (running a single agent) and ending with production-grade deployment, observability, and incident automation.
+> CAIPE (Community AI Platform Engineering), pronounced like cape (as in a superhero cape 🦸‍♂️🦸‍♀️). Just as a 🦸‍♂️ cape empowers a superhero, CAIPE empowers platform engineers with 🤖 Agentic AI automation! 🚀
 
-You will:
+Community AI Platform Engineering (CAIPE) (pronounced as cape) is an open-source, Multi-Agentic AI System (MAS) championed by the CNOE (Cloud Native Operational Excellence) forum. CAIPE provides a secure, scalable, persona-driven reference implementation with built-in knowledge base retrieval that streamlines platform operations, accelerates workflows, and fosters innovation for modern engineering teams. It integrates seamlessly with Internal Developer Portals like Backstage and developer environments such as VS Code, enabling frictionless adoption and extensibility.
 
-- Learn about CAIPE
+CAIPE is empowered by a set of specialized sub-agents that integrate seamlessly with essential engineering tools. Below are some common platform agents leveraged by the MAS agent:
 
-- Run and extend agents locally.
-
-- Orchestrate multi-agent workflows.
-
-- Commit code and open tickets with GitHub/Jira agents.
-
-- Add monitoring and automated alerting.
-
-- Bundle and deploy with idpbuilder.
-
-- Secure access and scale on Kubernetes (EKS).
-
+☁️ AWS Agent for cloud ops
+🚀 ArgoCD Agent for continuous deployment
+🚨 PagerDuty Agent for incident management
+🐙 GitHub Agent for version control
+🗂️ Jira/Confluence Agent for project management
+☸ Kubernetes Agent for K8s ops
+💬 Slack/Webex Agents for team communication
+📊 Splunk Agent for observability
+...and many more platform agents are available for additional tools and use cases.
