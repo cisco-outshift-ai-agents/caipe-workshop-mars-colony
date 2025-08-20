@@ -1,4 +1,4 @@
-# Mission Check 6 — Assemble with idpbuilder
+# Mission Check 8 — Run CAIPE with AGNTCY SLIM
 
 Use idpbuilder to package the stack (images, manifests, configs).
 

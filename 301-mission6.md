@@ -1,4 +1,4 @@
-# Mission Check 6 — Assemble with idpbuilder
+# Mission Check 6 — Run CAIPE (Community AI Platform Engineering) - Assemble with idpbuilder
 
 Use idpbuilder to package the stack (images, manifests, configs).
 

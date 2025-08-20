@@ -1,4 +1,4 @@
-# Mission Check 6 — Assemble with idpbuilder
+# Conclusion
 
 Use idpbuilder to package the stack (images, manifests, configs).
 

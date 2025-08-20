@@ -1,4 +1,4 @@
-# Mission Check 6 — Assemble with idpbuilder
+# AGNTCY - Agent Directory
 
 Use idpbuilder to package the stack (images, manifests, configs).
 
@@ -9,4 +9,6 @@ Validate output by dry-running a deployment plan.
 Success = Versioned, reproducible bundle ready for cluster deploys.
 
 
+## OASF - Agent record
 
+## Publish records

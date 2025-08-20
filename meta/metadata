@@ -70,11 +70,11 @@
         },
         {
           "title": "Conclusion",
-          "file": "906-conclusion"
+          "file": "1000-conclusion"
         },
         {
             "title": "Lab dev examples",
-            "file": "999-help"
+            "file": "2000-help"
         }
     ]
 }

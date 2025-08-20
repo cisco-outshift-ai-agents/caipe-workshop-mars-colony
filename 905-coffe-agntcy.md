@@ -1,4 +1,4 @@
-# Mission Check 6 — Assemble with idpbuilder
+# Coffee Agntcy - Reference app
 
 Use idpbuilder to package the stack (images, manifests, configs).
 

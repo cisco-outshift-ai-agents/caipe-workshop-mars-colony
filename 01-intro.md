@@ -1,48 +1,47 @@
 # Your Mission - Mission Control for Mars Colony
 
-<img src="images/mission-control.svg" alt="Mission Control" width="500">
+<img src="images/mission-control.svg" alt="Mission Control" width="200">
 
-You and your team have arrived on Mars to establish mission control operations with Agentic AI. Your goal is to set up communication and weather monitoring systems to ensure life in the new habitat runs smoothly and can communicate back to Earth in a series of mission checks.
+You and your team have landed on **Mars** to establish **Mission Control operations with Agentic AI**.
 
-## Description
+Your **mission** is to set up communication and weather monitoring systems so life in the new habitat runs smoothly, while staying connected to Earth by reporting your findings.
 
-This hands-on workshop takes you from cloning the CAIPE (Community AI Platform Engineering) repo all the way to running CAIPE on your local machine or VM.
-
-Using the Mars Colony theme, each Mission Check builds on the last — starting small (running a single agent) and ending with production-grade deployment, observability, and incident automation.
-
-You will:
-
-- Learn about CAIPE
-
-- Basic LLM + Tools, MCP, A2A, Agent Chat CLI
-
-- Run and extend agents locally.
-
-- Orchestrate multi-agent workflows.
-
-- Commit code and open tickets with GitHub/Jira agents.
-
-- Add monitoring and automated alerting.
-
-- Bundle and deploy with idpbuilder.
-
-- Secure access and scale on Kubernetes (EKS).
+Along the way, you’ll complete a **series of Mission Checks**, each building on the last — starting with a single agent, then expanding to a distributed multi-agent system using A2A and MCP, and finally running CAIPE (Community AI Platform Engineering) MAS and interfact using Backstage/CLI interface.
 
 
+## 🧭 Mission Checks
 
-You • Hello everyone we invite you to  register for this internal hands on training on CAIPE on Aug 27, 2025
-8:00 - 10:00 am PDT (link). In this training get ready to ⚡ level up with AI Platform Engineering and explore, run, modify, deploy, and master Outshift’s open-source, secure, enterprise-ready, distributed multi-agent system. 
- 
-This jam-style session is all about exploration, learning, and hands-on deployment. You’ll:
+**Mission Check 1 — Download Mission and Learn the Controls**
+Clone the repo, set up prerequisites, and bring Mission Control online.
 
-🚀 Explore and run the full-stack AI agentic platform on your own laptop or environment.
- 
-🧪 Play with real-world use cases, experiment with tools, and customize agents by modifying prompts.
- 
-🔌 Integrate with AGNTCY components
- 
-🔍 Learn distributed tracing, continuous evaluation, and best practices for agent evaluation.
- 
-🤝 Collaborate with the creators of JARVIS and the open-source community to shape the AI Platform Engineering Agentic future.
- 
-☸️ Deploy the Full-Stack AI Platform Engineering on Kubernetes and take it to Production for enterprise use cases.
+**Mission Check 2 — Create Life**
+Run the **Petstore Agent** and confirm your first AI agent is alive.
+
+**Mission Check 3 — Scan the Skies**
+Introduce the **Multi-Agent Mars Weather** system to monitor dust storms.
+
+**Mission Check 4 — Mission Control Manual (KB RAG)**
+Launch the **Knowledge Base RAG system**, ingest docs, and query them.
+
+**Mission Check 5 — Report Findings to Earth**
+Use the **GitHub + Work Tracking Agent** to write a combined report from Petstore, Weather, and RAG.
+
+**Mission Check 6 — Assemble with idpbuilder**
+Package the full CAIPE stack into reproducible deployable bundles.
+
+**Mission Check 7 — Tracing and Evaluation**
+Customize prompts, enable tracing, and evaluate agent workflows.
+
+**Mission Check 8 — Run CAIPE with AGNTCY SLIM**
+Deploy with AGNTCY integrations for production-like workflows.
+
+## 🎯 Bonus Missions
+
+* **AGNTCY Intro**
+* **AGNTCY — Agent Directory**
+* **AGNTCY — SLIM**
+* **AGNTCY — Agent Identity**
+
+We’ll conclude with:
+
+* **Final Debrief & Takeaways**
