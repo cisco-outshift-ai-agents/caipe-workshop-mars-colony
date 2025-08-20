@@ -1,5 +1,48 @@
 # Mission Check 1 — Download mission and learn the controls.
 
+<div id="timer-container" style="margin: 30px 0; text-align: center;">
+  <button id="start-timer-btn" style="padding: 8px 18px; font-size: 1.1rem; border-radius: 10px; background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%); color: #fff; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); cursor: pointer;">
+    ⏰ Start 15-Min Timer 🚀
+  </button>
+  <div style="margin-top: 24px;">
+    <span id="timer-display" style="font-size: 2.2rem; font-weight: bold; color: #ff5722; letter-spacing: 2px; background: #fff3e0; padding: 10px 28px; border-radius: 14px; box-shadow: 0 2px 8px rgba(255,152,0,0.08);">
+      10:00
+    </span>
+  </div>
+  <div id="timer-emoji" style="font-size: 2rem; margin-top: 16px; display: none;">🔥⏳</div>
+</div>
+<script>
+  let timerInterval;
+  let timeLeft = 10 * 60; // 15 minutes in seconds
+
+  function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  }
+
+  document.getElementById('start-timer-btn').onclick = function() {
+    clearInterval(timerInterval);
+    timeLeft = 15 * 60;
+    document.getElementById('timer-display').textContent = formatTime(timeLeft);
+    document.getElementById('timer-emoji').style.display = 'inline-block';
+    document.getElementById('timer-emoji').textContent = "🔥⏳";
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      document.getElementById('timer-display').textContent = formatTime(timeLeft);
+      if (timeLeft <= 10) {
+        document.getElementById('timer-emoji').textContent = "⏰⚡";
+      }
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        document.getElementById('timer-display').textContent = "🎉 Time's up! 🎉";
+        document.getElementById('timer-emoji').textContent = "✅🚀";
+      }
+    }, 1000);
+  };
+</script>
+
+
 ## Clone CAIPE
 
 Clone the CAIPE (Community AI Platform Engineering) repository
