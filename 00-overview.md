@@ -8,14 +8,15 @@ Community AI Platform Engineering (CAIPE) (pronounced as cape) is an open-source
 
 CAIPE is empowered by a set of specialized sub-agents that integrate seamlessly with essential engineering tools. Below are some common platform agents leveraged by the MAS agent:
 
-☁️ AWS Agent for cloud ops
-🚀 ArgoCD Agent for continuous deployment
-🚨 PagerDuty Agent for incident management
-🐙 GitHub Agent for version control
-🗂️ Jira/Confluence Agent for project management
-☸ Kubernetes Agent for K8s ops
-💬 Slack/Webex Agents for team communication
-📊 Splunk Agent for observability
+* ☁️ AWS Agent for cloud ops
+* 🚀 ArgoCD Agent for continuous deployment
+* 🚨 PagerDuty Agent for incident management
+* 🐙 GitHub Agent for version control
+* 🗂️ Jira/Confluence Agent for project management
+* ☸ Kubernetes Agent for K8s ops
+* 💬 Slack/Webex Agents for team communication
+* 📊 Splunk Agent for observability
+
 ...and many more platform agents are available for additional tools and use cases.
 
 **_Tip:💡 CAIPE (Community AI Platform Engineering), pronounced like cape (as in a superhero cape 🦸‍♂️🦸‍♀️). Just as a 🦸‍♂️ cape empowers a superhero, CAIPE empowers platform engineers with 🤖 Agentic AI automation! 🚀_**
