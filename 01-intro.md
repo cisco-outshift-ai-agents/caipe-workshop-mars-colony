@@ -8,7 +8,7 @@ You and your team have landed on **Mars** 🟠 to establish **Mission Control op
 
 Along the way, you’ll complete a **series of Mission Checks**, each building on the last — starting with a single agent 🤖, then expanding to a distributed multi-agent system using A2A and MCP 🌐, and finally running CAIPE (Community AI Platform Engineering) MAS and interfacing using Backstage/CLI interface. 🖥️🛸
 
----
+------------------------------
 
 ## 🧭 1. Mission Checks
 
@@ -46,7 +46,7 @@ Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
 
 ## 🏁📢 3. We’ll conclude with **Final Debrief & Takeaways**
 
----
+------------------------------
 
 # 🏆 CAIPE Badges
 
