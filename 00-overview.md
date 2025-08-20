@@ -1,6 +1,6 @@
 # What is CAIPE (Community AI Platform Engineering)
 
-<img src="images/caipe.svg" width="128" height="128" alt="CAIPE Logo">
+<img src="images/caipe.svg" width="200" height="200" alt="CAIPE Logo">
 
 **Reference:** [https://cnoe-io.github.io/ai-platform-engineering/](https://cnoe-io.github.io/ai-platform-engineering/)
 

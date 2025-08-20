@@ -1,6 +1,6 @@
 # Your Mission - Mission Control for Mars Colony
 
-<img src="images/mission-control.svg" alt="Mission Control" width="400">
+<img src="images/mission-control.svg" alt="Mission Control" width="450">
 
 You and your team have landed on **Mars** to establish **Mission Control operations with Agentic AI**.
 
@@ -45,3 +45,28 @@ Deploy with AGNTCY integrations for production-like workflows.
 We’ll conclude with:
 
 * **Final Debrief & Takeaways**
+
+# CAIPE Badges
+
+- Everyone who participates in this workshop will receive the `Explorer` badge. You can proudly display this achievement badge on your Cisco Directory profile or on LinkedIn.
+- After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
+- Future badges can be earned by continuing your learning progression, attending monthly office hours, participating in open source community meetings, and contributing to the CAIPE project.
+
+More details about badges, progression, and the learning path can be found here:
+https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx
+
+## CAIPE Explorer
+
+<img src="images/badge-explorer.svg" alt="Mission Control" width="100">
+
+## CAIPE Improver
+
+<img src="images/badge-improver.svg" alt="Mission Control" width="100">
+
+## CAIPE Expert
+
+<img src="images/badge-expert.svg" alt="Mission Control" width="100">
+
+## CAIPE Master
+
+<img src="images/badge-master.svg" alt="Mission Control" width="100">
