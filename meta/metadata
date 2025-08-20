@@ -18,31 +18,59 @@
         },
         {
             "title": "Bring Mission Control Online",
-            "file": "10-mission1"
+            "file": "101-mission1"
         },
         {
             "title": "Create Life",
-            "file": "20-mission2"
+            "file": "102-mission2"
         },
         {
             "title": "Scan the Skies",
-            "file": "30-mission3"
+            "file": "102-mission3"
         },
         {
             "title": "Mission Control Manual",
-            "file": "40-mission4"
+            "file": "201-mission4"
         },
         {
             "title": "Report your mission findings",
-            "file": "50-mission5"
+            "file": "202-mission5"
         },
         {
             "title": "Assemble with idpbuilder (bonus)",
-            "file": "60-mission6"
+            "file": "301-mission6"
+        },
+        {
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "401-mission7"
+        },
+        {
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "402-mission8"
+        },
+        {
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "901-extras-agntcy"
+        },
+        {
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "902-extras-coffeeAgntcy"
+        },
+        {
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "903-extras-slim"
+        },
+        {
+            "title": "Assemble with idpbuilder (bonus)",
+            "file": "904-extras-agent-identity"
+        },
+        {
+            "title": "Conclusion",
+            "file": "999-conclusion"
         },
         {
             "title": "Lab dev examples",
-            "file": "99-help"
+            "file": "999-help"
         }
     ]
 }
