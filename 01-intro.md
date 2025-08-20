@@ -46,7 +46,12 @@ Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
 
 ## 🏁📢 3. We’ll conclude with **Final Debrief & Takeaways**
 
-------------------------------
+
+&nbsp;
+
+&nbsp;
+
+
 
 # 🏆 CAIPE Badges
 
