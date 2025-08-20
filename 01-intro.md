@@ -60,8 +60,8 @@ Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
 - After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
 - Future badges can be earned by continuing your learning progression, attending monthly office hours, participating in open source community meetings, and contributing to the CAIPE project.
 
-More details about badges, progression, and the learning path can be found here:
-[https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx)
+**More details about badges, progression, and the learning path can be found here:
+[https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx)**
 
 | Badge Level        |   |   | Badge Image                                                                 |
 |--------------------|---|---|-----------------------------------------------------------------------------|
