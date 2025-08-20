@@ -1,6 +1,6 @@
 # Your Mission - Mission Control for Mars Colony
 
-<img src="images/mission-control.svg" alt="Mission Control" width="50">
+<img src="images/mission-control.svg" alt="Mission Control" width="256">
 
 You and your team have arrived on Mars to establish mission control operations with Agentic AI. Your goal is to set up communication and weather monitoring systems to ensure life in the new habitat runs smoothly and can communicate back to Earth in a series of mission checks.
 
