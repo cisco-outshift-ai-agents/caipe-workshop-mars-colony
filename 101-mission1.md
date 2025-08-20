@@ -160,7 +160,7 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 * [Agntcy App SDK](https://github.com/agntcy/app-sdk)
 * [coffeeAgntcy](https://github.com/agntcy/coffeeAgntcy/tree/main)
 
-> _Note: More bonus missions checks are available to try deep-dive into AGNTCY
+**_Note: More bonus missions are available to try offline for a deeper dive into AGNTCY._**
 
 **Reference:**
 
