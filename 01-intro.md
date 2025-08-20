@@ -65,7 +65,7 @@ More details about badges, progression, and the learning path can be found here:
 
 | Badge Level        |   |   | Badge Image                                                                 |
 |--------------------|---|---|-----------------------------------------------------------------------------|
-| 🚀 CAIPE Explorer  |   |   | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="100">      |
-| ⚡ CAIPE Improver  |   |   | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="100">      |
-| 🎯 CAIPE Expert    |   |   | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="100">          |
-| 👑 CAIPE Master    |   |   | <img src="images/badge-master.svg" alt="CAIPE Master" width="100">          |
+| 🚀 CAIPE Explorer  |   |   | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="50">      |
+| ⚡ CAIPE Improver  |   |   | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="50">      |
+| 🎯 CAIPE Expert    |   |   | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="50">          |
+| 👑 CAIPE Master    |   |   | <img src="images/badge-master.svg" alt="CAIPE Master" width="50">          |
