@@ -42,9 +42,8 @@ Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
 * **AGNTCY — SLIM**
 * **AGNTCY — Agent Identity**
 
-## We’ll conclude with:
+##  🏁📢 We’ll conclude with **Final Debrief & Takeaways**
 
-### **Final Debrief & Takeaways** 🏁📢
 
 # 🏆 CAIPE Badges
 
