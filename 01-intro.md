@@ -53,11 +53,11 @@ Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
 - Future badges can be earned by continuing your learning progression, attending monthly office hours, participating in open source community meetings, and contributing to the CAIPE project.
 
 More details about badges, progression, and the learning path can be found here:
-https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx
+[https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx)
 
-| Badge Level        | Badge Image                                                                 |
-|--------------------|-----------------------------------------------------------------------------|
-| 🚀 CAIPE Explorer  | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="100">      |
-| ⚡ CAIPE Improver  | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="100">      |
-| 🎯 CAIPE Expert    | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="100">          |
-| 👑 CAIPE Master    | <img src="images/badge-master.svg" alt="CAIPE Master" width="100">          |
+| Badge Level        |   |   | Badge Image                                                                 |
+|--------------------|---|---|-----------------------------------------------------------------------------|
+| 🚀 CAIPE Explorer  |   |   | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="100">      |
+| ⚡ CAIPE Improver  |   |   | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="100">      |
+| 🎯 CAIPE Expert    |   |   | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="100">          |
+| 👑 CAIPE Master    |   |   | <img src="images/badge-master.svg" alt="CAIPE Master" width="100">          |
