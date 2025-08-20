@@ -45,28 +45,32 @@
             "file": "401-mission7"
         },
         {
-            "title": "Assemble with idpbuilder (bonus)",
+            "title": "Assemble with idpbuilder",
             "file": "402-mission8"
         },
         {
-            "title": "Assemble with idpbuilder (bonus)",
-            "file": "901-extras-agntcy"
+            "title": "AGNTCY Introduction",
+            "file": "901-agntcy-intro"
         },
         {
-            "title": "Assemble with idpbuilder (bonus)",
-            "file": "902-extras-coffeeAgntcy"
+            "title": "AGNTCY Agent Directory",
+            "file": "902-agent-directory"
         },
         {
-            "title": "Assemble with idpbuilder (bonus)",
-            "file": "903-extras-slim"
+            "title": "AGNTCY Slim",
+            "file": "903-slim"
         },
         {
-            "title": "Assemble with idpbuilder (bonus)",
-            "file": "904-extras-agent-identity"
+            "title": "AGNTCY Agent Identity",
+            "file": "904-agent-identity"
         },
         {
-            "title": "Conclusion",
-            "file": "905-conclusion"
+            "title": "Coffee Agntcy",
+            "file": "905-coffe-agntcy"
+        },
+        {
+          "title": "Conclusion",
+          "file": "906-conclusion"
         },
         {
             "title": "Lab dev examples",
