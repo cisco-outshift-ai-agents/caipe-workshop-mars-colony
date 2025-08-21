@@ -14,7 +14,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## 🧭  Mission Checks
+## Mission Checks 🧭 
 
 - **Mission Check 1 — Download Mission and Learn the Controls** 🛰️📝
     - Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
@@ -42,7 +42,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## 🎯 Bonus Missions
+## Bonus Missions 🎯
 
 * **AGNTCY Intro**
 * **AGNTCY — Agent Directory**
