@@ -63,11 +63,11 @@ git clone https://github.com/cnoe-io/ai-platform-engineering
   * `Setup` -> `Docker` -> `Run with Docker Compose`
   * `Setup` -> `IDP Builder`
 
-# Agentic AI Concepts
+## Agentic AI Concepts
 
 Let's review some key concepts.
 
-## What is an Agent?
+### What is an Agent?
 
 An AI Agent is a system that uses a Large Language Model (LLM) to decide the flow of an application
 
@@ -79,7 +79,7 @@ design pattern used in agentic systems to help LLMs decide the next action or to
 <img src="images/react-agent.svg" alt="Mission Control" width="200">
 
 
-## What is a Multi-Agent System (MAS)?
+### What is a Multi-Agent System (MAS)?
 
 A Multi-Agent System (MAS) is an agentic AI system composed of multiple, independent and interacting agents to achieve a common goal
 
