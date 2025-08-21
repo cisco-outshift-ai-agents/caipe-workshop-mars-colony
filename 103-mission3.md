@@ -192,7 +192,7 @@ Get me weather for New York and find me all cats that are available for adoption
 If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
 ```
 
-## Step 5: Observe Agent Coordination
+## Step 6: Observe Agent Coordination
 
 ### Watch the logs to see agent-to-agent communication:
 In your Docker Compose terminal, you'll see:
