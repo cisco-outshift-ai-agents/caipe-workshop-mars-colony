@@ -5,7 +5,6 @@ Click **Start** to begin a 5-minute countdown:
 <div>
   <button onclick="startTimer()">Start Timer</button>
   <span id="timer" style="font-size:1.5em; font-weight:bold; margin-left:10px;">05:00</span>
-</div>
 
 <script>
 let timerInterval;
@@ -29,3 +28,6 @@ function startTimer() {
   }, 1000);
 }
 </script>
+</div>
+
+end
