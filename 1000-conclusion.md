@@ -1,8 +1,8 @@
-## 🎉 Conclusion & Next Steps
+## Conclusion & Next Steps
 
 Congratulations on completing your mission! 🚀 While our official journey wraps up here, the adventure continues—there are plenty of bonus exercises and ways to stay connected with the CAIPE community. 🌟
 
-## 🚀 Bonus Missions & Community Resources
+## Bonus Missions & Community Resources
 
 - **✨ Bonus Exercises**
   - Explore additional hands-on challenges to deepen your skills and have even more fun! Check out the [CAIPE Bonus Missions](https://cnoe-io.github.io/ai-platform-engineering/) for more details.

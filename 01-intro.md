@@ -14,7 +14,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## Mission Checks 🧭 
+## Mission Checks
 
 - **Mission Check 1 — Download Mission and Learn the Controls** 🛰️📝
     - Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
@@ -42,7 +42,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## Bonus Missions 🎯
+## Bonus Missions
 
 * **AGNTCY Intro**
 * **AGNTCY — Agent Directory**
@@ -51,13 +51,13 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## 🏁📢 Final Debrief & Takeaways
+## Final Debrief & Takeaways
 
 &nbsp;
 
 &nbsp;
 
-## 🏆 CAIPE Badges
+## CAIPE Badges
 
 - Everyone who participates in this workshop will receive the `Explorer` badge. You can proudly display this achievement badge on your Cisco Directory profile or on LinkedIn.
 - After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
@@ -75,7 +75,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## 🛠️ Workshop Logistics & Support
+## Workshop Logistics & Support
 
 - **🔍 Demo Lab Navigation**
   - Easily switch between the **Lab Guide**, **Terminal**, and **IDE** using the toggles in the **top right corner** of your screen.
