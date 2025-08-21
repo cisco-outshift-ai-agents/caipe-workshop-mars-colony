@@ -9,24 +9,28 @@ Click **Start** to begin a 5-minute countdown:
 <script>
 let timerInterval;
 
-function startTimer() {
-  clearInterval(timerInterval); // reset if already running
-
-  let duration = 60 * 5; // 5 minutes
-  let display = document.getElementById("timer");
+function runTimer(duration, display) {
+  clearInterval(timerInterval);
+  let timer = duration;
 
   timerInterval = setInterval(function () {
-    let minutes = String(parseInt(duration / 60, 10)).padStart(2, "0");
-    let seconds = String(parseInt(duration % 60, 10)).padStart(2, "0");
-
+    let minutes = String(Math.floor(timer / 60)).padStart(2, "0");
+    let seconds = String(timer % 60).padStart(2, "0");
     display.textContent = minutes + ":" + seconds;
 
-    if (--duration < 0) {
+    if (--timer < 0) {
       clearInterval(timerInterval);
       display.textContent = "TIME UP!";
     }
   }, 1000);
 }
+
+window.startTimer = function () {
+  let fiveMinutes = 60 * 5;
+  let display = document.getElementById("timer");
+  runTimer(fiveMinutes, display);
+};
+
 </script>
 </div>
 
