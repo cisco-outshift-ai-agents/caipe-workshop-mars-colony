@@ -140,7 +140,7 @@ Get a summary of pets by status
 I want to add a new pet to the store
 ```
 
-> Warning: The Petstore API used here (`https://petstore.swagger.io/v2`) is a public demo sandbox. Create/update/delete requests may return 200 OK but data is not persisted, so subsequent reads may not reflect your changes.
+**Warning:** The Petstore API used here (`https://petstore.swagger.io/v2`) is a public demo sandbox. Create/update/delete requests may return 200 OK but data is not persisted, so subsequent reads may not reflect your changes.
 
 ### Store Operations
 
