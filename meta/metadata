@@ -4,5 +4,5 @@
     "uploadEnabled": false,
     "additionalOptionsEnabled": true,
     "splitPosition": 50,
-    "displayMode": "terminal",
+    "displayMode": "terminal"
 }
