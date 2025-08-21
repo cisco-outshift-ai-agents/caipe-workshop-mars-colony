@@ -170,7 +170,7 @@ Give me a 5-day forecast for London
 
 ### Petstore Commands (from Mission 2)
 ```bash
-Get all dogs that are available
+Add a new dog named Max
 ```
 
 ```bash
@@ -185,7 +185,7 @@ Get me weather for New York and find me all cats that are available for adoption
 ```
 
 ```bash
-How is the weather in Alaska? Show me any pets that would work well in this weather available in the petstore.
+ What’s the weather like in Paris right now? If it’s cold, think dogs (cold‑tolerant). If it’s hot, think fish or reptiles. If it’s rainy/snowy, think indoor cats. Show available petstore pets that fit
 ```
 
 ```bash
