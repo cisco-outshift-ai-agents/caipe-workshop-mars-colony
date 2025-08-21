@@ -1,4 +1,4 @@
-# AGNTCY - Agent Directory
+## AGNTCY - Agent Directory
 
 Use idpbuilder to package the stack (images, manifests, configs).
 
@@ -9,6 +9,6 @@ Validate output by dry-running a deployment plan.
 Success = Versioned, reproducible bundle ready for cluster deploys.
 
 
-## OASF - Agent record
+### OASF - Agent record
 
-## Publish records
+### Publish records

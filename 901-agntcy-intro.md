@@ -1,4 +1,6 @@
-# AGNTCY Intro
+# AGNTCY 
+
+## AGNTCY Intro
 
 Use idpbuilder to package the stack (images, manifests, configs).
 

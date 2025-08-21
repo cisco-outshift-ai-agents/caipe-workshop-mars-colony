@@ -1,4 +1,4 @@
-# AGNTCY - Agent Identity
+## AGNTCY - Agent Identity
 
 Use idpbuilder to package the stack (images, manifests, configs).
 
