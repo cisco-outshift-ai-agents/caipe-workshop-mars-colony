@@ -1,8 +1,9 @@
-# Mission Check 4 - Mission Control Manual and Reporting back (RAG + Git agent)
+# Mission Check 4 - Mission Control Manual & Reporting back (RAG + Git agent)
 
 ## Overview
 
 In this mission, you'll deploy and interact with specialized agents for **knowledge retrieval** and **version control**:
+
 - **📚 RAG Agent**: Query AI Platform Engineering documentation using Retrieval-Augmented Generation
 - **🔧 Git Agent**: Automate git operations like commits, pushes, and repository management
 - **🤖 Integration**: Combine both agents for documentation-driven development workflows
@@ -24,13 +25,20 @@ docker compose -f workshop/docker-compose.mission4.yaml up
 
 **Expected output:**
 ```
-✅ Starting rag-agent...
-✅ Starting git-agent...
-✅ Starting supervisor-agent...
-
-📚 rag-agent        | INFO: RAG service ready on http://0.0.0.0:9446
-🔧 git-agent        | INFO: Git agent ready on http://0.0.0.0:8003
-🧠 supervisor-agent | INFO: Multi-agent supervisor ready on http://0.0.0.0:8000
+...
+===================================
+       GITHUB AGENT CONFIG      
+===================================
+AGENT_URL: http://agent-github-p2p:8000⁠
+===================================
+===================================
+       KB-RAG AGENT CONFIG      
+===================================
+AGENT_URL: http://kb-rag:8000⁠
+===================================
+2025-08-21 14:10:48,082 - INFO - ✅ Added github to registry (reachable)
+2025-08-21 14:10:48,082 - INFO - ✅ Added kb-rag to registry (reachable)
+...
 ```
 
 **🎯 Success indicator:** Wait until all three services are running and healthy.
@@ -46,7 +54,7 @@ curl -X POST \
   -d '{
     "url": "https://cnoe-io.github.io/ai-platform-engineering/",
     "params": {}
-  }'
+  }' | jq
 ```
 
 **Expected response:**
@@ -175,30 +183,6 @@ Find information about Docker Compose setup and create a git branch called "dock
 - [ ] ✅ Test git operations: "Check git status"
 - [ ] ✅ Test combined workflow: Documentation search + git operations
 
-## Troubleshooting
+## Reference and Troubleshooting
 
-### RAG ingestion fails
-```bash
-# Check RAG service health
-curl http://localhost:9446/health
 
-# Restart RAG service
-docker compose -f workshop/docker-compose.mission4.yaml restart rag-agent
-```
-
-### Git agent can't access repository
-```bash
-# Verify git agent is running
-curl http://localhost:8003/.well-known/agent.json
-
-# Check repository permissions
-ls -la .git/
-```
-
-### Agents not connecting
-```bash
-# Check all agent health endpoints
-curl http://localhost:8000/.well-known/agent.json  # Supervisor
-curl http://localhost:9446/health                  # RAG
-curl http://localhost:8003/.well-known/agent.json  # Git
-```
