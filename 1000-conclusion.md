@@ -1,4 +1,4 @@
-# 🎉 Conclusion & Next Steps
+## 🎉 Conclusion & Next Steps
 
 Congratulations on completing your mission! 🚀 While our official journey wraps up here, the adventure continues—there are plenty of bonus exercises and ways to stay connected with the CAIPE community. 🌟
 

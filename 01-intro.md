@@ -57,7 +57,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-# 🏆 CAIPE Badges
+## 🏆 CAIPE Badges
 
 - Everyone who participates in this workshop will receive the `Explorer` badge. You can proudly display this achievement badge on your Cisco Directory profile or on LinkedIn.
 - After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
@@ -75,7 +75,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-# 🛠️ Workshop Logistics & Support
+## 🛠️ Workshop Logistics & Support
 
 - **🔍 Demo Lab Navigation**
   - Easily switch between the **Lab Guide**, **Terminal**, and **IDE** using the toggles in the **top right corner** of your screen.
