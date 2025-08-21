@@ -51,7 +51,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## Final Debrief & Takeaways
+## Final Debrief and Takeaways
 
 &nbsp;
 
@@ -75,7 +75,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## Workshop Logistics & Support
+## Workshop Logistics and Support
 
 - **🔍 Demo Lab Navigation**
   - Easily switch between the **Lab Guide**, **Terminal**, and **IDE** using the toggles in the **top right corner** of your screen.
