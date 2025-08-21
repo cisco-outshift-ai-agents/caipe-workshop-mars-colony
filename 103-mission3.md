@@ -19,6 +19,8 @@ vim .env
 
 **Modify lines 1-18** with the following agent configuration:
 
+**💡 Tip:** Press `i` to enter insert mode in vim, make your changes, then press `Esc` and type `:wq` to save and exit.
+
 ```bash
 ########### AGENT CONFIGURATION ###########
 
@@ -40,8 +42,6 @@ AGENT_CONNECTIVITY_REFRESH_INTERVAL=300
 AGENT_CONNECTIVITY_FAST_CHECK_TIMEOUT=2.0
 ```
 
-**💡 Tip:** Press `i` to enter insert mode in vim, make your changes, then press `Esc` and type `:wq` to save and exit.
-
 The connectivity check is performed when the supervisor agent starts. It will check if the petstore and weather agents are running and if they are, it will add them to the supervisor agent's memory.
 
 The dynamic monitoring is performed in the background and will check if the petstore and weather agents are running every 5 minutes. If any of the agents is unavailable, the supervisor agent will remove it from available tools until it is back online.
@@ -51,77 +51,145 @@ The dynamic monitoring is performed in the background and will check if the pets
 ### Launch the multi-agent stack with Docker Compose:
 
 ```bash
-docker compose -f workshop/docker-compose.mission3.yaml up
+IMAGE_TAG=latest docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
 ```
 
-**Expected output:**
+### What happens:
+
+- ⏬ Downloads the latest supervisor, petstore and weather agent images from the registry
+- 🌐 Exposes the supervisor agent on `http://localhost:8000`
+- 🌐 Exposes the petstore agent on `http://localhost:8009`
+- 🌐 Exposes the weather agent on `http://localhost:8010`
+- 🔗 Uses peer-to-peer (p2p) mode to connect the supervisor agent to the petstore and weather agents
+- 📋 Shows logs directly in terminal for all three agents
+
+### Expected output:
+Look out for the following logs for each agent:
+
+**💡 Tip:** You can also see the logs for a single agent by running `docker logs -f <platform-engineer-p2p|agent-weather-p2p|agent-petstore-p2p>` on a new terminal.
+
+#### Petstore agent logs:
 ```
-✅ Creating network "ai-platform-engineering_default"
-✅ Starting weather-agent...
-✅ Starting petstore-agent...
-✅ Starting supervisor-agent...
-
-🌤️ weather-agent    | INFO: Uvicorn running on http://0.0.0.0:8001
-🐾 petstore-agent   | INFO: Uvicorn running on http://0.0.0.0:8002
-🧠 supervisor-agent | INFO: Multi-agent supervisor ready on http://0.0.0.0:8000
+...
+agent-petstore-p2p     | ===================================
+agent-petstore-p2p     |        PETSTORE AGENT CONFIG
+agent-petstore-p2p     | ===================================
+agent-petstore-p2p     | AGENT_URL: http://0.0.0.0:8000
+agent-petstore-p2p     | ===================================
+agent-petstore-p2p     | Running A2A server in p2p mode.
+agent-petstore-p2p     | INFO:     Started server process [1]
+agent-petstore-p2p     | INFO:     Waiting for application startup.
+agent-petstore-p2p     | INFO:     Application startup complete.
+agent-petstore-p2p     | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-**🎯 Success indicator:** Wait until you see all three agents running and the supervisor reports successful connectivity checks.
+#### Weather agent logs:
+```
+agent-weather-p2p      | ===================================
+agent-weather-p2p      |        WEATHER AGENT CONFIG
+agent-weather-p2p      | ===================================
+agent-weather-p2p      | AGENT_URL: http://0.0.0.0:8000
+agent-weather-p2p      | ===================================
+agent-weather-p2p      | Running A2A server in p2p mode.
+agent-weather-p2p      | INFO:     Started server process [1]
+agent-weather-p2p      | INFO:     Waiting for application startup.
+agent-weather-p2p      | INFO:     Application startup complete.
+agent-weather-p2p      | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+```
 
-## Step 3: Connect Multi-Agent Chat Client
+#### Supervisor agent logs:
+```
+platform-engineer-p2p  | 2025-08-21 13:36:04,058 - INFO - Dynamic monitoring enabled for 2 agents
+platform-engineer-p2p  | 2025-08-21 13:36:04,062 - INFO - [LLM] AzureOpenAI deployment=gpt-4o api_version=2025-03-01-preview
+platform-engineer-p2p  | 2025-08-21 13:36:04,809 - INFO - Graph updated with 2 agent tools
+platform-engineer-p2p  | 2025-08-21 13:36:04,809 - INFO - AIPlatformEngineerMAS initialized with 2 agents
+platform-engineer-p2p  | INFO:     Started server process [1]
+platform-engineer-p2p  | INFO:     Waiting for application startup.
+platform-engineer-p2p  | INFO:     Application startup complete.
+platform-engineer-p2p  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+```
 
-Once all agents are running, **open a new terminal** and start the chat client:
+**🎯 Success indicator:** Wait until you see all three agents running and the supervisor reports successful connectivity checks as shown in the logs above.
+
+## Step 3: Test the agent health
+
+We can now check each agent card to see what capabilities are available. Open a new terminal and run the following command to test the agent health:
+
+#### Weather agent card:
+```bash
+curl http://localhost:8009/.well-known/agent.json | jq
+```
+
+#### Petstore agent card:
+```bash
+curl http://localhost:8010/.well-known/agent.json | jq
+```
+
+#### Supervisor agent card:
+
+This is the supervisor agent card. It will show the combined capabilities of the petstore and weather agents.
+
+```bash
+curl http://localhost:8000/.well-known/agent.json | jq
+```
+
+## Step 4: Connect Multi-Agent Chat Client
+
+Once all agents are running, start the chat client:
+
+**💡 Tip:**  When askes to `💬 Enter token (optional): `, press enter.
+
 
 ```bash
 docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
 ```
 
-When asked for `💬 Enter token (optional):`, press enter. The client will connect to the supervisor agent and show available capabilities from both petstore and weather agents.
+The client will connect to the supervisor agent and show available capabilities from both petstore and weather agents.
 
-## Step 4: Test Multi-Agent Interactions
+## Step 5: Test Multi-Agent Interactions
 
 ### Discovery Commands
 Try these to explore the multi-agent capabilities:
 
-```
+```bash
 What agents are available?
 ```
 
-```
+```bash
 What can you help me with?
+```
+
+### Weather-Specific Commands
+```bash
+What's the current weather in San Francisco?
+```
+
+```bash
+Give me a 5-day forecast for London
+```
+
+### Petstore Commands (from Mission 2)
+```bash
+Get all dogs that are available
+```
+
+```bash
+Show me pets with 'cold' tags
 ```
 
 ### Cross-Agent Scenarios
 Test scenarios that require both agents:
 
-```
-What's the weather like today? Also show me available pets in the store.
-```
-
-```
-If it's going to rain tomorrow, should I delay outdoor pet deliveries?
-```
-
-```
+```bash
 Get me weather for New York and find me all cats that are available for adoption.
 ```
 
-### Weather-Specific Commands
-```
-What's the current weather in San Francisco?
-```
-
-```
-Give me a 3-day forecast for London
+```bash
+How is the weather in Alaska? Show me any pets that would work well in this weather available in the petstore.
 ```
 
-### Petstore Commands (from Mission 2)
-```
-Get all available pets
-```
-
-```
-Add a new dog named Max
+```bash
+If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
 ```
 
 ## Step 5: Observe Agent Coordination
