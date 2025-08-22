@@ -2,17 +2,47 @@
 
 ## Overview
 
-In this mission, you'll run a standalone Petstore AI agent that demonstrates:
-- **Pet Management**: Add, find, update, and delete pets
-- **Store Operations**: Inventory, orders, and analytics
-- **User Management**: Account creation and management
-- **Smart Search**: Combined status + category filtering
-- **Response Optimization**: Handles large datasets efficiently
+🚀 **Mission Status**: As a newly arrived Mars colonist, your first assignment is to manage the colony's biological companions and supply systems.
+
+In this mission, you'll deploy a standalone Petstore AI agent to handle critical colony operations:
+- **🐾 Companion Management**: Track, care for, and manage colony animals that boost morale and assist with tasks
+- **📦 Supply Operations**: Monitor inventory, process resource orders, and analyze colony logistics
+- **👨‍🚀 Colonist Management**: Maintain records and manage access for fellow Mars inhabitants
+- **🔍 Smart Search**: Efficiently locate animals and supplies using advanced filtering systems
+- **⚡ Response Optimization**: Handle large datasets crucial for colony survival without system overload
+
+## Architecture Overview
+
+The following diagram shows how the chat client connects to the petstore agent in STDIO mode:
+
+```mermaid
+graph TD
+    U["👤 User"] --> CC["Chat Client<br/>(ghcr.io/cnoe-io/agent-chat-cli:stable)"]
+
+    CC -.- |"Fetch agent card"| E["/.well-known/agent.json"]
+    E -.- A
+
+    CC <--> A
+
+    subgraph "ghcr.io/cnoe-io/agent-template:"
+        A["Petstore Agent<br/>(Port 8000)"]
+        B["MCP Server<br/>(STDIO Mode)"]
+        A <--> B
+    end
+
+    B <--> C["Petstore API<br/>(petstore.swagger.io/v2)"]
+
+    style U fill:#e1f5fe
+    style CC fill:#f3e5f5
+    style A fill:#e8f5e8
+    style B fill:#e8f5e8
+    style C fill:#fff3e0,stroke-dasharray: 5 5
+```
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
 ```bash
-cd ai-platform-engineering
+cd $HOME/work/ai-platform-engineering
 ```
 
 ## Step 2: Set Up Environment Variables
@@ -35,9 +65,15 @@ For this workshop, we will use Azure OpenAI. Modify lines 30-35 with your LLM cr
 
 **💡 Tip:** You should have received your LLM credentials prior to the workshop. If you don't have them, please ask your instructor.
 
+### Option 1: Edit with vim
+
 **💡 Tip:** Press `i` to enter insert mode in vim, make your changes, then press `Esc` and type `:wq` to save and exit.
 
+```bash
+vim .env
+```
 
+Update these values:
 ```bash
 # --- OR Use Azure OpenAI ---
 LLM_PROVIDER=azure-openai
@@ -46,6 +82,57 @@ AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/
 AZURE_OPENAI_DEPLOYMENT=gpt-4o
 AZURE_OPENAI_API_VERSION=2025-03-01-preview
 ```
+
+### Option 2: Interactive sed command generator
+
+Enter your API key and click the button to generate the command:
+
+<div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+  <label for="apikey" style="display: block; margin-bottom: 10px; font-weight: bold;">Your API Key:</label>
+  <input type="text" id="apikey" placeholder="Enter your API key here" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 3px;" />
+  <button onclick="generateAndCopyCommand()" style="background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer;">Generate & Copy Command</button>
+  <div id="status" style="margin-top: 10px; font-style: italic; color: #666;"></div>
+</div>
+
+<div id="generated-command" style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0; display: none;">
+  <strong>Generated Command:</strong>
+  <pre id="command-text" style="background: #333; color: #fff; padding: 10px; border-radius: 3px; overflow-x: auto;"></pre>
+</div>
+
+<script>
+function generateAndCopyCommand() {
+  const apiKey = document.getElementById('apikey').value.trim();
+  const statusDiv = document.getElementById('status');
+  const commandDiv = document.getElementById('generated-command');
+  const commandText = document.getElementById('command-text');
+
+  if (!apiKey) {
+    statusDiv.textContent = '❌ Please enter your API key first';
+    statusDiv.style.color = '#d32f2f';
+    return;
+  }
+
+  const command = `sed -i \\
+  -e 's/^LLM_PROVIDER=.*/LLM_PROVIDER=azure-openai/' \\
+  -e 's/^AZURE_OPENAI_API_KEY=.*/AZURE_OPENAI_API_KEY=${apiKey}/' \\
+  -e 's|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/|' \\
+  -e 's/^AZURE_OPENAI_DEPLOYMENT=.*/AZURE_OPENAI_DEPLOYMENT=gpt-4o/' \\
+  -e 's/^AZURE_OPENAI_API_VERSION=.*/AZURE_OPENAI_API_VERSION=2025-03-01-preview/' \\
+  .env`;
+
+  commandText.textContent = command;
+  commandDiv.style.display = 'block';
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(command).then(() => {
+    statusDiv.textContent = '✅ Command copied to clipboard! Paste it in your terminal.';
+    statusDiv.style.color = '#2e7d32';
+  }).catch(() => {
+    statusDiv.textContent = '⚠️ Command generated below. Copy it manually.';
+    statusDiv.style.color = '#f57c00';
+  });
+}
+</script>
 
 ## Step 3: Run the Petstore Agent
 
@@ -161,14 +248,49 @@ Show me pets with 'friendly' tags
 
 ## Mission Checks
 
-- [ ] ✅ Navigate to AI Platform Engineering repository
-- [ ] ✅ Set up .env file with LLM credentials
-- [ ] ✅ Run docker compose to to pull the latest petstore agent image and run it in port 8000
-- [ ] ✅ Connect chat client to the petstore agent and test the agent
-- [ ] ✅ Test discovery: "What actions can you perform?"
-- [ ] ✅ Test pet search: "Find all available pets"
-- [ ] ✅ Test smart search: "Get all cats that are pending"
-- [ ] ✅ Test interactive: "I want to add a new pet"
+<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
+  <h4 style="margin-top: 0; color: #007cba;">🚀 Colony Mission Checklist</h4>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Navigate to AI Platform Engineering repository</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Set up .env file with LLM credentials</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Run docker compose to pull the latest petstore agent image and run it on port 8000</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Connect chat client to the petstore agent and test the agent</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Test discovery: "What actions can you perform?"</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Test companion search: "Find all available companions"</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Test smart search: "Get all cats that are pending"</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>✅ Test interactive: "I want to add a new companion"</strong>
+  </label>
+</div>
 
 ## Teardown that agent and chat client
 
