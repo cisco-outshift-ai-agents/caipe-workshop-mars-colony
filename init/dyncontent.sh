@@ -18,7 +18,7 @@ fi
 #sed -i -e "s/%%LABID%%/Station $TWODIG/g" /var/www/html/lab/meta/metadata
 
 #labcontent
-#sed -i -e "s/%%sometext%%/outshiftlab-user$TWODIG@cisco.com/g" /var/www/html/lab/lab.html
+sed -i -e "s|%%RAG_WEB_URL%%|$LABURL/rag|g" /var/www/html/lab/201-mission4.html
 
 #lab prompt
 #sed -i -e "s#outshift>#outshift-lab$TWODIG>#g" /home/ubuntu/.bashrc
