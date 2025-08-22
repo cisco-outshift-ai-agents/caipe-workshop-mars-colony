@@ -13,3 +13,4 @@ LABURL=`head -n 3 $ETIPATH/details | tail -1`
 
 
 sudo cp $ETIPATH/labinit/update/content/init/rag /etc/nginx/paths
+sudo nginx -s reload
