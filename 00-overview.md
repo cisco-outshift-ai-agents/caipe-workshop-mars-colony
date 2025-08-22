@@ -24,4 +24,4 @@ CAIPE is empowered by a set of specialized sub-agents that integrate seamlessly 
 ## References
 
 - [https://cnoe-io.github.io/ai-platform-engineering/](https://cnoe-io.github.io/ai-platform-engineering/)
-- [Pitch Deck Slides](https://cisco-my.sharepoint.com/:p:/r/personal/ciduong_cisco_com/Documents/CREA-1183%20CAIPE%20Pitch%20Deck_Review.pptx?d=wb360fdb0c92345509d5b7e4fb2eef8c8&csf=1&web=1&e=fMjlLe)
+- [Pitch Deck Slides](https://cisco.sharepoint.com/:p:/r/sites/CAIPE/_layouts/15/Doc.aspx?sourcedoc=%7B2F08FE8C-B1E8-4058-9322-24A24368420B%7D&file=CREA-1183%20CAIPE%20Pitch%20Deck_Generic.pptx&action=edit&mobileredirect=true)
