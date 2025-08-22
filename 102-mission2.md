@@ -1,21 +1,30 @@
 # Mission Check 2 — Run Standalone Petstore Agent
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+window.addEventListener('load', function() {
+    if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({startOnLoad: true});
+    }
+});
+</script>
+
 ## Overview
 
 🚀 **Mission Status**: As a newly arrived Mars colonist, your first assignment is to manage the colony's biological companions and supply systems.
 
 In this mission, you'll deploy a standalone Petstore AI agent to handle critical colony operations:
-- **🐾 Companion Management**: Track, care for, and manage colony animals that boost morale and assist with tasks
-- **📦 Supply Operations**: Monitor inventory, process resource orders, and analyze colony logistics
-- **👨‍🚀 Colonist Management**: Maintain records and manage access for fellow Mars inhabitants
-- **🔍 Smart Search**: Efficiently locate animals and supplies using advanced filtering systems
-- **⚡ Response Optimization**: Handle large datasets crucial for colony survival without system overload
+* **🐾 Companion Management**: Track, care for, and manage colony animals that boost morale and assist with tasks
+* **📦 Supply Operations**: Monitor inventory, process resource orders, and analyze colony logistics
+* **👨‍🚀 Colonist Management**: Maintain records and manage access for fellow Mars inhabitants
+* **🔍 Smart Search**: Efficiently locate animals and supplies using advanced filtering systems
+* **⚡ Response Optimization**: Handle large datasets crucial for colony survival without system overload
 
 ## Architecture Overview
 
 The following diagram shows how the chat client connects to the petstore agent in STDIO mode:
 
-<div class="mermaid">
+```mermaid
 graph TD
     U["👤 User"] --> CC["Chat Client<br/>(ghcr.io/cnoe-io/agent-chat-cli:stable)"]
 
@@ -37,46 +46,7 @@ graph TD
     style A fill:#e8f5e8
     style B fill:#e8f5e8
     style C fill:#fff3e0,stroke-dasharray: 5 5
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-(function() {
-    function initMermaid() {
-        if (typeof mermaid !== 'undefined') {
-            try {
-                mermaid.initialize({
-                    startOnLoad: true,
-                    theme: 'default',
-                    securityLevel: 'loose'
-                });
-                mermaid.init(undefined, document.querySelectorAll('.mermaid'));
-                console.log('Mermaid initialized successfully');
-            } catch (e) {
-                console.error('Mermaid initialization failed:', e);
-            }
-        } else {
-            console.log('Mermaid not loaded yet, retrying...');
-            setTimeout(initMermaid, 1000);
-        }
-    }
-
-    // Try multiple initialization strategies
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMermaid);
-    } else {
-        initMermaid();
-    }
-
-    // Backup: try again after page load
-    window.addEventListener('load', function() {
-        setTimeout(initMermaid, 500);
-    });
-
-    // Last resort: try after a longer delay
-    setTimeout(initMermaid, 2000);
-})();
-</script>
+```
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
