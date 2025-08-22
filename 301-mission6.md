@@ -15,7 +15,7 @@ In this mission, you'll deploy the comprehensive CAIPE platform using IDPBuilder
 
 ## Architecture Overview
 
-IDPBuilder creates a KIND cluster and deploys platform components via ArgoCD. The CAIPE stack adds authentication, secret management, and multi-agent AI capabilities:
+IDPBuilder is a CLI tool that creates a KIND cluster and deploys platform components via ArgoCD. The CAIPE stack adds authentication, secret management, and multi-agent AI capabilities:
 
 ![CAIPE Platform Architecture](images/mission6.svg)
 
@@ -55,8 +55,7 @@ This command will:
 * Deploy the complete CAIPE multi-agent system
 * Configure ingress with path-based routing for colony access
 
-⏰ **Colony Deployment Time**: This takes around 5-10 minutes. Perfect time to review your mission objectives! ☕
-
+⏰ **Colony Deployment Time**: This takes a few minutes. Perfect time to review your mission objectives or checkout our [vidcast](https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup) on going through the IDPBuilder step by step ☕
 
 ## Step 2: Verify Colony Infrastructure
 
@@ -85,19 +84,25 @@ idpbuilder get secrets -p argocd
 ### Access Colony Platform Dashboard
 
 Open https://cnoe.localtest.me:8443/argocd/ and login with:
+
 - Username: `admin`
-- Password: From the command above
+- Password: `<from the command above>`
 
 Monitor application sync status. Initial synchronization takes 3-5 minutes as the colony platform comes online.
 
 ## Step 3: Configure Vault Secrets for Colony Operations
 
-After Vault application syncs successfully on ArgoCD:
+### Check Vault application sync status
+
+From the ArgoCD UI, you can monitor the sync status of the Vault application.
+
+<img src="images/argocd-vault-sync.svg" alt="Vault application sync status" style="width: 60%; max-width: 400px;">
 
 ### Extract Vault Administrative Token
 
+After Vault application syncs successfully on ArgoCD, you can extract the root token for colony secret management:
+
 ```bash
-# Extract root token for colony secret management
 kubectl get secret vault-root-token -n vault -o jsonpath="{.data}" | \
   jq -r 'to_entries[] | "\(.key): \(.value | @base64d)"'
 ```
@@ -112,44 +117,35 @@ Open https://vault.cnoe.localtest.me:8443/ and login with the root token from th
 
 2. **Configure Global LLM Settings** for colony AI operations:
 
-   The `global` secret is required and contains LLM provider configuration shared across all agents:
-   - `LLM_PROVIDER`: Choose your provider: `azure-openai`, `openai`, or `aws-bedrock`
+   The `global` secret is required and contains LLM provider configuration shared across all agents. For this workshop, we will use Azure OpenAI. Run below command to get our LLM credentials from the lab environment:
 
-   **For Azure OpenAI (Recommended for workshop):**
-   ```yaml
-   LLM_PROVIDER: "azure-openai"
-   AZURE_OPENAI_API_KEY: <your-workshop-api-key>
-   AZURE_OPENAI_ENDPOINT: https://platform-interns-eus2.openai.azure.com/
-   AZURE_OPENAI_DEPLOYMENT: gpt-4o
-   AZURE_OPENAI_API_VERSION: 2025-03-01-preview
+   ```bash
+   echo "LLM_PROVIDER: azure-openai"
+   echo "AZURE_OPENAI_API_KEY: $AZURE_OPENAI_API_KEY"
+   echo "AZURE_OPENAI_ENDPOINT: $AZURE_OPENAI_ENDPOINT"
+   echo "AZURE_OPENAI_DEPLOYMENT: $AZURE_OPENAI_DEPLOYMENT"
+   echo "AZURE_OPENAI_API_VERSION: $AZURE_OPENAI_API_VERSION"
    ```
 
-   **For OpenAI:**
-   ```yaml
-   LLM_PROVIDER: "openai"
-   OPENAI_API_KEY: <your-api-key>
-   OPENAI_ENDPOINT: <your-endpoint>
-   OPENAI_MODEL_NAME: <your-model-name>
-   ```
+   You can copy and paste the output to the `global` secret in the Vault UI.
 
-   **For AWS Bedrock:**
-   ```yaml
-   LLM_PROVIDER: "aws-bedrock"
-   AWS_ACCESS_KEY_ID: <your-access-key>
-   AWS_SECRET_ACCESS_KEY: <your-secret-key>
-   AWS_REGION: <your-region>
-   AWS_BEDROCK_MODEL_ID: <your-model-id>
-   AWS_BEDROCK_PROVIDER: <your-provider>
-   ```
+   ![Vault UI - Global LLM Settings](images/vault-secrets.svg)
+
+   **NOTE:** We support other LLM providers as well. Currently, we support Azure OpenAI, OpenAI, and AWS Bedrock. Check out our [documentation](https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup#step-3-update-secrets) for more details.
 
 3. **Configure Agent-Specific Secrets**: For each specialized agent (GitHub, PagerDuty, Jira), populate their respective secrets with required credentials.
 
 4. **Refresh Colony Secrets**:
 
+First, we need to force the secret refresh across the colony:
+
 ```bash
-# Force secret refresh across the colony
 kubectl delete secret --all -n ai-platform-engineering
-# Restart agent pods to pick up new secrets
+```
+
+Then, we need to restart the agent pods to pick up the new secrets:
+
+```bash
 kubectl delete pod --all -n ai-platform-engineering
 ```
 
@@ -157,16 +153,18 @@ kubectl delete pod --all -n ai-platform-engineering
 
 ### Get Colony Portal Credentials
 
+Run the below command to get the colony user credentials:
+
 ```bash
-# Get colony user credentials
 idpbuilder get secrets | grep USER_PASSWORD | sed 's/.*USER_PASSWORD=\([^,]*\).*/\1/'
 ```
 
 ### Login to Colony Developer Portal
 
 Open https://cnoe.localtest.me:8443/ and login with:
+
 - Username: `user1`
-- Password: From Step 4 above
+- Password: `<from the command above>`
 
 ## Step 5: Activate Colony AI Assistant
 
@@ -177,17 +175,24 @@ Once logged into the Developer Portal:
 3. 💬 Start interacting with the multi-agent platform engineering system
 
 Try these colony operations:
-```bash
-What agents are available in the colony?
-```
 
 ```bash
-Help me manage GitHub repositories for our Mars colony project
+What can you do?
 ```
 
+If you have pagerduty secrets configured, you can also ask:
+
 ```bash
-Show me the status of our platform deployments
+Who is on call right now?
 ```
+
+If you have jira secrets configured, you can also ask:
+
+```bash
+Show me existing projects in Jira.
+```
+
+Feel free to ask anything else and experiment with the multi-agent system!
 
 ## Colony Communication Endpoints
 
@@ -198,6 +203,12 @@ Your Mars colony platform is now accessible at these coordinates:
 - **🔐 Vault** (Secret Management): https://vault.cnoe.localtest.me:8443/
 - **👤 Keycloak** (Identity Management): https://cnoe.localtest.me:8443/keycloak/admin/master/console/
 - **📚 Gitea** (Code Repository): https://cnoe.localtest.me:8443/gitea/
+
+## Step 6: Tear down the colony platform
+
+```bash
+kind delete cluster --name localdev
+```
 
 ## Mission Checks
 
@@ -248,6 +259,7 @@ Your Mars colony platform is now accessible at these coordinates:
 ## Troubleshooting
 
 ### IDPBuilder Deployment Issues
+
 ```bash
 # Check IDPBuilder logs
 idpbuilder get logs
@@ -258,6 +270,7 @@ kubectl cluster-info
 ```
 
 ### Platform Applications Not Syncing
+
 ```bash
 # Check ArgoCD application status
 kubectl get applications -n argocd
@@ -267,6 +280,7 @@ argocd app sync <application-name>
 ```
 
 ### Vault Secret Issues
+
 ```bash
 # Check Vault pod status
 kubectl get pods -n vault
@@ -276,6 +290,7 @@ kubectl get secrets -n ai-platform-engineering
 ```
 
 ### AI Agent Connection Problems
+
 ```bash
 # Check agent pod logs
 kubectl logs -n ai-platform-engineering -l app=multi-agent
@@ -283,22 +298,3 @@ kubectl logs -n ai-platform-engineering -l app=multi-agent
 # Restart agent pods
 kubectl delete pod --all -n ai-platform-engineering
 ```
-
-### Complete Colony Platform Reset
-```bash
-# Destroy and rebuild the entire colony platform
-kind delete cluster --name localdev
-# Then re-run Step 1
-```
-
-## Next Steps
-
-With your colony's CAIPE platform deployed, you're ready for advanced missions:
-- **Mission 7**: Integrate custom agents for specific colony operations
-- **Mission 8**: Configure automated platform monitoring and alerting
-- **Mission 9**: Deploy production workloads using the AI-assisted platform
-
-🎉 **Mission Complete!** Your Mars colony now has a fully operational AI Platform Engineering infrastructure ready to support all future missions!
-
-
-
