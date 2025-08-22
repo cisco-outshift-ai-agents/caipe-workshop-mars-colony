@@ -6,7 +6,7 @@ Steps:
 
 1) Log in to Langfuse
 
-   - Go to https://langfuse.dev.outshift.io/
+   - Go to <https://langfuse.dev.outshift.io/>
    - Email: workshop@outshift.io
    - Password: workshop-mars-colony
 
@@ -31,9 +31,9 @@ Steps:
 4) Start Mission 7 services
 
    - Run:
-     ```
-     IMAGE_TAG=latest docker-compose -f workshop/docker-compose.mission7.yaml up
-     ```
+   ```
+   IMAGE_TAG=latest docker-compose -f workshop/docker-compose.mission7.yaml up
+   ```
 
 5) Run the chat CLI and make an example query
 
