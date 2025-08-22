@@ -7,11 +7,29 @@ You and your team have landed on **Mars** 🟠 to establish **Mission Control op
 
 🎯 Your **mission** is to set up 🛰️ communication and 🌦️ weather monitoring systems so life in the new habitat runs smoothly, while staying connected to Earth 🌍 by reporting your findings. 📡
 
-Along the way, you’ll complete a **series of Mission Checks:**
+Along the way, you’ll complete a **series of Mission Checks**. _We will go over the mission checks shortly_
 
-- Starting with a single agent 🤖 using MCP and A2A and verify communication over A2A using [agent-chat-cli](https://github.com/cnoe-io/agent-chat-cli)
+<!-- - Starting with a single agent 🤖 using MCP and A2A and verify communication over A2A using [agent-chat-cli](https://github.com/cnoe-io/agent-chat-cli)
 - Expanding to a distributed multi-agent system using A2A and MCP 🌐 with multiple example agents to build the usecase
-- And finally running CAIPE (Community AI Platform Engineering) MAS and interacting with it using rich Backstage Web UI or agent-chat-cli interface. 🖥️🛸
+- And finally running CAIPE (Community AI Platform Engineering) MAS and interacting with it using rich Backstage Web UI or agent-chat-cli interface. 🖥️🛸 -->
+
+&nbsp;
+
+## CAIPE Badges
+
+- Everyone who participates and go through level in this workshop will receive the `Explorer` badge. You can proudly display this achievement badge on your Cisco Directory profile or on LinkedIn.
+- After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
+- Future badges can be earned by continuing your learning progression, attending monthly office hours, participating in open source community meetings, and contributing to the CAIPE project.
+
+**More details about badges, progression, and the learning path can be found here:
+[https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx)**
+
+| Badge Level        |   |   | Badge Image                                                                 |
+|--------------------|---|---|-----------------------------------------------------------------------------|
+| 🚀 CAIPE Explorer  |   |   | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="50">      |
+| ⚡ CAIPE Improver  |   |   | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="50">      |
+| 🎯 CAIPE Expert    |   |   | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="50">          |
+| 👑 CAIPE Master    |   |   | <img src="images/badge-master.svg" alt="CAIPE Master" width="50">          |
 
 &nbsp;
 
@@ -53,26 +71,6 @@ Along the way, you’ll complete a **series of Mission Checks:**
 &nbsp;
 
 ## Final Debrief and Takeaways
-
-&nbsp;
-
-&nbsp;
-
-## CAIPE Badges
-
-- Everyone who participates in this workshop will receive the `Explorer` badge. You can proudly display this achievement badge on your Cisco Directory profile or on LinkedIn.
-- After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
-- Future badges can be earned by continuing your learning progression, attending monthly office hours, participating in open source community meetings, and contributing to the CAIPE project.
-
-**More details about badges, progression, and the learning path can be found here:
-[https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx)**
-
-| Badge Level        |   |   | Badge Image                                                                 |
-|--------------------|---|---|-----------------------------------------------------------------------------|
-| 🚀 CAIPE Explorer  |   |   | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="50">      |
-| ⚡ CAIPE Improver  |   |   | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="50">      |
-| 🎯 CAIPE Expert    |   |   | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="50">          |
-| 👑 CAIPE Master    |   |   | <img src="images/badge-master.svg" alt="CAIPE Master" width="50">          |
 
 &nbsp;
 

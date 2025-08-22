@@ -11,13 +11,13 @@ This demonstrates how agents can access external knowledge bases and automate de
 
 ## Step 1: Launch RAG + Git Agent Stack
 
-Clear any old containers by running:
+Make sure you are in the ai-platform-engineering directory, you can check by running `pwd` (otherwise run: `cd /home/ubuntu/work/ai-platform-engineering`).
+
+Copy over the mission4 environment variables file:
 
 ```bash
-docker stop $(docker ps -a -q); docker container prune -f
+cp .env.mission4 .env
 ```
-
-Make sure you are in the ai-platform-engineering directory, you can check by running `pwd`.
 
 Start the Docker Compose stack that includes both RAG and Git agents:
 
@@ -58,8 +58,8 @@ The docker-compose stack should start the following services:
 
 **🫸 Wait:** Wait until this process is completed.
 
-
-You can verify the supervisor agent is healthy by running:
+You can verify the supervisor agent is healthy by checking the health endpoint.
+**➕ Open another terminal (top-right '+' icon)**, and run the following command:
 
 ```bash
 curl http://localhost:8000/.well-known/agent.json | jq
@@ -71,7 +71,7 @@ curl http://localhost:8000/.well-known/agent.json | jq
 Now, we will populate the RAG with documentation. The docker-compose stack should have started the `kb-rag-web` service, which is the web ui
 for the RAG server. 
 
-[Open the RAG Web UI by clicking here (Opens in new tab)](%%RAG_WEB_URL%%)
+<a href="/rag" target="_blank">Open the RAG Web UI by clicking here (Opens in new tab)</a>
 
 Once the RAG Web UI is open:
 
@@ -102,7 +102,7 @@ Here's what happens:
 
 We will now use the UI to query the RAG system and verify it is working.
 
-[Go back to the Web UI](%%RAG_WEB_URL%%)
+<a href="/rag" target="_blank">Open RAG Web UI again</a>
 
 Query `Axial tilt` and click the `Search` button
 
