@@ -109,5 +109,38 @@ Along the way, you’ll complete a **series of Mission Checks**. _We will go ove
 - **📝 Feedback**
   - Share your feedback and suggestions to help us improve future workshops!
   - You will receive a survey email directly from Webex.
+ 
+Here’s a **fun, theme-aligned foreword** in markdown format that you can use for your workshop:
 
-Let’s make this a fun and productive learning experience! 🚀✨
+---
+
+## 🛰️ **Preflight Checklist**
+
+Before you begin, make sure you’ve got these essentials in place:
+
+* **Integrated Lab Access**
+  We’ve set up a ready-to-go lab environment. You’ll also have **temporary LLM access** during the workshop **and for 36 hours afterward** — so you can keep tinkering after we land.
+
+* **Optional Local Launch Pad**
+  Want to try running the stack on your own setup? Here are the **recommended specs** for smooth orbit:
+
+  * **8 CPUs**
+  * **16 GB RAM**
+  * Docker installed and ready
+    This ensures your systems don’t burn up during re-entry.
+
+* **LLM Keys**
+  For access to long-term LLM usage beyond the lab, request your keys via the Circuit portal:
+  [🔗 **Circuit SharePoint: API & RAG Options**](https://cisco.sharepoint.com/sites/CIRCUIT/SitePages/API-RAG-options.aspx?web=1)
+
+
+If you run into turbulence or want to study up before or after the mission, check out our [🔗 **CAIPE Sharepoint**](https://cisco.sharepoint.com/sites/CAIPE/)
+
+---
+
+## 🌠 **Final Call**
+
+Suit up, power up your consoles, and get ready to take control of the **next frontier of AI-driven operations**. The future of our Mars colony — and the safety of your crew — depends on your engineering skills.
+
+**Countdown to launch starts now…**
+**T-minus 3… 2… 1… 🚀**
