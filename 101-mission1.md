@@ -139,9 +139,7 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 
 * [https://agntcy.org/](https://agntcy.org/)
 
-## Misson Checks
+## Mission Checks (Please fill this mission check before you proceed)
 
-Take this %survey:mission1:Mission 1 Check List%
-<!-- * [ ] 📝 Clone CAIPE
-* [ ] 📝 Navigate to Docs
-* [ ] 📝 Agentic AI Concepts -->
+**Misson Checks %survey:mission1:Mission 1 Check List%**
+
