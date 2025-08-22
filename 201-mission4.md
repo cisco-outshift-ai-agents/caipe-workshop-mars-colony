@@ -14,10 +14,16 @@ This demonstrates how agents can access external knowledge bases and automate de
 Clear any old containers by running:
 
 ```bash
-docker stop $(docker ps -a -q); docker container prune -f
+????
 ```
 
-Make sure you are in the ai-platform-engineering directory, you can check by running `pwd`.
+Make sure you are in the ai-platform-engineering directory, you can check by running `pwd` (it should be `/home/ubuntu/work/ai-platform-engineering`).
+
+Copy over the mission4 environment variables file:
+
+```bash
+cp .env.mission4 .env
+```
 
 Start the Docker Compose stack that includes both RAG and Git agents:
 
