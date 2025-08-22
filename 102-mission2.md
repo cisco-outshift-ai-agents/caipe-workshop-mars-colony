@@ -1,14 +1,5 @@
 # Mission Check 2 — Run Standalone Petstore Agent
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-window.addEventListener('load', function() {
-    if (typeof mermaid !== 'undefined') {
-        mermaid.initialize({startOnLoad: true});
-    }
-});
-</script>
-
 ## Overview
 
 🚀 **Mission Status**: As a newly arrived Mars colonist, your first assignment is to manage the colony's biological companions and supply systems.
@@ -24,29 +15,7 @@ In this mission, you'll deploy a standalone Petstore AI agent to handle critical
 
 The following diagram shows how the chat client connects to the petstore agent in STDIO mode:
 
-```mermaid
-graph TD
-    U["👤 User"] --> CC["Chat Client<br/>(ghcr.io/cnoe-io/agent-chat-cli:stable)"]
-
-    CC -.- |"Fetch agent card"| E["/.well-known/agent.json"]
-    E -.- A
-
-    CC <--> A
-
-    subgraph "ghcr.io/cnoe-io/agent-template:"
-        A["Petstore Agent<br/>(Port 8000)"]
-        B["MCP Server<br/>(STDIO Mode)"]
-        A <--> B
-    end
-
-    B <--> C["Petstore API<br/>(petstore.swagger.io/v2)"]
-
-    style U fill:#e1f5fe
-    style CC fill:#f3e5f5
-    style A fill:#e8f5e8
-    style B fill:#e8f5e8
-    style C fill:#fff3e0,stroke-dasharray: 5 5
-```
+![Mission 2 Architecture - STDIO Mode](images/mission2.svg)
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
@@ -99,7 +68,7 @@ Enter your API key and click the button to generate the command:
 <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
   <label for="apikey" style="display: block; margin-bottom: 10px; font-weight: bold;">Your API Key:</label>
   <input type="text" id="apikey" placeholder="Enter your API key here" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 3px;" />
-  <button onclick="generateAndCopyCommand()" style="background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer;">Generate & Copy Command</button>
+  <button id="generate-button" style="background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer;">Generate & Copy Command</button>
   <div id="status" style="margin-top: 10px; font-style: italic; color: #666;"></div>
 </div>
 
@@ -141,6 +110,28 @@ function generateAndCopyCommand() {
     statusDiv.style.color = '#f57c00';
   }
 }
+</script>
+
+<script>
+(function() {
+  function bindGeneratorButton() {
+    var btn = document.getElementById('generate-button');
+    if (btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (typeof generateAndCopyCommand === 'function') {
+          generateAndCopyCommand();
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindGeneratorButton);
+  } else {
+    bindGeneratorButton();
+  }
+})();
 </script>
 
 ## Step 3: Run the Petstore Agent
