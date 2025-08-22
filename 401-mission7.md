@@ -14,19 +14,15 @@ Steps:
    - Create a new API key and copy both the public and secret values.
 
 3) Configure your environment
-   - Open your .env file and add the following (replace with your generated keys):
-     LANGFUSE_PUBLIC_KEY=pk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     LANGFUSE_SECRET_KEY=sk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     LANGFUSE_TRACING_ENABLED=True
-     LANGFUSE_HOST=https://langfuse.dev.outshift.io
+   - Open your .env file and add the following (replace with your generated keys).
 
    Example:
-```
-LANGFUSE_PUBLIC_KEY=pk-lf-<key>
-LANGFUSE_SECRET_KEY=sk-lf-<key>
-LANGFUSE_TRACING_ENABLED=True
-LANGFUSE_HOST=https://langfuse.dev.outshift.io
-```
+   ```
+   LANGFUSE_PUBLIC_KEY=pk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   LANGFUSE_SECRET_KEY=sk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   LANGFUSE_TRACING_ENABLED=True
+   LANGFUSE_HOST=https://langfuse.dev.outshift.io
+   ```
 
 4) Start Mission 7 services
    - Run:
