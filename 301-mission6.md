@@ -2,7 +2,7 @@
 
 ## Overview
 
-🚀 **Mission Status**: Advanced Mars colonist, you're now ready to deploy the full Community AI Platform Engineering stack to establish the colony's complete AI infrastructure.
+🚀 **Mission Status**: Advanced Mars Inhabitant, you're now ready to deploy the full Community AI Platform Engineering stack to establish the colony's complete AI infrastructure.
 
 In this mission, you'll deploy the comprehensive CAIPE platform using IDPBuilder to create a production-ready AI platform for the Mars colony:
 - **🏗️ Platform Foundation**: Deploy ArgoCD, Vault, and Backstage as the core infrastructure

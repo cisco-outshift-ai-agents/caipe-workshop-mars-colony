@@ -2,13 +2,13 @@
 
 ## Overview
 
-🚀 **Mission Status**: As a newly arrived Mars colonist, your first assignment is to manage the colony's biological companions and supply systems.
+🚀 **Mission Status**: As a newly arrived Mars Inhabitant, your first assignment is to manage the colony's biological companions and supply systems.
 
 In this mission, you'll deploy a standalone Petstore AI agent to handle critical colony operations:
 
 * **🐾 Companion Management**: Track, care for, and manage colony animals that boost morale and assist with tasks
 * **📦 Supply Operations**: Monitor inventory, process resource orders, and analyze colony logistics
-* **👨‍🚀 Colonist Management**: Maintain records and manage access for fellow Mars inhabitants
+* **👨‍🚀 Inhabitant Management**: Maintain records and manage access for fellow Mars inhabitants
 * **🔍 Smart Search**: Efficiently locate animals and supplies using advanced filtering systems
 * **⚡ Response Optimization**: Handle large datasets crucial for colony survival without system overload
 
