@@ -17,10 +17,10 @@ In this mission, you'll deploy a standalone Petstore AI agent to handle critical
 The following diagram shows how the chat client connects to the petstore agent in two different MCP modes:
 
 ### STDIO Mode
-![Mission 2 Architecture - STDIO Mode](images/mission2-stdio.png)
+![Mission 2 Architecture - STDIO Mode](images/mission2-stdio.svg)
 
 ### HTTP Mode
-![Mission 2 Architecture - HTTP Mode](images/mission2-http.png)
+![Mission 2 Architecture - HTTP Mode](images/mission2-http.svg)
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
