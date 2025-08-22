@@ -1,103 +1,7 @@
 # Mission Check 1 — Download mission and learn the controls
 
-<button id="start-timer-btn" style="padding: 8px 18px; font-size: 1.1rem; border-radius: 10px; background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%); color: #fff; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); cursor: pointer;">
-  ⏰ Start 15-Min Timer 🚀 <span id="timer-btn-display" style="margin-left: 12px; font-weight: bold;">15:00</span>
-</button>
-<script>
-/**
- * Create a countdown tied to one element.
- * @param {Object} opts
- * @param {number} opts.duration           - total seconds (e.g., 90)
- * @param {HTMLElement|string} opts.target - element or element id to update
- * @param {string} [opts.doneText]         - text when finished (default "TIME IS UP!")
- * @param {function} [opts.onComplete]     - optional callback when timer finishes naturally
- * @returns {{ start:Function, pause:Function, stop:Function, reset:Function }}
- */
-window.createCountdown = function({ duration, target, doneText = "TIME IS UP!", onComplete }) {
-  let timeLeft = duration;
-  let interval = null;
-  let isRunning = false;
-
-  const targetEl = typeof target === 'string' ? document.getElementById(target) : target;
-
-  function formatTime(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  }
-
-  function updateDisplay() {
-    if (targetEl) {
-      targetEl.textContent = timeLeft > 0 ? formatTime(timeLeft) : doneText;
-    }
-  }
-
-  function tick() {
-    timeLeft--;
-    updateDisplay();
-
-    if (timeLeft <= 0) {
-      stop();
-      if (onComplete) onComplete();
-    }
-  }
-
-  function start() {
-    if (!isRunning && timeLeft > 0) {
-      isRunning = true;
-      interval = setInterval(tick, 1000);
-    }
-  }
-
-  function pause() {
-    if (isRunning) {
-      isRunning = false;
-      clearInterval(interval);
-    }
-  }
-
-  function stop() {
-    isRunning = false;
-    clearInterval(interval);
-    timeLeft = 0;
-    updateDisplay();
-  }
-
-  function reset() {
-    stop();
-    timeLeft = duration;
-    updateDisplay();
-  }
-
-  // Initialize display
-  updateDisplay();
-
-  return { start, pause, stop, reset };
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-  const timerBtn = document.getElementById('start-timer-btn');
-  const timerDisplay = document.getElementById('timer-btn-display');
-
-  if (timerBtn && timerDisplay) {
-    const countdown = createCountdown({
-      duration: 15 * 60, // 15 minutes
-      target: timerDisplay,
-      doneText: "🎉",
-      onComplete: function() {
-        timerBtn.disabled = false;
-      }
-    });
-
-    timerBtn.onclick = function() {
-      timerBtn.disabled = true;
-      countdown.reset();
-      countdown.start();
-    };
-  }
-});
-</script>
-
+<button onclick="createCountdown({duration: 10, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()">Start Mission 1 15 min timer</button>
+<span id="timer1" class="timer">00:15</span>
 
 ## Clone CAIPE
 
@@ -237,6 +141,7 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 
 ## Misson Checks
 
-* [ ] 📝 Clone CAIPE
+Take this %survey:mission1:Mission 1 Check List%
+<!-- * [ ] 📝 Clone CAIPE
 * [ ] 📝 Navigate to Docs
-* [ ] 📝 Agentic AI Concepts
+* [ ] 📝 Agentic AI Concepts -->
