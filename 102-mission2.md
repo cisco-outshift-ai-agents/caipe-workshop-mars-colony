@@ -15,25 +15,7 @@ In this mission, you'll deploy a standalone Petstore AI agent to handle critical
 
 The following diagram shows how the chat client connects to the petstore agent in STDIO mode:
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-if (typeof mermaid !== 'undefined') {
-    mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    // Convert mermaid code blocks to diagrams
-    setTimeout(() => {
-        document.querySelectorAll('pre code.language-mermaid').forEach((el, i) => {
-            const div = document.createElement('div');
-            div.className = 'mermaid';
-            div.id = 'mermaid-' + i;
-            div.textContent = el.textContent;
-            el.parentNode.parentNode.replaceChild(div, el.parentNode);
-        });
-        mermaid.init();
-    }, 500);
-}
-</script>
-
-```mermaid
+<div class="mermaid">
 graph TD
     U["👤 User"] --> CC["Chat Client<br/>(ghcr.io/cnoe-io/agent-chat-cli:stable)"]
 
@@ -55,7 +37,46 @@ graph TD
     style A fill:#e8f5e8
     style B fill:#e8f5e8
     style C fill:#fff3e0,stroke-dasharray: 5 5
-```
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+(function() {
+    function initMermaid() {
+        if (typeof mermaid !== 'undefined') {
+            try {
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    securityLevel: 'loose'
+                });
+                mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+                console.log('Mermaid initialized successfully');
+            } catch (e) {
+                console.error('Mermaid initialization failed:', e);
+            }
+        } else {
+            console.log('Mermaid not loaded yet, retrying...');
+            setTimeout(initMermaid, 1000);
+        }
+    }
+
+    // Try multiple initialization strategies
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMermaid);
+    } else {
+        initMermaid();
+    }
+
+    // Backup: try again after page load
+    window.addEventListener('load', function() {
+        setTimeout(initMermaid, 500);
+    });
+
+    // Last resort: try after a longer delay
+    setTimeout(initMermaid, 2000);
+})();
+</script>
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
