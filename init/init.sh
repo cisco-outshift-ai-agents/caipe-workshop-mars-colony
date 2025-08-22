@@ -12,7 +12,8 @@ LABURL=`head -n 3 $ETIPATH/details | tail -1`
 #rm -f $ETIPATH/labinit/update/content/init/accounts
 
 # additional nginx config
-sudo cp -f $ETIPATH/labinit/update/content/init/rag /etc/nginx/paths
+#sudo cp -f $ETIPATH/labinit/update/content/init/rag /etc/nginx/paths
+sudo cp -f $ETIPATH/labinit/update/content/init/rag /etc/nginx/sites-enabled
 sudo nginx -s reload
 
 # Install Docker and Docker Compose for Mars Colony workshop
