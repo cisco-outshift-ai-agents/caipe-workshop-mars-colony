@@ -15,7 +15,7 @@ In this mission, you'll deploy a standalone Petstore AI agent to handle critical
 
 The following diagram shows how the chat client connects to the petstore agent in STDIO mode:
 
-![Mission 2 Architecture - STDIO Mode](images/mission2.svg)
+[![Mission 2 Architecture - STDIO Mode](https://mermaid.ink/img/pako:eNpVkUtu2zAQhq9CzKoBLFnW0xaCALacAlkENZBkk7ILWppKaiTSoKi4reND9ATd9IA9QkZiIzQDAiR_znzz4AlyVSCkUGpxqNj9lktG9vCZw9_fv_6whw41hy_Mca5YlpGaVcKwrKlRmsu9nl99KKtcu7Wa51KhQ7so6cnJyc3JmzrtjNg3eEEMLi07y5jjOuyFw0c0ecXGAJYLXXB4YdeUY-4esWmcJ6mO0vLcb52SI2MgXI-A9X_Ay6G-Sej6vW2HAy2rDbYm9g5NZ5RGti6nFnZKG7b0PO9iSjHYhtxvsx27Q_2M2rre3W9vPrFbmtl737UtYWMVlMVbLRv7kL1LvbuxtMM_xe2OoixxnOOz_zYsLmFG_1IXkH4VTYczaFG3YrjDaaBzMBW2yCGlYyH009DsmYIOQj4q1UJqdE9hWvVlNUH6QyEMbmtBM2onVVPNqDPVSwOp74UjBNITfIc0SGJ3FYVBtAwXYeglwQx-kLpyoyj2SV8EyTKJveg8g59jWs9dxskqSuI4iP2F5wfx-RXgTbhw?type=png)](https://mermaid.live/edit#pako:eNpVkUtu2zAQhq9CzKoBLFnW0xaCALacAlkENZBkk7ILWppKaiTSoKi4reND9ATd9IA9QkZiIzQDAiR_znzz4AlyVSCkUGpxqNj9lktG9vCZw9_fv_6whw41hy_Mca5YlpGaVcKwrKlRmsu9nl99KKtcu7Wa51KhQ7so6cnJyc3JmzrtjNg3eEEMLi07y5jjOuyFw0c0ecXGAJYLXXB4YdeUY-4esWmcJ6mO0vLcb52SI2MgXI-A9X_Ay6G-Sej6vW2HAy2rDbYm9g5NZ5RGti6nFnZKG7b0PO9iSjHYhtxvsx27Q_2M2rre3W9vPrFbmtl737UtYWMVlMVbLRv7kL1LvbuxtMM_xe2OoixxnOOz_zYsLmFG_1IXkH4VTYczaFG3YrjDaaBzMBW2yCGlYyH009DsmYIOQj4q1UJqdE9hWvVlNUH6QyEMbmtBM2onVVPNqDPVSwOp74UjBNITfIc0SGJ3FYVBtAwXYeglwQx-kLpyoyj2SV8EyTKJveg8g59jWs9dxskqSuI4iP2F5wfx-RXgTbhw)
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
@@ -43,96 +43,18 @@ For this workshop, we will use Azure OpenAI. Modify lines 30-35 with your LLM cr
 
 **💡 Tip:** You should have received your LLM credentials prior to the workshop. If you don't have them, please ask your instructor.
 
-### Option 1: Edit with vim
-
-**💡 Tip:** Press `i` to enter insert mode in vim, make your changes, then press `Esc` and type `:wq` to save and exit.
+Run this in your terminal. It prompts for your key and updates `.env`:
 
 ```bash
-vim .env
+read -s -p "Enter your Azure OpenAI API key: " API_KEY && echo && \
+sed -i \
+  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
+  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${API_KEY}|" \
+  -e 's|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/|' \
+  -e 's|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=gpt-4o|' \
+  -e 's|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=2025-03-01-preview|' \
+  .env
 ```
-
-Update these values:
-```bash
-# --- OR Use Azure OpenAI ---
-LLM_PROVIDER=azure-openai
-AZURE_OPENAI_API_KEY=<your provided api key prior to the workshop>
-AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/
-AZURE_OPENAI_DEPLOYMENT=gpt-4o
-AZURE_OPENAI_API_VERSION=2025-03-01-preview
-```
-
-### Option 2: Interactive sed command generator
-
-Enter your API key and click the button to generate the command:
-
-<div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
-  <label for="apikey" style="display: block; margin-bottom: 10px; font-weight: bold;">Your API Key:</label>
-  <input type="text" id="apikey" placeholder="Enter your API key here" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 3px;" />
-  <button id="generate-button" style="background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer;">Generate & Copy Command</button>
-  <div id="status" style="margin-top: 10px; font-style: italic; color: #666;"></div>
-</div>
-
-<div id="generated-command" style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0; display: none;">
-  <strong>Generated Command:</strong>
-  <pre id="command-text" style="background: #333; color: #fff; padding: 10px; border-radius: 3px; overflow-x: auto;"></pre>
-</div>
-
-<script>
-function generateAndCopyCommand() {
-  var apiKey = document.getElementById('apikey').value.trim();
-  var statusDiv = document.getElementById('status');
-  var commandDiv = document.getElementById('generated-command');
-  var commandText = document.getElementById('command-text');
-
-  if (!apiKey) {
-    statusDiv.innerHTML = '❌ Please enter your API key first';
-    statusDiv.style.color = '#d32f2f';
-    return;
-  }
-
-  var command = 'sed -i \\\n  -e \'s/^LLM_PROVIDER=.*/LLM_PROVIDER=azure-openai/\' \\\n  -e \'s/^AZURE_OPENAI_API_KEY=.*/AZURE_OPENAI_API_KEY=' + apiKey + '/\' \\\n  -e \'s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/|\' \\\n  -e \'s/^AZURE_OPENAI_DEPLOYMENT=.*/AZURE_OPENAI_DEPLOYMENT=gpt-4o/\' \\\n  -e \'s/^AZURE_OPENAI_API_VERSION=.*/AZURE_OPENAI_API_VERSION=2025-03-01-preview/\' \\\n  .env';
-
-  commandText.textContent = command;
-  commandDiv.style.display = 'block';
-
-  try {
-    var textArea = document.createElement('textarea');
-    textArea.value = command;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-
-    statusDiv.innerHTML = '✅ Command copied to clipboard! Paste it in your terminal.';
-    statusDiv.style.color = '#2e7d32';
-  } catch (err) {
-    statusDiv.innerHTML = '⚠️ Command generated above. Copy it manually.';
-    statusDiv.style.color = '#f57c00';
-  }
-}
-</script>
-
-<script>
-(function() {
-  function bindGeneratorButton() {
-    var btn = document.getElementById('generate-button');
-    if (btn) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (typeof generateAndCopyCommand === 'function') {
-          generateAndCopyCommand();
-        }
-      });
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bindGeneratorButton);
-  } else {
-    bindGeneratorButton();
-  }
-})();
-</script>
 
 ## Step 3: Run the Petstore Agent
 
