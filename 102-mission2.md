@@ -5,6 +5,7 @@
 🚀 **Mission Status**: As a newly arrived Mars colonist, your first assignment is to manage the colony's biological companions and supply systems.
 
 In this mission, you'll deploy a standalone Petstore AI agent to handle critical colony operations:
+
 * **🐾 Companion Management**: Track, care for, and manage colony animals that boost morale and assist with tasks
 * **📦 Supply Operations**: Monitor inventory, process resource orders, and analyze colony logistics
 * **👨‍🚀 Colonist Management**: Maintain records and manage access for fellow Mars inhabitants
@@ -13,9 +14,13 @@ In this mission, you'll deploy a standalone Petstore AI agent to handle critical
 
 ## Architecture Overview
 
-The following diagram shows how the chat client connects to the petstore agent in STDIO mode:
+The following diagram shows how the chat client connects to the petstore agent in two different MCP modes:
 
-[![Mission 2 Architecture - STDIO Mode](https://mermaid.ink/img/pako:eNpVkUtu2zAQhq9CzKoBLFnW0xaCALacAlkENZBkk7ILWppKaiTSoKi4reND9ATd9IA9QkZiIzQDAiR_znzz4AlyVSCkUGpxqNj9lktG9vCZw9_fv_6whw41hy_Mca5YlpGaVcKwrKlRmsu9nl99KKtcu7Wa51KhQ7so6cnJyc3JmzrtjNg3eEEMLi07y5jjOuyFw0c0ecXGAJYLXXB4YdeUY-4esWmcJ6mO0vLcb52SI2MgXI-A9X_Ay6G-Sej6vW2HAy2rDbYm9g5NZ5RGti6nFnZKG7b0PO9iSjHYhtxvsx27Q_2M2rre3W9vPrFbmtl737UtYWMVlMVbLRv7kL1LvbuxtMM_xe2OoixxnOOz_zYsLmFG_1IXkH4VTYczaFG3YrjDaaBzMBW2yCGlYyH009DsmYIOQj4q1UJqdE9hWvVlNUH6QyEMbmtBM2onVVPNqDPVSwOp74UjBNITfIc0SGJ3FYVBtAwXYeglwQx-kLpyoyj2SV8EyTKJveg8g59jWs9dxskqSuI4iP2F5wfx-RXgTbhw?type=png)](https://mermaid.live/edit#pako:eNpVkUtu2zAQhq9CzKoBLFnW0xaCALacAlkENZBkk7ILWppKaiTSoKi4reND9ATd9IA9QkZiIzQDAiR_znzz4AlyVSCkUGpxqNj9lktG9vCZw9_fv_6whw41hy_Mca5YlpGaVcKwrKlRmsu9nl99KKtcu7Wa51KhQ7so6cnJyc3JmzrtjNg3eEEMLi07y5jjOuyFw0c0ecXGAJYLXXB4YdeUY-4esWmcJ6mO0vLcb52SI2MgXI-A9X_Ay6G-Sej6vW2HAy2rDbYm9g5NZ5RGti6nFnZKG7b0PO9iSjHYhtxvsx27Q_2M2rre3W9vPrFbmtl737UtYWMVlMVbLRv7kL1LvbuxtMM_xe2OoixxnOOz_zYsLmFG_1IXkH4VTYczaFG3YrjDaaBzMBW2yCGlYyH009DsmYIOQj4q1UJqdE9hWvVlNUH6QyEMbmtBM2onVVPNqDPVSwOp74UjBNITfIc0SGJ3FYVBtAwXYeglwQx-kLpyoyj2SV8EyTKJveg8g59jWs9dxskqSuI4iP2F5wfx-RXgTbhw)
+### STDIO Mode
+![Mission 2 Architecture - STDIO Mode](images/mission2-stdio.png)
+
+### HTTP Mode
+![Mission 2 Architecture - HTTP Mode](images/mission2-http.png)
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
@@ -33,17 +38,11 @@ cp .env.example .env
 
 ### Edit the environment file with your LLM credentials:
 
-```bash
-vim .env
-```
+For this workshop, we will use Azure OpenAI. Run this in your terminal. It prompts for your key and updates `.env`:
 
-**Required variables to configure:**
+**💡 Tip:** You should have received your LLM credentials prior to the workshop. If you don't have them, please ask your instructor.\
 
-For this workshop, we will use Azure OpenAI. Modify lines 30-35 with your LLM credentials:
-
-**💡 Tip:** You should have received your LLM credentials prior to the workshop. If you don't have them, please ask your instructor.
-
-Run this in your terminal. It prompts for your key and updates `.env`:
+**💡 Tip:** If you prefer, you can also click the IDE button on the top right of this page to open the `.env` file in the IDE and edit it that way. Edit lines 31-35 with your LLM credentials.
 
 ```bash
 read -s -p "Enter your Azure OpenAI API key: " API_KEY && echo && \
@@ -60,21 +59,42 @@ sed -i \
 
 **Note:** If you prefer to build and run the agent locally, refer to the step at the bottom of this page: [Optional: Build and run the petstore agent locally](#optional-build-and-run-the-petstore-agent-locally).
 
-Now, we will go through the process of running the standalone petstore agent using docker compose:
+You can run the petstore agent in two different MCP (Model Control Protocol) modes. Choose one of the following approaches:
+
+### 3.1: Using MCP STDIO Mode
+
+STDIO mode runs the MCP server embedded within the agent container, using standard input/output streams for internal communication. The embedded MCP server then connects to the external Petstore API.
 
 ```bash
-IMAGE_TAG=latest docker compose -f workshop/docker-compose.mission2.yaml up
+IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission2.yaml up
 ```
-
-This pulls the latest petstore agent image from the registry and runs in port 8000.
 
 **What happens:**
 - ⏬ Downloads petstore agent image with the latest tag from the registry
-- 🔗 Connects to MCP server on STDIO mode to https://petstore.swagger.io/v2 which is a public sandbox API
+- 🔗 Connects to MCP server via STDIO mode to https://petstore.swagger.io/v2 which is a public sandbox API
 - 🌐 Exposes agent on `http://localhost:8000`
 - 📋 Shows logs directly in terminal
+- 🚀 **Advantage**: Lower latency, direct process communication
 
-**Expected output:**
+### 3.2: Using Remote MCP Streamable HTTP Mode
+
+HTTP mode enables network-based communication with remote MCP servers, useful for production deployments or when the MCP server is running separately. In this mode, the agent connects to a separately hosted internal MCP server running at https://petstore.outshift.io/mcp, which then handles the Petstore API operations.
+
+```bash
+IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission2.yaml up
+```
+
+**What happens:**
+- ⏬ Downloads petstore agent image with the latest tag from the registry
+- 🌐 Connects to remote MCP server via HTTP/streaming mode at https://petstore.outshift.io/mcp
+- 🌐 Exposes agent on `http://localhost:8000`
+- 📋 Shows logs directly in terminal
+- 🚀 **Advantage**: Supports remote MCP servers, useful for production deployments, better separation of concerns
+
+### Expected Output (Both Modes)
+
+Regardless of which mode you choose, you should see the following output:
+
 ```console
 ...
 ===================================
@@ -89,7 +109,11 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-**🎯 Success indicator:** Ensure you wait until you see the message: `Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)`
+**🎯 Success indicator:** Ensure you wait until you see the message: `Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)` regardless of the mode you choose.
+
+**💡 Mode Selection Tip:**
+- Use **STDIO mode** for local development and testing with minimal overhead
+- Use **HTTP mode** for production environments or when you need to connect to remotely hosted MCP servers
 
 ## Step 4: Test the Petstore Agent
 
