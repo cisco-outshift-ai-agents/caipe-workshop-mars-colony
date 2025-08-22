@@ -38,28 +38,23 @@ cp .env.example .env
 
 ### Edit the environment file with your LLM credentials:
 
-For this workshop, we will use Azure OpenAI. Run this in your terminal. It prompts for your key and updates `.env`:
+**NOTE:** If you prefer to build and run the agent locally, refer to the step at the bottom of this page: [Optional: Build and run the petstore agent locally](#optional-build-and-run-the-petstore-agent-locally).
 
-**💡 Tip:** You should have received your LLM credentials prior to the workshop. If you don't have them, please ask your instructor.\
-
-**💡 Tip:** If you prefer, you can also click the IDE button on the top right of this page to open the `.env` file in the IDE and edit it that way. Edit lines 31-35 with your LLM credentials.
+For this workshop, we will use Azure OpenAI. The api key has already been exported to the environment variables. Run below command in the terminal to copy the secrets in `.env_vars` file to `.env` file that you just created:
 
 ```bash
-read -s -p "Enter your Azure OpenAI API key: " API_KEY && echo && \
 sed -i \
   -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
-  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${API_KEY}|" \
-  -e 's|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/|' \
-  -e 's|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=gpt-4o|' \
-  -e 's|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=2025-03-01-preview|' \
+  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
+  -e "s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|" \
+  -e "s|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|" \
+  -e "s|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|" \
   .env
 ```
 
 ## Step 3: Run the Petstore Agent
 
-**Note:** If you prefer to build and run the agent locally, refer to the step at the bottom of this page: [Optional: Build and run the petstore agent locally](#optional-build-and-run-the-petstore-agent-locally).
-
-You can run the petstore agent in two different MCP (Model Control Protocol) modes. Choose one of the following approaches:
+You can run the petstore agent in two different MCP (Model Control Protocol) modes. For this workshop, we will use the STDIO mode.
 
 ### 3.1: Using MCP STDIO Mode
 
@@ -70,21 +65,32 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 ```
 
 **What happens:**
+
 - ⏬ Downloads petstore agent image with the latest tag from the registry
 - 🔗 Connects to MCP server via STDIO mode to https://petstore.swagger.io/v2 which is a public sandbox API
 - 🌐 Exposes agent on `http://localhost:8000`
 - 📋 Shows logs directly in terminal
 - 🚀 **Advantage**: Lower latency, direct process communication
 
-### 3.2: Using Remote MCP Streamable HTTP Mode
+### [Optional] 3.2: Using Remote MCP Streamable HTTP Mode
 
 HTTP mode enables network-based communication with remote MCP servers, useful for production deployments or when the MCP server is running separately. In this mode, the agent connects to a separately hosted internal MCP server running at https://petstore.outshift.io/mcp, which then handles the Petstore API operations.
+
+#### Set the Petstore API key
+
+```bash
+PETSTORE_API_KEY=$(echo -n 'caiperocks' | sha256sum | cut -d' ' -f1) && \
+sed -i "s|^PETSTORE_API_KEY=.*|PETSTORE_API_KEY=${PETSTORE_API_KEY}|" .env
+```
+
+#### Run the petstore agent
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission2.yaml up
 ```
 
 **What happens:**
+
 - ⏬ Downloads petstore agent image with the latest tag from the registry
 - 🌐 Connects to remote MCP server via HTTP/streaming mode at https://petstore.outshift.io/mcp
 - 🌐 Exposes agent on `http://localhost:8000`
@@ -245,6 +251,8 @@ You can stop the agent and chat client by pressing `Ctrl+C` (or `Cmd+C` on Mac) 
 
 ## Troubleshooting
 
+Here are some common issues you may encounter and how to fix them.
+
 ### Agent won't start
 ```bash
 # Check if port 8000 is in use
@@ -273,18 +281,41 @@ make show-env
 make run-rebuild
 ```
 
-### [Optional] Build and run the petstore agent locally
+## [Optional] Build and run the petstore agent locally
+
+### Set up environment variables
+
+If you are using your local machine, first get the `AZURE_OPENAI_API_KEY` from the lab environment:
+
+```bash
+echo $AZURE_OPENAI_API_KEY
+```
+
+Then run below command in your local terminal to set up your environment variables. When asked to enter the API key, paste the value you just copied from the lab environment:
+
+```bash
+read -s -p "Enter your Azure OpenAI API key: " AZURE_OPENAI_API_KEY && echo && \
+sed -i \
+  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
+  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
+  -e 's|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|' \
+  -e 's|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|' \
+  -e 's|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|' \
+  .env
+```
+
+### Build and run the petstore agent locally
 
 You can also build and run the petstore agent locally:
 
 ```bash
-docker compose -f workshop/docker-compose.mission2.yaml -f workshop/docker-compose.dev.override.yaml --profile mission2-dev up
+MCP_MODE=<stdio|http> docker compose -f workshop/docker-compose.mission2.yaml -f workshop/docker-compose.dev.override.yaml --profile mission2-dev up
 ```
-
-Above command uses the dev override file to mount the code from your local machine and rebuild the petstore agent image on each change. This is useful for testing local changes to the agent code.
-
 **What happens:**
+
 - 🔧 Builds Docker image located in `ai_platform_engineering/agents/template/build/Dockerfile.a2a`
 - 📁 Mounts code via volumes for live development
 - 🌐 Exposes agent on `http://localhost:8000`
 - 📋 Shows logs directly in terminal
+
+Above command uses the dev override file to mount the code from your local machine and rebuild the petstore agent image on each change. This is useful for testing local changes to the agent code. You can now return to [Step 4: Test the Petstore Agent](#step-4-test-the-petstore-agent) to test the agent.

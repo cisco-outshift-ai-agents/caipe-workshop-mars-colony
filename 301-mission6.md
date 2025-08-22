@@ -5,6 +5,7 @@
 🚀 **Mission Status**: Advanced Mars Inhabitant, you're now ready to deploy the full Community AI Platform Engineering stack to establish the colony's complete AI infrastructure.
 
 In this mission, you'll deploy the comprehensive CAIPE platform using IDPBuilder to create a production-ready AI platform for the Mars colony:
+
 - **🏗️ Platform Foundation**: Deploy ArgoCD, Vault, and Backstage as the core infrastructure
 - **🔐 Security & Auth**: Configure Keycloak for single sign-on and Vault for secret management
 - **🤖 AI Multi-Agent System**: Deploy the complete multi-agent orchestrator with specialized agents
@@ -16,86 +17,7 @@ In this mission, you'll deploy the comprehensive CAIPE platform using IDPBuilder
 
 IDPBuilder creates a KIND cluster and deploys platform components via ArgoCD. The CAIPE stack adds authentication, secret management, and multi-agent AI capabilities:
 
-```mermaid
-flowchart LR
-    subgraph WHITEBG[" "]
-        direction LR
-        create
-        IDB[IDPBuilder] --> create
-        IDB --> AC
-        IDB --> GITEA
-
-        subgraph KIND["KIND Cluster"]
-        subgraph CORE["Core Platform"]
-            AC[ArgoCD]
-            GITEA[Gitea]
-            IG[NGINX Ingress]
-            V[Vault]
-            KC[Keycloak]
-        end
-
-        subgraph PORTAL["Backstage"]
-            direction TB
-            BS[Backstage]
-            AF[Agent-Forge]
-            BS --- AF
-        end
-
-        subgraph AIPLATFORM["CAIPE (Community AI Platform Engineering)"]
-            MA[multi-agent]
-            A1[GitHub Agent]
-            A2[PagerDuty Agent]
-            A3[Jira Agent]
-            A4[ArgoCD Agent]
-            A5["...other agents"]
-        end
-
-        ES[External Secrets]
-    end
-
-    subgraph EXT["External"]
-        LT[cnoe.localtest.me] ~~~ GH[GitHub Repos]
-    end
-
-    %% Key relationships only
-    GITEA --> AC
-    AC --> BS
-    AC --> MA
-    AC --> KC
-    AC --> V
-    AC --> IG
-
-    KC --> BS
-    V --> ES
-    ES --> MA
-
-    AF --> MA
-    MA --> A1
-    MA --> A2
-    MA --> A3
-    MA --> A4
-    MA --> A5
-
-        %% External connections
-        AC --> GH
-        IG --> LT
-    end
-
-    %% Styling
-    classDef core fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef portal fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
-    classDef ai fill:#fff8e1,stroke:#f57c00,stroke-width:2px
-    classDef agents fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef external fill:#fafafa,stroke:#616161,stroke-width:2px
-    classDef whitebg fill:#ffffff,stroke:#ffffff,stroke-width:0px
-
-    class AC,GITEA,IG,V,KC,ES core
-    class BS,AF portal
-    class AIPE ai
-    class A1,A2,A3,A4,A5 agents
-    class LT,GH external
-    class WHITEBG whitebg
-```
+![CAIPE Platform Architecture](images/mission6.svg)
 
 ### Component Flow
 
@@ -109,11 +31,10 @@ flowchart LR
 
 ## Prerequisites
 
-Before beginning this mission, ensure you have:
+For anyone using the lab environment for the workshop, the below prerequisites have been pre-installed for you. If you are using your local machine, ensure you have:
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/) installed and configured
 - [IDPBuilder](https://cnoe.io/docs/idpbuilder/installation) binary installed
-- Your LLM credentials ready (Azure OpenAI, OpenAI, or AWS Bedrock)
 - Docker Desktop or similar container runtime running
 
 ## Step 1: Create KIND Cluster with IDPBuilder
@@ -121,7 +42,6 @@ Before beginning this mission, ensure you have:
 ### Deploy the Complete Platform
 
 ```bash
-# Create cluster with reference implementation + lightweight AI stack
 idpbuilder create \
   --use-path-routing \
   --package https://github.com/cnoe-io/stacks//ref-implementation \
@@ -129,6 +49,7 @@ idpbuilder create \
 ```
 
 This command will:
+
 * Create a KIND cluster for the Mars colony platform
 * Install core platform components (ArgoCD, Vault, Backstage)
 * Deploy the complete CAIPE multi-agent system
@@ -136,17 +57,18 @@ This command will:
 
 ⏰ **Colony Deployment Time**: This takes around 5-10 minutes. Perfect time to review your mission objectives! ☕
 
-### Verify Colony Infrastructure
+
+## Step 2: Verify Colony Infrastructure
+
+### Check cluster status
 
 ```bash
-# Check cluster status
 kubectl get nodes
+```
 
-# Verify all pods are running across the colony
+### Verify all pods are running across the colony
+```bash
 kubectl get pods --all-namespaces
-
-# Check ingress configuration for colony access points
-kubectl get ingress --all-namespaces
 ```
 
 ## Step 2: Access ArgoCD and Monitor Deployments
