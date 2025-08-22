@@ -10,3 +10,8 @@ LABURL=`head -n 3 $ETIPATH/details | tail -1`
 #LINE=`head -n $CNT $ETIPATH/labinit/update/content/init/accounts | tail -1`
 #set $LINE
 #rm -f $ETIPATH/labinit/update/content/init/accounts
+
+
+# additional nginx config
+sudo cp -f $ETIPATH/labinit/update/content/init/rag /etc/nginx/paths
+sudo nginx -s reload

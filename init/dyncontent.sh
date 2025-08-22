@@ -23,6 +23,3 @@ fi
 #lab prompt
 #sed -i -e "s#outshift>#outshift-lab$TWODIG>#g" /home/ubuntu/.bashrc
 
-# additional nginx confid=g
-sudo cp -f $ETIPATH/labinit/update/content/init/rag /etc/nginx/paths
-sudo nginx -s reload
