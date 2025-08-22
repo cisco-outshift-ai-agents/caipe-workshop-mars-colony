@@ -101,36 +101,36 @@ Enter your API key and click the button to generate the command:
 
 <script>
 function generateAndCopyCommand() {
-  const apiKey = document.getElementById('apikey').value.trim();
-  const statusDiv = document.getElementById('status');
-  const commandDiv = document.getElementById('generated-command');
-  const commandText = document.getElementById('command-text');
+  var apiKey = document.getElementById('apikey').value.trim();
+  var statusDiv = document.getElementById('status');
+  var commandDiv = document.getElementById('generated-command');
+  var commandText = document.getElementById('command-text');
 
   if (!apiKey) {
-    statusDiv.textContent = '❌ Please enter your API key first';
+    statusDiv.innerHTML = '❌ Please enter your API key first';
     statusDiv.style.color = '#d32f2f';
     return;
   }
 
-  const command = `sed -i \\
-  -e 's/^LLM_PROVIDER=.*/LLM_PROVIDER=azure-openai/' \\
-  -e 's/^AZURE_OPENAI_API_KEY=.*/AZURE_OPENAI_API_KEY=${apiKey}/' \\
-  -e 's|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/|' \\
-  -e 's/^AZURE_OPENAI_DEPLOYMENT=.*/AZURE_OPENAI_DEPLOYMENT=gpt-4o/' \\
-  -e 's/^AZURE_OPENAI_API_VERSION=.*/AZURE_OPENAI_API_VERSION=2025-03-01-preview/' \\
-  .env`;
+  var command = 'sed -i \\\n  -e \'s/^LLM_PROVIDER=.*/LLM_PROVIDER=azure-openai/\' \\\n  -e \'s/^AZURE_OPENAI_API_KEY=.*/AZURE_OPENAI_API_KEY=' + apiKey + '/\' \\\n  -e \'s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/|\' \\\n  -e \'s/^AZURE_OPENAI_DEPLOYMENT=.*/AZURE_OPENAI_DEPLOYMENT=gpt-4o/\' \\\n  -e \'s/^AZURE_OPENAI_API_VERSION=.*/AZURE_OPENAI_API_VERSION=2025-03-01-preview/\' \\\n  .env';
 
   commandText.textContent = command;
   commandDiv.style.display = 'block';
 
-  // Copy to clipboard
-  navigator.clipboard.writeText(command).then(() => {
-    statusDiv.textContent = '✅ Command copied to clipboard! Paste it in your terminal.';
+  try {
+    var textArea = document.createElement('textarea');
+    textArea.value = command;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+
+    statusDiv.innerHTML = '✅ Command copied to clipboard! Paste it in your terminal.';
     statusDiv.style.color = '#2e7d32';
-  }).catch(() => {
-    statusDiv.textContent = '⚠️ Command generated below. Copy it manually.';
+  } catch (err) {
+    statusDiv.innerHTML = '⚠️ Command generated above. Copy it manually.';
     statusDiv.style.color = '#f57c00';
-  });
+  }
 }
 </script>
 
@@ -248,47 +248,48 @@ Show me pets with 'friendly' tags
 
 ## Mission Checks
 
+
 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
   <h4 style="margin-top: 0; color: #007cba;">🚀 Colony Mission Checklist</h4>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Navigate to AI Platform Engineering repository</strong>
+    <strong> Navigate to AI Platform Engineering repository</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Set up .env file with LLM credentials</strong>
+    <strong> Set up .env file with LLM credentials</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Run docker compose to pull the latest petstore agent image and run it on port 8000</strong>
+    <strong> Run docker compose to pull the latest petstore agent image and run it on port 8000</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Connect chat client to the petstore agent and test the agent</strong>
+    <strong> Connect chat client to the petstore agent and test the agent</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Test discovery: "What actions can you perform?"</strong>
+    <strong> Test discovery: "What actions can you perform?"</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Test companion search: "Find all available companions"</strong>
+    <strong> Test companion search: "Find all available companions"</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Test smart search: "Get all cats that are pending"</strong>
+    <strong> Test smart search: "Get all cats that are pending"</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong>✅ Test interactive: "I want to add a new companion"</strong>
+    <strong> Test interactive: "I want to add a new companion"</strong>
   </label>
 </div>
 
