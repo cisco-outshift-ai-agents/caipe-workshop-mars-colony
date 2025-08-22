@@ -15,6 +15,24 @@ In this mission, you'll deploy a standalone Petstore AI agent to handle critical
 
 The following diagram shows how the chat client connects to the petstore agent in STDIO mode:
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    // Convert mermaid code blocks to diagrams
+    setTimeout(() => {
+        document.querySelectorAll('pre code.language-mermaid').forEach((el, i) => {
+            const div = document.createElement('div');
+            div.className = 'mermaid';
+            div.id = 'mermaid-' + i;
+            div.textContent = el.textContent;
+            el.parentNode.parentNode.replaceChild(div, el.parentNode);
+        });
+        mermaid.init();
+    }, 500);
+}
+</script>
+
 ```mermaid
 graph TD
     U["👤 User"] --> CC["Chat Client<br/>(ghcr.io/cnoe-io/agent-chat-cli:stable)"]
