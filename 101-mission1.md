@@ -4,11 +4,21 @@
   ⏰ Start 15-Min Timer 🚀 <span id="timer-btn-display" style="margin-left: 12px; font-weight: bold;">15:00</span>
 </button>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  let timerInterval;
-  let timeLeft = 15 * 60;
-  const timerDisplay = document.getElementById('timer-btn-display');
-  const timerBtn = document.getElementById('start-timer-btn');
+/**
+ * Create a countdown tied to one element.
+ * @param {Object} opts
+ * @param {number} opts.duration           - total seconds (e.g., 90)
+ * @param {HTMLElement|string} opts.target - element or element id to update
+ * @param {string} [opts.doneText]         - text when finished (default "TIME IS UP!")
+ * @param {function} [opts.onComplete]     - optional callback when timer finishes naturally
+ * @returns {{ start:Function, pause:Function, stop:Function, reset:Function }}
+ */
+window.createCountdown = function({ duration, target, doneText = "TIME IS UP!", onComplete }) {
+  let timeLeft = duration;
+  let interval = null;
+  let isRunning = false;
+
+  const targetEl = typeof target === 'string' ? document.getElementById(target) : target;
 
   function formatTime(seconds) {
     const m = Math.floor(seconds / 60);
@@ -16,23 +26,73 @@ document.addEventListener('DOMContentLoaded', function() {
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   }
 
-  if (timerBtn) {
+  function updateDisplay() {
+    if (targetEl) {
+      targetEl.textContent = timeLeft > 0 ? formatTime(timeLeft) : doneText;
+    }
+  }
+
+  function tick() {
+    timeLeft--;
+    updateDisplay();
+
+    if (timeLeft <= 0) {
+      stop();
+      if (onComplete) onComplete();
+    }
+  }
+
+  function start() {
+    if (!isRunning && timeLeft > 0) {
+      isRunning = true;
+      interval = setInterval(tick, 1000);
+    }
+  }
+
+  function pause() {
+    if (isRunning) {
+      isRunning = false;
+      clearInterval(interval);
+    }
+  }
+
+  function stop() {
+    isRunning = false;
+    clearInterval(interval);
+    timeLeft = 0;
+    updateDisplay();
+  }
+
+  function reset() {
+    stop();
+    timeLeft = duration;
+    updateDisplay();
+  }
+
+  // Initialize display
+  updateDisplay();
+
+  return { start, pause, stop, reset };
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  const timerBtn = document.getElementById('start-timer-btn');
+  const timerDisplay = document.getElementById('timer-btn-display');
+
+  if (timerBtn && timerDisplay) {
+    const countdown = createCountdown({
+      duration: 15 * 60, // 15 minutes
+      target: timerDisplay,
+      doneText: "🎉",
+      onComplete: function() {
+        timerBtn.disabled = false;
+      }
+    });
+
     timerBtn.onclick = function() {
-      clearInterval(timerInterval);
-      timeLeft = 15 * 60;
       timerBtn.disabled = true;
-      if (timerDisplay) timerDisplay.textContent = formatTime(timeLeft);
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        if (timerDisplay && timeLeft >= 0) {
-          timerDisplay.textContent = formatTime(timeLeft);
-        }
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          if (timerDisplay) timerDisplay.textContent = "🎉";
-          timerBtn.disabled = false;
-        }
-      }, 1000);
+      countdown.reset();
+      countdown.start();
     };
   }
 });
@@ -42,6 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
 ## Clone CAIPE
 
 Clone the CAIPE (Community AI Platform Engineering) repository
+
+
+!!! note
+    🌟 **Support CAIPE with stars!** 🌟
+    Scan the QR code below or visit the CAIPE repository.
+    <br>
+    ![Star CAIPE Repo](images/caipe-repo-qr.svg)
+    <br>
+    Please give us a ⭐️ on GitHub. Your support helps grow our community and keeps the project thriving. 🚀
 
 ```bash
 cd $HOME/work
