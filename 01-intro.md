@@ -114,9 +114,9 @@ Here’s a **fun, theme-aligned foreword** in markdown format that you can use f
 
 ---
 
-## 🛰️ **Preflight Checklist**
+## 🛰️ **Preflight Check-in**
 
-Before you begin, make sure you’ve got these essentials in place:
+**We got you covered with lab environment. No need to bring any extra setup**
 
 * **Integrated Lab Access**
   We’ve set up a ready-to-go lab environment. You’ll also have **temporary LLM access** during the workshop **and for 36 hours afterward** — so you can keep tinkering after we land.
