@@ -118,7 +118,7 @@ We will now use the UI to query the RAG system and verify it is working.
 
 <a href="/" onclick="javascript:event.target.port=6100" target="_blank">Open RAG Web UI again</a>
 
-Query `Axial tilt` and click the `Search` button
+**Type:** `Axial tilt` in the query box, then **Click:** `Search` button
 
 **👀 Observe:** The response should return relevant document chunks. The chunks may not be formatted in a way that is easy to read. As long as some document chunks are returned, the RAG system is working.
 
@@ -169,11 +169,11 @@ Now, we will test the multi-agent interaction by asking the supervisor agent to:
 
 In the CLI chat client, ask the agent:
 
-```
+```bash
 Research and write a report on mars surface, then commit it as a text file named '%%LABNAME%%-report.txt' to my github repository https://github.com/outshiftcaipe/mission-mars-colony
 ```
 
-**👀 Observe:** The agent should create a report, commit it to git and push it to [the repository](https://github.com/outshiftcaipe/mission-mars-colony).
+**👀 Observe:** The agent should create a report (named `%%LABNAME%%-report.txt`), and commit it to the [workshop git repository](https://github.com/outshiftcaipe/mission-mars-colony).
 
 ### Explanation:
 
