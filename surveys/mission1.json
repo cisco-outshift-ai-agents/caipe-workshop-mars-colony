@@ -1,0 +1,57 @@
+{
+  "title": "Mission 1 Check",
+  "questions": [
+    {
+      "question": "Did you successfully clone the CAIPE repository and start the mission guide?",
+      "answers": [
+        {
+          "text": "Yes, I have cloned the repo and opened the guide.",
+          "value": "yes"
+        },
+        {
+          "text": "No, I had issues and need help.",
+          "value": "no"
+        }
+      ]
+    },
+    {
+      "question": "Did you navigate to the CAIPE documentation site?",
+      "answers": [
+        {
+          "text": "Yes, I explored the docs.",
+          "value": "yes_docs"
+        },
+        {
+          "text": "No, I have not checked the docs yet.",
+          "value": "no_docs"
+        }
+      ]
+    },
+    {
+      "question": "Did you review the Agentic AI Concepts section?",
+      "answers": [
+        {
+          "text": "Yes, I reviewed the Agentic AI Concepts.",
+          "value": "yes_concepts"
+        },
+        {
+          "text": "No, I have not reviewed the concepts yet.",
+          "value": "no_concepts"
+        }
+      ]
+    },
+    {
+      "question": "Did you star the CAIPE repository (give it a star on GitHub)?",
+      "answers": [
+        {
+          "text": "Yes, I starred the repo.",
+          "value": "yes_star"
+        },
+        {
+          "text": "No, not yet.",
+          "value": "no_star"
+        }
+      ]
+    }
+  ]
+}

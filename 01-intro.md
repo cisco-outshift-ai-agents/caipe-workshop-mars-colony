@@ -1,3 +1,4 @@
+
 # Your Mission - Mission Control for Mars Colony
 
 <img src="images/mission-control.svg" alt="Mission Control" width="450">
@@ -6,15 +7,33 @@ You and your team have landed on **Mars** 🟠 to establish **Mission Control op
 
 🎯 Your **mission** is to set up 🛰️ communication and 🌦️ weather monitoring systems so life in the new habitat runs smoothly, while staying connected to Earth 🌍 by reporting your findings. 📡
 
-Along the way, you’ll complete a **series of Mission Checks:**
+Along the way, you’ll complete a **series of Mission Checks**. _We will go over the mission checks shortly_
 
-- Starting with a single agent 🤖 using MCP and A2A and verify communication over A2A using [agent-chat-cli](https://github.com/cnoe-io/agent-chat-cli)
+<!-- - Starting with a single agent 🤖 using MCP and A2A and verify communication over A2A using [agent-chat-cli](https://github.com/cnoe-io/agent-chat-cli)
 - Expanding to a distributed multi-agent system using A2A and MCP 🌐 with multiple example agents to build the usecase
-- And finally running CAIPE (Community AI Platform Engineering) MAS and interacting with it using rich Backstage Web UI or agent-chat-cli interface. 🖥️🛸
+- And finally running CAIPE (Community AI Platform Engineering) MAS and interacting with it using rich Backstage Web UI or agent-chat-cli interface. 🖥️🛸 -->
 
 &nbsp;
 
-## 🧭 1. Mission Checks
+## CAIPE Badges
+
+- Everyone who participates and go through level in this workshop will receive the `Explorer` badge. You can proudly display this achievement badge on your Cisco Directory profile or on LinkedIn.
+- After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
+- Future badges can be earned by continuing your learning progression, attending monthly office hours, participating in open source community meetings, and contributing to the CAIPE project.
+
+**More details about badges, progression, and the learning path can be found here:
+[https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx)**
+
+| Badge Level        |   |   | Badge Image                                                                 |
+|--------------------|---|---|-----------------------------------------------------------------------------|
+| 🚀 CAIPE Explorer  |   |   | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="50">      |
+| ⚡ CAIPE Improver  |   |   | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="50">      |
+| 🎯 CAIPE Expert    |   |   | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="50">          |
+| 👑 CAIPE Master    |   |   | <img src="images/badge-master.svg" alt="CAIPE Master" width="50">          |
+
+&nbsp;
+
+## Mission Checks
 
 - **Mission Check 1 — Download Mission and Learn the Controls** 🛰️📝
     - Clone the repo, set up prerequisites, and bring Mission Control online. 🚀
@@ -42,7 +61,7 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## 🎯 2. Bonus Missions
+## Bonus Missions
 
 * **AGNTCY Intro**
 * **AGNTCY — Agent Directory**
@@ -51,31 +70,11 @@ Along the way, you’ll complete a **series of Mission Checks:**
 
 &nbsp;
 
-## 🏁📢 3. We’ll conclude with **Final Debrief & Takeaways**
+## Final Debrief and Takeaways
 
 &nbsp;
 
-&nbsp;
-
-# 🏆 CAIPE Badges
-
-- Everyone who participates in this workshop will receive the `Explorer` badge. You can proudly display this achievement badge on your Cisco Directory profile or on LinkedIn.
-- After the workshop has concluded, we will send you and your manager a formal email confirming your participation in the CAIPE workshop.
-- Future badges can be earned by continuing your learning progression, attending monthly office hours, participating in open source community meetings, and contributing to the CAIPE project.
-
-**More details about badges, progression, and the learning path can be found here:
-[https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Digital-Badges.aspx)**
-
-| Badge Level        |   |   | Badge Image                                                                 |
-|--------------------|---|---|-----------------------------------------------------------------------------|
-| 🚀 CAIPE Explorer  |   |   | <img src="images/badge-explorer.svg" alt="CAIPE Explorer" width="50">      |
-| ⚡ CAIPE Improver  |   |   | <img src="images/badge-improver.svg" alt="CAIPE Improver" width="50">      |
-| 🎯 CAIPE Expert    |   |   | <img src="images/badge-expert.svg" alt="CAIPE Expert" width="50">          |
-| 👑 CAIPE Master    |   |   | <img src="images/badge-master.svg" alt="CAIPE Master" width="50">          |
-
-&nbsp;
-
-# 🛠️ Workshop Logistics & Support
+## Workshop Logistics and Support
 
 - **🔍 Demo Lab Navigation**
   - Easily switch between the **Lab Guide**, **Terminal**, and **IDE** using the toggles in the **top right corner** of your screen.
@@ -110,5 +109,38 @@ Along the way, you’ll complete a **series of Mission Checks:**
 - **📝 Feedback**
   - Share your feedback and suggestions to help us improve future workshops!
   - You will receive a survey email directly from Webex.
+ 
+Here’s a **fun, theme-aligned foreword** in markdown format that you can use for your workshop:
 
-Let’s make this a fun and productive learning experience! 🚀✨
+---
+
+## 🛰️ **Preflight Check-in**
+
+**We got you covered with lab environment. No need to bring any extra setup**
+
+* **Integrated Lab Access**
+  We’ve set up a ready-to-go lab environment. You’ll also have **temporary LLM access** during the workshop **and for 36 hours afterward** — so you can keep tinkering after we land.
+
+* **Optional Local Launch Pad**
+  Want to try running the stack on your own setup? Here are the **recommended specs** for smooth orbit:
+
+  * **8 CPUs**
+  * **16 GB RAM**
+  * Docker installed and ready
+    This ensures your systems don’t burn up during re-entry.
+
+* **LLM Keys**
+  For access to long-term LLM usage beyond the lab, request your keys via the Circuit portal:
+  [🔗 **Circuit SharePoint: API & RAG Options**](https://cisco.sharepoint.com/sites/CIRCUIT/SitePages/API-RAG-options.aspx?web=1)
+
+
+If you run into turbulence or want to study up before or after the mission, check out our [🔗 **CAIPE Sharepoint**](https://cisco.sharepoint.com/sites/CAIPE/)
+
+---
+
+## 🌠 **Final Call**
+
+Suit up, power up your consoles, and get ready to take control of the **next frontier of AI-driven operations**. The future of our Mars colony — and the safety of your crew — depends on your engineering skills.
+
+**Countdown to launch starts now…**
+**T-minus 3… 2… 1… 🚀**

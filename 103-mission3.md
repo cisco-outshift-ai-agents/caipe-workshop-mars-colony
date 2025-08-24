@@ -2,44 +2,27 @@
 
 ## Overview
 
-In this mission, you'll run a **multi-agent system** that includes:
-- **🐾 Petstore Agent**: Pet management from Mission 2
-- **🌤️ Weather Agent**: Real-time weather data and forecasts
-- **🧠 Supervisor Agent**: Orchestrates and coordinates between agents
+In this mission, you'll run a **multi-agent system** that coordinates critical Mars colony operations across multiple domains:
+
+- **🐾 Petstore Agent**: Manages colony biological companions from Mission 2 - essential for morale and psychological well-being during long Mars deployments
+- **🌤️ Weather Agent**: Monitors Earth weather conditions to optimize interplanetary trade routes and supply deliveries - knowing Earth's weather patterns helps predict launch windows and cargo capacity for supply missions
+- **🧠 Supervisor Agent**: Acts as the colony's central command coordinator, orchestrating complex operations that require data from multiple specialized systems
 
 This demonstrates **agent-to-agent communication** where the supervisor can intelligently route requests to specialized agents and combine their responses.
 
 ## Step 1: Configure Multi-Agent Environment
 
-### Edit the environment file to enable multi-agent mode:
+**💡 Tip:** You can also click the IDE button on the top right of this page to open the `.env` file in the IDE and edit it that way. Edit lines 1-18 with the following agent configuration:
+
+Run the below command to update the `.env` file with the following agent configuration:
 
 ```bash
-vim .env
-```
-
-**Modify lines 1-18** with the following agent configuration:
-
-**💡 Tip:** Press `i` to enter insert mode in vim, make your changes, then press `Esc` and type `:wq` to save and exit.
-
-```bash
-########### AGENT CONFIGURATION ###########
-
-ENABLE_WEATHER_AGENT=true # <- enable weather agent
-ENABLE_PETSTORE_AGENT=true # <- enable petstore agent
-
-########### MULTI-AGENT CONFIGURATION ###########
-
-# INITIAL CONNECTIVITY CHECK FOR SUBAGENTS
-SKIP_AGENT_CONNECTIVITY_CHECK=false # <- set to true to perform the initial connectivity check
-AGENT_CONNECTIVITY_TIMEOUT=5.0
-AGENT_CONNECTIVITY_MAX_RETRIES=3
-AGENT_CONNECTIVITY_RETRY_DELAY=2.0
-AGENT_CONNECTIVITY_STARTUP_DELAY=0.0
-
-# DYNAMIC MONITORING PARAMETERS
-AGENT_CONNECTIVITY_ENABLE_BACKGROUND=true # <- set to true to enable the background connectivity check
-AGENT_CONNECTIVITY_REFRESH_INTERVAL=300
-AGENT_CONNECTIVITY_FAST_CHECK_TIMEOUT=2.0
+sed -i \
+  -e 's|^ENABLE_WEATHER_AGENT=.*|ENABLE_WEATHER_AGENT=true|' \
+  -e 's|^ENABLE_PETSTORE_AGENT=.*|ENABLE_PETSTORE_AGENT=true|' \
+  -e 's|^SKIP_AGENT_CONNECTIVITY_CHECK=.*|SKIP_AGENT_CONNECTIVITY_CHECK=false|' \
+  -e 's|^AGENT_CONNECTIVITY_ENABLE_BACKGROUND=.*|AGENT_CONNECTIVITY_ENABLE_BACKGROUND=true|' \
+  .env
 ```
 
 The connectivity check is performed when the supervisor agent starts. It will check if the petstore and weather agents are running and if they are, it will add them to the supervisor agent's memory.
@@ -51,7 +34,7 @@ The dynamic monitoring is performed in the background and will check if the pets
 ### Launch the multi-agent stack with Docker Compose:
 
 ```bash
-IMAGE_TAG=latest docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
+IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
 ```
 
 ### What happens:
@@ -115,17 +98,17 @@ platform-engineer-p2p  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press
 
 We can now check each agent card to see what capabilities are available. Open a new terminal and run the following command to test the agent health:
 
-#### Weather agent card:
+### Weather agent card:
 ```bash
 curl http://localhost:8009/.well-known/agent.json | jq
 ```
 
-#### Petstore agent card:
+### Petstore agent card:
 ```bash
 curl http://localhost:8010/.well-known/agent.json | jq
 ```
 
-#### Supervisor agent card:
+### Supervisor agent card:
 
 This is the supervisor agent card. It will show the combined capabilities of the petstore and weather agents.
 
@@ -149,6 +132,7 @@ The client will connect to the supervisor agent and show available capabilities 
 ## Step 5: Test Multi-Agent Interactions
 
 ### Discovery Commands
+
 Try these to explore the multi-agent capabilities:
 
 ```bash
@@ -160,6 +144,7 @@ What can you help me with?
 ```
 
 ### Weather-Specific Commands
+
 ```bash
 What's the current weather in San Francisco?
 ```
@@ -169,6 +154,7 @@ Give me a 5-day forecast for London
 ```
 
 ### Petstore Commands (from Mission 2)
+
 ```bash
 Add a new dog named Max
 ```
@@ -178,6 +164,7 @@ Show me pets with 'cold' tags
 ```
 
 ### Cross-Agent Scenarios
+
 Test scenarios that require both agents:
 
 ```bash
@@ -192,65 +179,33 @@ Get me weather for New York and find me all cats that are available for adoption
 If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
 ```
 
-## Step 5: Observe Agent Coordination
-
-### Watch the logs to see agent-to-agent communication:
-In your Docker Compose terminal, you'll see:
-- **🧠 Supervisor**: Receives user query and decides which agent(s) to call
-- **🌤️ Weather/🐾 Petstore**: Process specific requests and return results
-- **🧠 Supervisor**: Combines responses and presents unified answer
-
-### Example coordination flow:
-```
-🧑‍💻 User: "What's the weather in NYC and show me available cats?"
-
-🧠 Supervisor: "I need weather data and pet data..."
-           ↳ Calls Weather Agent for NYC weather
-           ↳ Calls Petstore Agent for available cats
-           ↳ Combines both responses
-
-🌤️ Weather: "Current weather in NYC: 72°F, sunny"
-🐾 Petstore: "Found 3 available cats: Fluffy, Whiskers, Shadow"
-
-🧠 Supervisor: "Here's what I found: [combined response]"
-```
-
 ## Mission Checks
 
-✅ **Multi-Agent Launch**: All three agents (supervisor, weather, petstore) start successfully
-✅ **Connectivity**: Supervisor reports successful connections to both subagents
-✅ **Cross-Agent Query**: Successfully handle requests requiring both weather and petstore data
-✅ **Agent Coordination**: Observe supervisor routing requests to appropriate specialized agents
-✅ **Combined Responses**: Receive unified answers that incorporate data from multiple agents
+<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
+  <h4 style="margin-top: 0; color: #007cba;">🚀 Mars Colony Multi-Agent Mission Checklist</h4>
 
-## Troubleshooting
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Multi-Agent Launch: All three agents (supervisor, weather, petstore) start successfully</strong>
+  </label>
 
-### If agents fail to connect:
-```bash
-# Check agent health individually
-curl http://localhost:8001/.well-known/agent.json  # Weather
-curl http://localhost:8002/.well-known/agent.json  # Petstore
-curl http://localhost:8000/.well-known/agent.json  # Supervisor
-```
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Connectivity: Supervisor reports successful connections to both subagents</strong>
+  </label>
 
-### If Docker Compose fails:
-```bash
-# Stop and clean up
-docker compose -f docker-compose.weather.yaml --profile=p2p down
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Cross-Agent Query: Successfully handle requests requiring both weather and petstore data</strong>
+  </label>
 
-# Try again
-docker compose -f docker-compose.weather.yaml --profile=p2p up
-```
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Agent Coordination: Observe supervisor routing requests to appropriate specialized agents</strong>
+  </label>
 
-## Next Steps
-
-🚀 **Mission 4**: Implement custom agent with specialized domain knowledge
-🔧 **Mission 5**: Add distributed tracing to observe agent communication patterns
-🌐 **Mission 6**: Deploy multi-agent system to production environment
-
----
-
-**📚 References:**
-- [Agent-to-Agent Communication Protocol](https://docs.agent-protocol.org/)
-- [Multi-Agent Orchestration Patterns](https://langchain.com/multi-agent)
-- [Docker Compose Multi-Service Setup](https://docs.docker.com/compose/)
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Combined Responses: Receive unified answers that incorporate data from multiple agents</strong>
+  </label>
+</div>

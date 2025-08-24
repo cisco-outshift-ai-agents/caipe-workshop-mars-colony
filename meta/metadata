@@ -37,7 +37,7 @@
             "file": "202-mission5"
         },
         {
-            "title": "Assemble with idpbuilder (bonus)",
+            "title": "Assemble with idpbuilder",
             "file": "301-mission6"
         },
         {
@@ -48,33 +48,11 @@
             "title": "Assemble with idpbuilder",
             "file": "402-mission8"
         },
-        {
-            "title": "AGNTCY Introduction",
-            "file": "901-agntcy-intro"
-        },
-        {
-            "title": "AGNTCY Agent Directory",
-            "file": "902-agent-directory"
-        },
-        {
-            "title": "AGNTCY Slim",
-            "file": "903-slim"
-        },
-        {
-            "title": "AGNTCY Agent Identity",
-            "file": "904-agent-identity"
-        },
-        {
-            "title": "Coffee Agntcy",
-            "file": "905-coffe-agntcy"
-        },
+
         {
           "title": "Conclusion",
           "file": "1000-conclusion"
-        },
-        {
-            "title": "Lab dev examples",
-            "file": "2000-help"
         }
     ]
+
 }

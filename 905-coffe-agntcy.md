@@ -1,4 +1,4 @@
-# Coffee Agntcy - Reference app
+## Coffee Agntcy - Reference app
 
 Use idpbuilder to package the stack (images, manifests, configs).
 

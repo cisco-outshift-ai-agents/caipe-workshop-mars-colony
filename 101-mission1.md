@@ -1,47 +1,20 @@
-# Mission Check 1 — Download mission and learn the controls.
+# Mission Check 1 — Download mission and learn the controls
 
-<button id="start-timer-btn" style="padding: 8px 18px; font-size: 1.1rem; border-radius: 10px; background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%); color: #fff; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); cursor: pointer;">
-  ⏰ Start 15-Min Timer 🚀 <span id="timer-btn-display" style="margin-left: 12px; font-weight: bold;">15:00</span>
-</button>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  let timerInterval;
-  let timeLeft = 15 * 60;
-  const timerDisplay = document.getElementById('timer-btn-display');
-  const timerBtn = document.getElementById('start-timer-btn');
-
-  function formatTime(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  }
-
-  if (timerBtn) {
-    timerBtn.onclick = function() {
-      clearInterval(timerInterval);
-      timeLeft = 15 * 60;
-      timerBtn.disabled = true;
-      if (timerDisplay) timerDisplay.textContent = formatTime(timeLeft);
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        if (timerDisplay && timeLeft >= 0) {
-          timerDisplay.textContent = formatTime(timeLeft);
-        }
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          if (timerDisplay) timerDisplay.textContent = "🎉";
-          timerBtn.disabled = false;
-        }
-      }, 1000);
-    };
-  }
-});
-</script>
-
+<button onclick="createCountdown({duration: 10, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()">Start Mission 1 15 min timer</button>
+<span id="timer1" class="timer">00:15</span>
 
 ## Clone CAIPE
 
 Clone the CAIPE (Community AI Platform Engineering) repository
+
+
+!!! note
+    🌟 **Support CAIPE with stars!** 🌟
+    Scan the QR code below or visit the CAIPE repository.
+    <br>
+    ![Star CAIPE Repo](images/caipe-repo-qr.svg)
+    <br>
+    Please give us a ⭐️ on GitHub. Your support helps grow our community and keeps the project thriving. 🚀
 
 ```bash
 cd $HOME/work
@@ -63,11 +36,11 @@ git clone https://github.com/cnoe-io/ai-platform-engineering
   * `Setup` -> `Docker` -> `Run with Docker Compose`
   * `Setup` -> `IDP Builder`
 
-# Agentic AI Concepts
+## Agentic AI Concepts
 
 Let's review some key concepts.
 
-## What is an Agent?
+### What is an Agent?
 
 An AI Agent is a system that uses a Large Language Model (LLM) to decide the flow of an application
 
@@ -79,7 +52,7 @@ design pattern used in agentic systems to help LLMs decide the next action or to
 <img src="images/react-agent.svg" alt="Mission Control" width="200">
 
 
-## What is a Multi-Agent System (MAS)?
+### What is a Multi-Agent System (MAS)?
 
 A Multi-Agent System (MAS) is an agentic AI system composed of multiple, independent and interacting agents to achieve a common goal
 
@@ -166,8 +139,7 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 
 * [https://agntcy.org/](https://agntcy.org/)
 
-## Misson Checks
+## Mission Checks (Please fill this mission check before you proceed)
 
-* [ ] 📝 Clone CAIPE
-* [ ] 📝 Navigate to Docs
-* [ ] 📝 Agentic AI Concepts
+**Misson Checks %survey:mission1:Mission 1 Check List%**
+

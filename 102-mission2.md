@@ -2,17 +2,65 @@
 
 ## Overview
 
-In this mission, you'll run a standalone Petstore AI agent that demonstrates:
-- **Pet Management**: Add, find, update, and delete pets
-- **Store Operations**: Inventory, orders, and analytics
-- **User Management**: Account creation and management
-- **Smart Search**: Combined status + category filtering
-- **Response Optimization**: Handles large datasets efficiently
+🚀 **Mission Status**: As a newly arrived Mars Inhabitant, your first assignment is to manage the colony's biological companions and supply systems.
+
+In this mission, you'll deploy a standalone Petstore AI agent to handle critical colony operations:
+
+* **🐾 Companion Management**: Track, care for, and manage colony animals that boost morale and assist with tasks
+* **📦 Supply Operations**: Monitor inventory, process resource orders, and analyze colony logistics
+* **👨‍🚀 Inhabitant Management**: Maintain records and manage access for fellow Mars inhabitants
+* **🔍 Smart Search**: Efficiently locate animals and supplies using advanced filtering systems
+* **⚡ Response Optimization**: Handle large datasets crucial for colony survival without system overload
+
+## Architecture Overview
+
+The petstore agent can run in two different MCP (Model Control Protocol) modes, each with distinct advantages:
+
+### Key Differences Between the Modes
+
+<div style="display: flex; gap: 20px; margin: 20px 0;">
+  <div style="flex: 1; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745;">
+    <h4 style="margin-top: 0; color: #28a745;">🔗 STDIO Mode</h4>
+    <p><strong>How it works:</strong> The agent starts its own MCP server process and talks to it directly through simple text commands - like having a conversation through a pipe.</p>
+    <p><strong>Benefits:</strong></p>
+    <ul>
+      <li>Faster communication (no network delays)</li>
+      <li>Everything runs in one place</li>
+      <li>Simpler setup for development</li>
+      <li>No authentication needed</li>
+    </ul>
+  </div>
+
+  <div style="flex: 1; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #007cba;">
+    <h4 style="margin-top: 0; color: #007cba;">🌐 HTTP Mode</h4>
+    <p><strong>How it works:</strong> The agent connects to a separate MCP server running elsewhere using web requests - like calling an API over the internet.</p>
+    <p><strong>Benefits:</strong></p>
+    <ul>
+      <li>MCP server can serve multiple agents</li>
+      <li>Better for production deployments</li>
+      <li>Can scale components independently</li>
+      <li>Supports authentication and security</li>
+    </ul>
+  </div>
+</div>
+
+The following diagrams illustrate how the chat client connects to the petstore agent in each mode:
+
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+  <div style="flex: 1; text-align: center;">
+    <h3>STDIO Mode</h3>
+    <img src="images/mission2-stdio.svg" alt="Mission 2 Architecture - STDIO Mode" style="width: 100%; max-width: 300px;">
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <h3>HTTP Mode</h3>
+    <img src="images/mission2-http.svg" alt="Mission 2 Architecture - HTTP Mode" style="width: 100%; max-width: 300px;">
+  </div>
+</div>
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
 ```bash
-cd ai-platform-engineering
+cd $HOME/work/ai-platform-engineering
 ```
 
 ## Step 2: Set Up Environment Variables
@@ -25,47 +73,71 @@ cp .env.example .env
 
 ### Edit the environment file with your LLM credentials:
 
-```bash
-vim .env
-```
+**NOTE:** If you prefer to build and run the agent locally, refer to the step at the bottom of this page: [Optional: Build and run the petstore agent locally](#optional-build-and-run-the-petstore-agent-locally).
 
-**Required variables to configure:**
-
-For this workshop, we will use Azure OpenAI. Modify lines 30-35 with your LLM credentials:
-
-**💡 Tip:** You should have received your LLM credentials prior to the workshop. If you don't have them, please ask your instructor.
-
-**💡 Tip:** Press `i` to enter insert mode in vim, make your changes, then press `Esc` and type `:wq` to save and exit.
-
+For this workshop, we will use Azure OpenAI. The api key has already been exported to the environment variables. Run below command in the terminal to copy the secrets in `.env_vars` file to `.env` file that you just created:
 
 ```bash
-# --- OR Use Azure OpenAI ---
-LLM_PROVIDER=azure-openai
-AZURE_OPENAI_API_KEY=<your provided api key prior to the workshop>
-AZURE_OPENAI_ENDPOINT=https://platform-interns-eus2.openai.azure.com/
-AZURE_OPENAI_DEPLOYMENT=gpt-4o
-AZURE_OPENAI_API_VERSION=2025-03-01-preview
+sed -i \
+  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
+  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
+  -e "s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|" \
+  -e "s|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|" \
+  -e "s|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|" \
+  .env
 ```
+
+You can also check the variables have been set correctly in the `.env` file by going to the IDE tab on the top right of this page (`</>`) and locating the file under `ai-platform-engineering/` directory.
 
 ## Step 3: Run the Petstore Agent
 
-**Note:** If you prefer to build and run the agent locally, refer to the step at the bottom of this page: [Optional: Build and run the petstore agent locally](#optional-build-and-run-the-petstore-agent-locally).
+You can run the petstore agent in two different MCP (Model Control Protocol) modes. For this workshop, we will use the STDIO mode.
 
-Now, we will go through the process of running the standalone petstore agent using docker compose:
+### 3.1: Using MCP STDIO Mode
+
+STDIO mode runs the MCP server embedded within the agent container, using standard input/output streams for internal communication. The embedded MCP server then connects to the external Petstore API.
 
 ```bash
-IMAGE_TAG=latest docker compose -f workshop/docker-compose.mission2.yaml up
+IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission2.yaml up
 ```
 
-This pulls the latest petstore agent image from the registry and runs in port 8000.
-
 **What happens:**
+
 - ⏬ Downloads petstore agent image with the latest tag from the registry
-- 🔗 Connects to MCP server on STDIO mode to https://petstore.swagger.io/v2 which is a public sandbox API
+- 🔗 Connects to MCP server via STDIO mode to https://petstore.swagger.io/v2 which is a public sandbox API
 - 🌐 Exposes agent on `http://localhost:8000`
 - 📋 Shows logs directly in terminal
+- 🚀 **Advantage**: Lower latency, direct process communication
 
-**Expected output:**
+### [Optional] 3.2: Using Remote MCP Streamable HTTP Mode
+
+HTTP mode enables network-based communication with remote MCP servers, useful for production deployments or when the MCP server is running separately. In this mode, the agent connects to a separately hosted internal MCP server running at https://petstore.outshift.io/mcp, which then handles the Petstore API operations.
+
+#### Set the Petstore API key
+
+```bash
+PETSTORE_API_KEY=$(echo -n 'caiperocks' | sha256sum | cut -d' ' -f1) && \
+sed -i "s|^PETSTORE_API_KEY=.*|PETSTORE_API_KEY=${PETSTORE_API_KEY}|" .env
+```
+
+#### Run the petstore agent
+
+```bash
+IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission2.yaml up
+```
+
+**What happens:**
+
+- ⏬ Downloads petstore agent image with the latest tag from the registry
+- 🌐 Connects to remote MCP server via HTTP/streaming mode at https://petstore.outshift.io/mcp
+- 🌐 Exposes agent on `http://localhost:8000`
+- 📋 Shows logs directly in terminal
+- 🚀 **Advantage**: Supports remote MCP servers, useful for production deployments, better separation of concerns
+
+### Expected Output (Both Modes)
+
+Regardless of which mode you choose, you should see the following output:
+
 ```console
 ...
 ===================================
@@ -80,7 +152,11 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-**🎯 Success indicator:** Ensure you wait until you see the message: `Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)`
+**🎯 Success indicator:** Ensure you wait until you see the message: `Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)` regardless of the mode you choose.
+
+**💡 Mode Selection Tip:**
+- Use **STDIO mode** for local development and testing with minimal overhead
+- Use **HTTP mode** for production environments or when you need to connect to remotely hosted MCP servers
 
 ## Step 4: Test the Petstore Agent
 
@@ -161,20 +237,58 @@ Show me pets with 'friendly' tags
 
 ## Mission Checks
 
-- [ ] ✅ Navigate to AI Platform Engineering repository
-- [ ] ✅ Set up .env file with LLM credentials
-- [ ] ✅ Run docker compose to to pull the latest petstore agent image and run it in port 8000
-- [ ] ✅ Connect chat client to the petstore agent and test the agent
-- [ ] ✅ Test discovery: "What actions can you perform?"
-- [ ] ✅ Test pet search: "Find all available pets"
-- [ ] ✅ Test smart search: "Get all cats that are pending"
-- [ ] ✅ Test interactive: "I want to add a new pet"
+
+<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
+  <h4 style="margin-top: 0; color: #007cba;">🚀 Colony Mission Checklist</h4>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Navigate to AI Platform Engineering repository</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Set up .env file with LLM credentials</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Run docker compose to pull the latest petstore agent image and run it on port 8000</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Connect chat client to the petstore agent and test the agent</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Test discovery: "What actions can you perform?"</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Test companion search: "Find all available companions"</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Test smart search: "Get all cats that are pending"</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Test interactive: "I want to add a new companion"</strong>
+  </label>
+</div>
 
 ## Teardown that agent and chat client
 
 You can stop the agent and chat client by pressing `Ctrl+C` (or `Cmd+C` on Mac) in each terminal.
 
 ## Troubleshooting
+
+Here are some common issues you may encounter and how to fix them.
 
 ### Agent won't start
 ```bash
@@ -204,18 +318,41 @@ make show-env
 make run-rebuild
 ```
 
-### [Optional] Build and run the petstore agent locally
+## [Optional] Build and run the petstore agent locally
+
+### Set up environment variables
+
+If you are using your local machine, first get the `AZURE_OPENAI_API_KEY` from the lab environment:
+
+```bash
+echo $AZURE_OPENAI_API_KEY
+```
+
+Then run below command in your local terminal to set up your environment variables. When asked to enter the API key, paste the value you just copied from the lab environment:
+
+```bash
+read -s -p "Enter your Azure OpenAI API key: " AZURE_OPENAI_API_KEY && echo && \
+sed -i \
+  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
+  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
+  -e 's|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|' \
+  -e 's|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|' \
+  -e 's|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|' \
+  .env
+```
+
+### Build and run the petstore agent locally
 
 You can also build and run the petstore agent locally:
 
 ```bash
-docker compose -f workshop/docker-compose.mission2.yaml -f workshop/docker-compose.dev.override.yaml --profile mission2-dev up
+MCP_MODE=<stdio|http> docker compose -f workshop/docker-compose.mission2.yaml -f workshop/docker-compose.dev.override.yaml --profile mission2-dev up
 ```
-
-Above command uses the dev override file to mount the code from your local machine and rebuild the petstore agent image on each change. This is useful for testing local changes to the agent code.
-
 **What happens:**
+
 - 🔧 Builds Docker image located in `ai_platform_engineering/agents/template/build/Dockerfile.a2a`
 - 📁 Mounts code via volumes for live development
 - 🌐 Exposes agent on `http://localhost:8000`
 - 📋 Shows logs directly in terminal
+
+Above command uses the dev override file to mount the code from your local machine and rebuild the petstore agent image on each change. This is useful for testing local changes to the agent code. You can now return to [Step 4: Test the Petstore Agent](#step-4-test-the-petstore-agent) to test the agent.
