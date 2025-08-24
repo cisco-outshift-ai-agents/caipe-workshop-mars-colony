@@ -44,6 +44,10 @@ Let's review some key concepts.
 
 An AI Agent is a system that uses a Large Language Model (LLM) to decide the flow of an application
 
+### Anatomy of agent
+
+![Anatomy of agent](images/agent-anatomy.svg)
+
 ### ReAct Loop
 
 Reason and Act (ReAct) is a common
