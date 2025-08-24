@@ -69,7 +69,7 @@ The docker-compose stack should start the following services:
 
 You can verify the supervisor agent is healthy by checking the health endpoint.
 
-**➕ Open** another terminal (top-right '+' icon), and run the following command:
+**➕ Open another terminal** (top-right '+' icon), and run the following command:
 
 ```bash
 curl http://localhost:8000/.well-known/agent.json | jq
@@ -122,12 +122,12 @@ Query `Axial tilt` and click the `Search` button
 
 **👀 Observe:** The response should return relevant document chunks. The chunks may not be formatted in a way that is easy to read. As long as some document chunks are returned, the RAG system is working.
 
+
+<br>
 <hr>
 
 ## Step 4: Using the RAG Agent
 <br>
-
-**➕ Open** another terminal (top-right '+' icon), and run the following command:
 
 ```bash
 docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
@@ -173,28 +173,56 @@ In the CLI chat client, ask the agent:
 Research and write a report on mars surface, then commit it as a text file named '%%LABNAME%%-report.txt' to my github repository https://github.com/outshiftcaipe/mission-mars-colony
 ```
 
-**👀 Observe:** The agent should create a report, commit it to git and push it to the repository.
+**👀 Observe:** The agent should create a report, commit it to git and push it to [the repository](https://github.com/outshiftcaipe/mission-mars-colony).
 
 ### Explanation:
 
 Here's what happens:
+
  - The supervisor agent determines what needs to be done, and delegates the tasks to the sub agents.
  - It first asks the RAG agent to search for information about Mars surface. 
  - The RAG agent uses the vector store to find relavant information, and write a report.
- - Then the supervisor agent asks the git agent to commit the report as a text file to the repository.
+ - The supervisor agent then asks the git agent to commit the report as a text file to the repository.
 
 <br>
 <hr>
 
-## 🚀 Mission Checks
+## Mission Checks
 <br>
 
-* [ ] Launch RAG + Git agent stack successfully
-* [ ] Import Mars wiki into RAG
-* [ ] Verify RAG queries return relevant documentation
-* [ ] Connect chat client to multi-agent supervisor
-* [ ] Test knowledge retrieval: "What is the axial tilt of Mars?"
-* [ ] Test multi-agent interaction: Documentation search + git operations
+<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
+  <h4 style="margin-top: 0; color: #007cba;">🚀 Reconnaissance & Reporting Mission Checklist</h4>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Launch RAG + Git agent stack successfully</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Import Mars wiki into RAG</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Verify RAG queries return relevant documentation</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Connect chat client to supervisor agent</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Test knowledge retrieval: "What is the axial tilt of Mars?"</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Test multi-agent interaction: Documentation search + git operations</strong>
+  </label>
+</div>
 
 <br>
 <hr>
