@@ -173,7 +173,7 @@ In the CLI chat client, ask the agent:
 Research and write a report on mars surface, then commit it as a text file named '%%LABNAME%%-report.txt' to my github repository https://github.com/outshiftcaipe/mission-mars-colony
 ```
 
-**👀 Observe:** The agent should create a report (named `%%LABNAME%%-report.txt`), and commit it to the [workshop git repository](https://github.com/outshiftcaipe/mission-mars-colony).
+**👀 Observe:** The agent should create a report (named `%%LABNAME%%-report.txt`) about the martian surface, and commit it to the [workshop git repository](https://github.com/outshiftcaipe/mission-mars-colony).
 
 ### Explanation:
 
