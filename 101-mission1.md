@@ -1,4 +1,4 @@
-# Mission Check 1 — Download mission and learn the controls
+# Mission Check 1 — Start Ignition: Download Mission and Learn the Controls
 
 <button onclick="createCountdown({duration: 10, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()">Start Mission 1 15 min timer</button>
 <span id="timer1" class="timer">00:15</span>

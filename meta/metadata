@@ -8,13 +8,8 @@
     "displayMode": "terminal",
     "chapters": [
         {
-            "title": "Welcome",
+            "title": "Mission Brief",
             "file": "00-overview",
-            "panel": "none"
-        },
-        {
-            "title": "CAIPE Mission Brief",
-            "file": "01-intro",
             "panel": "none"
         },
         {

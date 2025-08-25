@@ -17,4 +17,8 @@ Congratulations on completing your missions! 🚀 While our official journey wra
 - **💬 Stay Connected**
   - For ongoing support, updates, and to connect with fellow participants, join our [CAIPE Community Slack Channel and Community Meetings](https://cnoe-io.github.io/ai-platform-engineering/community/).
 
+- **📝 Feedback**
+  - Share your feedback and suggestions to help us improve future workshops!
+  - You will receive a survey email directly from Webex.
+
 Thank you for being part of this journey! We hope to see you at future events and in the CAIPE community. Keep exploring, building, and collaborating! 🦸‍♂️🦸‍♀️🤖🌌
