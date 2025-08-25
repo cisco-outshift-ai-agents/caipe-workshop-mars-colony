@@ -1,7 +1,7 @@
 # Mission Check 1 — Start Ignition: Download Mission and Learn the Controls
 
 <button
-  onclick="createCountdown({duration: 10, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+  onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
   style="
     background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
     color: #fff;
