@@ -6,6 +6,8 @@ With CAIPE — your superhero cape for platform engineering 🦸 — you’ll de
 
 We will do a complete mission brief momentarily. Now let's pay attention to an intro of CAIPE:
 
+&nbsp;
+
 ## What is CAIPE (Community AI Platform Engineering)
 
 <img src="images/caipe.svg" width="200" height="200" alt="CAIPE Logo">
