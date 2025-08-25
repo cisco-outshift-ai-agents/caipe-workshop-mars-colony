@@ -1,6 +1,6 @@
 # 📡 Welcome: Mission Director’s Briefing
 
-<center><img src="images/mission-control.svg" alt="Mission Control" width="450"></center>
+<img src="images/mission-control.svg" alt="Mission Control" width="450">
 
 After months of preparation, your crew has finally landed on Mars 🟠. Now it’s time to establish Mission Control operations with Agentic AI 📡🤖🚀 to keep the colony running smoothly.
 
