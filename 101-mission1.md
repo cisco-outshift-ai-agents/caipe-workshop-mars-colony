@@ -168,7 +168,7 @@ The Agent2Agent (A2A) Protocol is an open standard designed to enable seamless c
 
 The AGNTCY project provides the complete infrastructure stack for agent collaboration—discovery, identity, messaging, and observability that works across any vendor or framework. It is the foundational layer that lets specialized agents find each other, verify capabilities, and work together on complex problems.
 
-<center><img src="images/agntcy-arch.svg" alt="Mission Control" width="600"></center>
+![Mission Control](images/agntcy-arch.svg)
 
 * [Agent Directory](https://docs.agntcy.org/dir/overview/)
   * [OASF Record](https://docs.agntcy.org/oasf/open-agentic-schema-framework/)
