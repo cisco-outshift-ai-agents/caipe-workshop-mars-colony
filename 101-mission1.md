@@ -7,14 +7,12 @@
 
 Clone the CAIPE (Community AI Platform Engineering) repository
 
-
-!!! note
-    🌟 **Support CAIPE with stars!** 🌟
-    Scan the QR code below or visit the CAIPE repository.
-    <br>
-    ![Star CAIPE Repo](images/caipe-repo-qr.svg)
-    <br>
-    Please give us a ⭐️ on GitHub. Your support helps grow our community and keeps the project thriving. 🚀
+🌟 **Support CAIPE with stars!** 🌟
+Scan the QR code below or visit the CAIPE repository.
+<br>
+![Star CAIPE Repo](images/caipe-repo-qr.svg)
+<br>
+_Please give us a ⭐️ on GitHub. Your support helps grow our community and keeps the project thriving. 🚀_
 
 ```bash
 cd $HOME/work
