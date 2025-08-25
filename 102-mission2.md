@@ -18,44 +18,17 @@ The petstore agent can run in two different MCP (Model Control Protocol) modes, 
 
 ### Key Differences Between the Modes
 
-<div style="display: flex; gap: 20px; margin: 20px 0;">
-  <div style="flex: 1; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745;">
-    <h4 style="margin-top: 0; color: #28a745;">🔗 STDIO Mode</h4>
-    <p><strong>How it works:</strong> The agent starts its own MCP server process and talks to it directly through simple text commands - like having a conversation through a pipe.</p>
-    <p><strong>Benefits:</strong></p>
-    <ul>
-      <li>Faster communication (no network delays)</li>
-      <li>Everything runs in one place</li>
-      <li>Simpler setup for development</li>
-      <li>No authentication needed</li>
-    </ul>
-  </div>
-
-  <div style="flex: 1; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #007cba;">
-    <h4 style="margin-top: 0; color: #007cba;">🌐 HTTP Mode</h4>
-    <p><strong>How it works:</strong> The agent connects to a separate MCP server running elsewhere using web requests - like calling an API over the internet.</p>
-    <p><strong>Benefits:</strong></p>
-    <ul>
-      <li>MCP server can serve multiple agents</li>
-      <li>Better for production deployments</li>
-      <li>Can scale components independently</li>
-      <li>Supports authentication and security</li>
-    </ul>
-  </div>
-</div>
+| Mode         | How it Works                                                                                                                                         | Benefits                                                                                                 |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| 🔗 **STDIO** | The agent starts its own MCP server process and communicates directly through simple text commands (like a conversation through a pipe).             | - Faster communication (no network delays)<br>- Everything runs in one place<br>- Simpler setup for development<br>- No authentication needed |
+| 🌐 **HTTP**  | The agent connects to a separate MCP server running elsewhere using web requests (like calling an API over the internet).                            | - MCP server can serve multiple agents<br>- Better for production deployments<br>- Can scale components independently<br>- Supports authentication and security |
 
 The following diagrams illustrate how the chat client connects to the petstore agent in each mode:
 
-<div style="display: flex; gap: 20px; align-items: flex-start;">
-  <div style="flex: 1; text-align: center;">
-    <h3>STDIO Mode</h3>
-    <img src="images/mission2-stdio.svg" alt="Mission 2 Architecture - STDIO Mode" style="width: 100%; max-width: 300px;">
-  </div>
-  <div style="flex: 1; text-align: center;">
-    <h3>HTTP Mode</h3>
-    <img src="images/mission2-http.svg" alt="Mission 2 Architecture - HTTP Mode" style="width: 100%; max-width: 300px;">
-  </div>
-</div>
+| Mode        | Diagram                                                                                   |
+|-------------|------------------------------------------------------------------------------------------|
+| **STDIO**   | ![STDIO Mode](images/mission2-stdio.svg) <br>_Mission 2 Architecture - STDIO Mode_        |
+| **HTTP**    | ![HTTP Mode](images/mission2-http.svg) <br>_Mission 2 Architecture - HTTP Mode_           |
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
