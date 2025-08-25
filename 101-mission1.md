@@ -74,7 +74,7 @@ An AI Agent is a system that uses a Large Language Model (LLM) to decide the flo
 Reason and Act (ReAct) is a common
 design pattern used in agentic systems to help LLMs decide the next action or tool to use
 
-<img src="images/react-agent.svg" alt="Mission Control" width="200">
+<center><img src="images/react-agent.svg" alt="Mission Control" width="200"></center>
 
 
 ### What is a Multi-Agent System (MAS)?
@@ -87,7 +87,7 @@ Here are some example MAS architecture patterns:
 
 MAS architecture where agents communitcate in a network like pub-sub, multi-cast or broadcast groups. Each agent is aware of and can hand-off to any other agent(s) in the group
 
-<img src="images/mas-network.svg" alt="Mission Control" width="400">
+<center><img src="images/mas-network.svg" alt="Mission Control" width="400"></center>
 
 ### MAS Planner/Deep Agent Architecture
 
@@ -95,19 +95,19 @@ Simple ReAct agents can yield agents that are “shallow”. They are particular
 
 A class MAS systems called “Deep Research” agents implement a planner based architecture, to plan a set of tasks and invoke the sub-agents, system tools in combination with Human-in-the-loop. Examples: Claude Code, AWS Q Cli etc.
 
-<img src="images/mas-deep-agents.svg" alt="Mission Control" width="400">
+<center><img src="images/mas-deep-agents.svg" alt="Mission Control" width="400"></center>
 
 ### MAS Supervisor Architecture
 
 A supervisor agent orchestrates tasks with a bunch of sub-agents with the same system or over network
 
-<img src="images/mas-supervisor.svg" alt="Mission Control" width="400">
+<center><img src="images/mas-supervisor.svg" alt="Mission Control" width="400"></center>
 
 ### MAS Hierarchical Supervisor Architecture
 
 Supervisor of Supervisor agents
 
-<img src="images/mas-hierarchical-supervisor.svg" alt="Mission Control" width="400">
+<center><img src="images/mas-hierarchical-supervisor.svg" alt="Mission Control" width="400"></center>
 
 **References:**
 
@@ -117,14 +117,14 @@ Supervisor of Supervisor agents
 
 ### CAPIE Architecture
 
-<img src="https://raw.githubusercontent.com/cnoe-io/ai-platform-engineering/refs/heads/main/docs/docs/architecture/images/mas_architecture.svg" alt="Mission Control" width="400">
+<center><img src="https://raw.githubusercontent.com/cnoe-io/ai-platform-engineering/refs/heads/main/docs/docs/architecture/images/mas_architecture.svg" alt="Mission Control" width="400"></center>
 
 
 ## MCP (Model Context Protocol)
 
 MCP (Model Context Protocol) standardizes how large language models (LLMs) can get application or API context such as tools, system prompts etc.
 
-<img src="images/mcp.svg" alt="Mission Control" width="200">
+<center><img src="images/mcp.svg" alt="Mission Control" width="200"></center>
 
 ## Difference between an AI agent vs MCP server
 
@@ -143,13 +143,13 @@ Agentic Systems landscape is evolving rapidly, understanding the distinction bet
 
 The Agent2Agent (A2A) Protocol is an open standard designed to enable seamless communication and collaboration between AI agents over the network.
 
-<img src="images/a2a-ref.svg" alt="Mission Control" width="400">
+<center><img src="images/a2a-ref.svg" alt="Mission Control" width="400"></center>
 
 ## AGNTCY Collective
 
 The AGNTCY project provides the complete infrastructure stack for agent collaboration—discovery, identity, messaging, and observability that works across any vendor or framework. It is the foundational layer that lets specialized agents find each other, verify capabilities, and work together on complex problems.
 
-<img src="images/agntcy-arch.svg" alt="Mission Control" width="600">
+<center><img src="images/agntcy-arch.svg" alt="Mission Control" width="600"></center>
 
 * [Agent Directory](https://docs.agntcy.org/dir/overview/)
   * [OASF Record](https://docs.agntcy.org/oasf/open-agentic-schema-framework/)
