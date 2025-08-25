@@ -55,6 +55,8 @@ _Please give us a ⭐️ on GitHub. Your support helps grow our community and ke
   </label>
 </div>
 
+&nbsp;
+
 ## Agentic AI Concepts
 
 Let's review some key concepts.
@@ -168,36 +170,16 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> Read the Mission Brief and CAIPE Overview</strong>
+    <strong> ⭐ Star the <a href="https://github.com/cnoe-io/ai-platform-engineering" target="_blank">CAIPE GitHub repository</a></strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> Understand the CAIPE architecture diagram</strong>
+    <strong> 📖 Check out the <a href="https://cnoe-io.github.io/ai-platform-engineering/" target="_blank">CAIPE documentation</a></strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> Review the MCP (Model Context Protocol) section</strong>
-  </label>
-
-  <label style="display: block; margin: 10px 0; cursor: pointer;">
-    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> Learn the difference between AI Agent and MCP Server</strong>
-  </label>
-
-  <label style="display: block; margin: 10px 0; cursor: pointer;">
-    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> Explore the A2A Protocol overview</strong>
-  </label>
-
-  <label style="display: block; margin: 10px 0; cursor: pointer;">
-    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> Review AGNTCY Collective and its components</strong>
-  </label>
-
-  <label style="display: block; margin: 10px 0; cursor: pointer;">
-    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> Visit at least one reference link for deeper understanding</strong>
+    <strong> 🌐 Visit the <a href="https://agntcy.org/" target="_blank">AGNTCY website</a> and explore <a href="https://github.com/agntcy/coffeeAgntcy" target="_blank">Coffee Agntcy</a></strong>
   </label>
 </div>
