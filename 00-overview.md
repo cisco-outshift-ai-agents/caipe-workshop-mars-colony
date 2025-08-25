@@ -1,6 +1,4 @@
-# Welcome
-
-## 📡 Mission Director’s Briefing
+# 📡 Welcome: Mission Director’s Briefing
 
 After months of preparation, your crew has landed on Mars 🟠. Now it’s time to establish Mission Control and keep the colony running smoothly.
 
@@ -10,13 +8,16 @@ We will do a complete mission brief momentarily. Now let's pay attention to an i
 
 ## What is CAIPE (Community AI Platform Engineering)
 
-## Description
-
 <img src="images/caipe.svg" width="200" height="200" alt="CAIPE Logo">
 
-[**Community AI Platform Engineering (CAIPE)**](https://cnoe-io.github.io/ai-platform-engineering) (pronounced as `cape`) is an open-source, Multi-Agentic AI System (MAS) supported by the [CNOE (Cloud Native Operational Excellence)](https://cnoe.io) forum. CAIPE provides a secure, scalable, persona-driven reference implementation with built-in knowledge base retrieval that streamlines platform operations, accelerates workflows, and fosters innovation for modern engineering teams. It integrates seamlessly with Internal Developer Portals like Backstage and developer environments such as VS Code, enabling frictionless adoption and extensibility.
+[Reference Slides](https://cisco.sharepoint.com/:p:/r/sites/CAIPE/_layouts/15/Doc.aspx?sourcedoc=%7B2F08FE8C-B1E8-4058-9322-24A24368420B%7D&file=CREA-1183%20CAIPE%20Pitch%20Deck_Generic.pptx&action=edit&mobileredirect=true)
 
-CAIPE is empowered by a set of specialized sub-agents that integrate seamlessly with essential engineering tools. Below are some common platform agents leveraged by the MAS agent:
+
+- [**Community AI Platform Engineering (CAIPE)**](https://cnoe-io.github.io/ai-platform-engineering) (pronounced as `cape`) is an open-source, Multi-Agentic AI System (MAS) supported by the [CNOE (Cloud Native Operational Excellence)](https://cnoe.io) forum.
+- CAIPE provides a secure, scalable, persona-driven reference implementation with built-in knowledge base retrieval that streamlines platform operations, accelerates workflows, and fosters innovation for modern engineering teams.
+- It integrates seamlessly with Internal Developer Portals like Backstage and developer environments such as VS Code, enabling frictionless adoption and extensibility.
+
+_CAIPE is empowered by a set of specialized sub-agents that integrate seamlessly with essential engineering tools. Below are some common platform agents leveraged by the MAS agent:_
 
 * ☁️ AWS Agent for cloud ops
 * 🚀 ArgoCD Agent for continuous deployment

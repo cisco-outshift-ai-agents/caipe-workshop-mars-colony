@@ -34,7 +34,7 @@ The dynamic monitoring is performed in the background and will check if the pets
 ### Launch the multi-agent stack with Docker Compose:
 
 ```bash
-IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
+IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
 ```
 
 ### What happens:
@@ -179,6 +179,14 @@ Get me weather for New York and find me all cats that are available for adoption
 If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
 ```
 
+## Bonus
+
+**Run this with AGNTCY SLIM Gateway in the middle**
+
+```
+IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=slim up
+```
+
 ## Mission Checks
 
 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
@@ -207,5 +215,10 @@ If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
     <strong>Combined Responses: Receive unified answers that incorporate data from multiple agents</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Bonus: Run with AGNTCY SLIM Gateway</strong>
   </label>
 </div>
