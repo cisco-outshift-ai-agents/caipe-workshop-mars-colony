@@ -94,7 +94,7 @@ Once the RAG Web UI is open:
 
 **👀 Observe:** The status should show as `✅ Successfully processed 1 URL(s)`
 
-<img src="images/rag-ui-screenshot.png" alt="RAG UI" width="400">
+![RAG UI](images/rag-ui-screenshot.png)
 
 ### Explanation:
 
@@ -107,7 +107,8 @@ Here's what happens:
  - The embeddings are stored in a vector store (Milvus), along with metadata (source, title, description etc).
  
 <br>
-<img src="images/rag-ingestion.png" alt="RAG ingestion" width="400">
+
+![RAG ingestion](images/rag-ingestion.png)
 
 <br>
 <hr>
@@ -154,7 +155,8 @@ Here's what happens:
  - The agent uses the retrieved document chunks to answer the question.
 
 <br>
-<img src="images/rag-agent-arch.png" alt="RAG Agent Architecture" width="400">
+
+![RAG Agent Architecture](images/rag-agent-arch.png)
 
 <br>
 <hr>
