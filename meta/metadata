@@ -1,7 +1,8 @@
 {
     "title": "Workshop - Mission Control for the Mars Colony",
     "labguideVisible": true,
-    "uploadEnabled": false,
+    "uploadEnabled": true,
+    "trackingEnabled": true,
     "additionalOptionsEnabled": true,
     "splitPosition": 50,
     "displayMode": "terminal",

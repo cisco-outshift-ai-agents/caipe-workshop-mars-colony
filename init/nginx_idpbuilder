@@ -1,6 +1,6 @@
 server {
-    listen [::]:6101 ssl ipv6only=on;
-    listen 6101 ssl;
+    listen [::]:6201 ssl ipv6only=on;
+    listen 6201 ssl;
     ssl_certificate /etc/cert/fullchain.pem;
     ssl_certificate_key /etc/cert/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
