@@ -6,7 +6,9 @@ After months of preparation, your crew has finally landed on Mars 🟠. Now it�
 
 ## 🎯 Your mission:
 
-Set up 🛰️ communication and 🌦️ weather monitoring systems to support life in the new habitat, while staying connected to Earth 🌍 with regular updates on your progress. And most importantly, bring up the full CAIPE system — your command center for running Mission Control — so every operation is coordinated, automated, and mission-ready.
+Set up 🛰️ communication and 🌦️ weather monitoring systems to support life in the new habitat, while staying connected to Earth 🌍 with regular updates on your progress.
+
+And most importantly, bring up the full CAIPE system — your command center for running Mission Control — so every operation is coordinated, automated, and mission-ready.
 
 Along the way, you’ll complete a series of Mission Checks to ensure your systems — and your crew — are ready for anything.
 
