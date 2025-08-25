@@ -19,7 +19,9 @@ pwd
 git clone https://github.com/cnoe-io/ai-platform-engineering
 ```
 
-🌟 **Support CAIPE with stars!** 🌟
+&nbsp;
+
+## 🌟 **Support CAIPE with stars!** 🌟
 Scan the QR code below or visit the CAIPE repository.
 <br>
 ![Star CAIPE Repo](images/caipe-repo-qr.svg)
@@ -29,14 +31,29 @@ _Link:_ [https://github.com/cnoe-io/ai-platform-engineering](https://github.com/
 
 _Please give us a ⭐️ on GitHub. Your support helps grow our community and keeps the project thriving. 🚀_
 
+&nbsp;
 
-## Download Mission manual
+## 📖🛰️ Download Mission Manual 🚀
 
-* Navigate to [https://cnoe-io.github.io/ai-platform-engineering/](https://cnoe-io.github.io/ai-platform-engineering/)
-* Explore the pages
-  * `Getting Started` -> `Quick Start`
-  * `Setup` -> `Docker` -> `Run with Docker Compose`
-  * `Setup` -> `IDP Builder`
+* Navigate to CAIP Docs - [https://cnoe-io.github.io/ai-platform-engineering/](https://cnoe-io.github.io/ai-platform-engineering/)
+<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
+  <h4 style="margin-top: 0; color: #007cba;">📖 Mission Manual Exploration Checklist</h4>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    Explore <strong>Getting Started</strong> &rarr; <strong>Quick Start</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    Explore <strong>Setup</strong> &rarr; <strong>Docker</strong> &rarr; <strong>Run with Docker Compose</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    Explore <strong>Setup</strong> &rarr; <strong>IDP Builder</strong>
+  </label>
+</div>
 
 ## Agentic AI Concepts
 
@@ -145,7 +162,42 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 
 * [https://agntcy.org/](https://agntcy.org/)
 
-## Mission Checks (Please fill this mission check before you proceed)
 
-**Misson Checks %survey:mission1:Mission 1 Check List%**
+<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
+  <h4 style="margin-top: 0; color: #28a745;">🚀 Mission 1 Checklist</h4>
 
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Read the Mission Brief and CAIPE Overview</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Understand the CAIPE architecture diagram</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Review the MCP (Model Context Protocol) section</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Learn the difference between AI Agent and MCP Server</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Explore the A2A Protocol overview</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Review AGNTCY Collective and its components</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> Visit at least one reference link for deeper understanding</strong>
+  </label>
+</div>
