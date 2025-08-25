@@ -1,4 +1,14 @@
-# What is CAIPE (Community AI Platform Engineering)
+# Welcome
+
+## 📡 Mission Director’s Briefing
+
+After months of preparation, your crew has landed on Mars 🟠. Now it’s time to establish Mission Control and keep the colony running smoothly.
+
+With CAIPE — your superhero cape for platform engineering 🦸 — you’ll deploy agents to handle 🛰️ communications, 🌦️ weather tracking, and 🚀 operations.
+
+We will do a complete mission brief momentarily. Now let's pay attention to an intro of CAIPE:
+
+## What is CAIPE (Community AI Platform Engineering)
 
 ## Description
 
