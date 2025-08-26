@@ -158,7 +158,7 @@ You can also check the variables have been set correctly in the `.env` file by g
 - Use <strong>HTTP mode</strong> for production environments or when you need to connect to remotely hosted MCP servers
 </div>
 
-You can run the petstore agent in two different MCP (Model Control Protocol) modes. For this workshop, we will use the HTTP mode but you can also use the STDIO mode if you prefer (see [[Optional] 3.2: Using MCP STDIO Mode](#optional-32-using-mcp-stdio-mode)).
+You can run the petstore agent in two different MCP (Model Control Protocol) modes. For this workshop, we will use the HTTP mode but you can also use the STDIO mode if you prefer (see [Step 7: [Optional] Using MCP STDIO Mode](#step-7-optional-using-mcp-stdio-mode)).
 
 ### 3.1: Using Remote MCP Streamable HTTP Mode
 
@@ -184,24 +184,6 @@ IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission
 - 🌐 Exposes agent on `http://localhost:8000`
 - 📋 Shows logs directly in terminal
 - 🚀 **Advantage**: Supports remote MCP servers, useful for production deployments, better separation of concerns
-
----
-
-### [Optional] 3.2: Using MCP STDIO Mode
-
-STDIO mode runs the MCP server embedded within the agent container, using standard input/output streams for internal communication. The embedded MCP server then connects to the external Petstore API.
-
-```bash
-IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission2.yaml up
-```
-
-**What happens:**
-
-- ⏬ Downloads petstore agent image with the latest tag from the registry
-- 🔗 Connects to MCP server via STDIO mode to https://petstore.swagger.io/v2 which is a public sandbox API
-- 🌐 Exposes agent on `http://localhost:8000`
-- 📋 Shows logs directly in terminal
-- 🚀 **Advantage**: Lower latency, direct process communication
 
 ---
 
@@ -309,7 +291,31 @@ Show me pets with 'rain proof' tag
 - ✅ **Interactive guidance** - Agent will ask for required details when needed e.g. ask to add a new pet and it will ask for required details like name, category, status, etc.
 - ✅ **Rich summaries** - Shows counts and statistics without overwhelming data
 
-## Step 7: Teardown that agent and chat client
+## Step 7: [Optional] Using MCP STDIO Mode
+
+STDIO mode runs the MCP server embedded within the agent container, using standard input/output streams for internal communication. The embedded MCP server then connects to the external Petstore API.
+
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>📝 Note:</strong> If you are already running the agent in HTTP mode, first stop the docker compose:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission2.yaml down
+```
+</div>
+
+```bash
+IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission2.yaml up
+```
+
+**What happens:**
+
+- ⏬ Downloads petstore agent image with the latest tag from the registry
+- 🔗 Connects to MCP server via STDIO mode to https://petstore.swagger.io/v2 which is a public sandbox API
+- 🌐 Exposes agent on `http://localhost:8000`
+- 📋 Shows logs directly in terminal
+- 🚀 **Advantage**: Lower latency, direct process communication
+
+## Step 8: Teardown that agent and chat client
 
 <div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>⚠️ Important:</strong> Please teardown the agent and chat client to free up the ports for the next mission.

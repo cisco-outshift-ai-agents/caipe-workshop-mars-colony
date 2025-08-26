@@ -51,7 +51,7 @@ idpbuilder create \
 ```
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
-  <strong>🚨 Expected Output (Cluster Created, NOT Fully Deployed Yet)</strong>
+  <strong>⏰ Expected Output (Cluster Created, NOT Fully Deployed Yet)</strong>
   <p style="margin: 8px 0 0 0;">
     After the command completes, you should see output like the sample below. This confirms KIND cluster creation and that ArgoCD is reachable, <strong>but it does NOT mean the whole platform is deployed</strong>. ArgoCD will continue pulling images and bringing pods online, which typically takes <strong>5–10 minutes</strong>.
   </p>
@@ -71,11 +71,9 @@ Password can be retrieved by running: idpbuilder get secrets -p argocd
   <strong>🚨 Massive Warning for Lab Environment Users</strong>
   <ul style="margin: 8px 0 0 16px;">
     <li><strong>Do NOT use</strong> <code>https://cnoe.localtest.me:8443/argocd</code> in the lab environment — that URL is only for local installs.</li>
-    <li>Follow the steps below to set <code>$LAB_URL</code> (Step 1) and then open ArgoCD using <code>$LAB_URL:6101/argocd/</code> (Step 3.2).</li>
+    <li>Follow the steps below to set <code>$LABURL</code> (Step 1) and then open ArgoCD using <code>https://$LABURL:6101/argocd/</code> (Step 3.2).</li>
   </ul>
 </div>
-
-⏰ **Colony Deployment Time**: This takes 5-10 minutes - perfect time to read through the documentation below!
 
 This command will:
 
@@ -112,15 +110,11 @@ If you are using your local machine, ensure you have the below prerequisites ins
 
 **Set your lab URL so you can easily access all the services:**
 
-Copy your lab URL from the lab environment e.g. `https://outshift-lab-1234abc.demos.eticloud.io` and set it as an environment variable:
+The lab URL will be automatically detected from the lab environment details:
 
 ```bash
-# Interactive setup - you'll be prompted to enter your lab URL
-read -p "Enter your lab URL (including https://): " LAB_URL
-# Remove trailing slash if present
-LAB_URL=${LAB_URL%/}
-export LAB_URL
-echo "Lab URL set to: $LAB_URL"
+export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
+echo "Lab URL automatically set to: $LABURL"
 ```
 
 ## Step 2: Verify Colony Infrastructure
@@ -142,8 +136,8 @@ kubectl get pods --all-namespaces
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>📝 Note:</strong>
 <ul>
-<li><strong>Lab Environment</strong>: Use the URLs with your <code>$LAB_URL</code> environment variable as shown below</li>
-<li><strong>Local Environment</strong>: Replace <code>$LAB_URL:6101,6102</code> with <code>https://cnoe.localtest.me:8443</code> in all commands</li>
+<li><strong>Lab Environment</strong>: Use the URLs with your <code>$LABURL</code> environment variable as shown below</li>
+<li><strong>Local Environment</strong>: Replace <code>https://$LABURL:6101,6102</code> with <code>https://cnoe.localtest.me:8443</code> in all commands</li>
 </ul>
 </div>
 
@@ -162,7 +156,7 @@ idpbuilder get secrets -p argocd
 Open ArgoCD in your browser:
 
 ```bash
-echo "Click this link to open ArgoCD: $LAB_URL:6101/argocd/"
+echo "Click this link to open ArgoCD: https://$LABURL:6101/argocd/"
 ```
 
 ### 3.3: Login to ArgoCD
@@ -186,77 +180,128 @@ From the ArgoCD UI, you can monitor the sync status of the Vault application. Wa
 
 <img src="images/argocd-vault-sync.svg" alt="Vault application sync status" style="width: 60%; max-width: 400px;">
 
-### 4.2: Extract Vault Administrative Token
+### 4.2: Port forward to Vault service
 
-After Vault application syncs successfully on ArgoCD, you can extract the root token for colony secret management:
-
-```bash
-kubectl get secret vault-root-token -n vault -o jsonpath="{.data}" | \
-  jq -r 'to_entries[] | "\(.key): \(.value | @base64d)"'
-```
-
-### 4.3: Access Colony Vault Interface
-
-Open Vault in your browser and login with the root token from the previous step.
+First, port forward to Vault service so we can use this to directly access the vault service:
 
 ```bash
-echo "Click this link to open Vault: $LAB_URL:6102/"
+# Port forward Vault service (run in background)
+kubectl port-forward -n vault svc/vault 8200:8200
 ```
 
-### 4.4: Configure Colony AI Agent Secrets
+### 4.3: Configure Vault CLI
 
-**4.4.1: Navigate to `secrets/ai-platform-engineering` in Vault UI:**
+Now, open a **new terminal**, and run the below commands to configure the vault cli with the root token:
 
 ```bash
-   echo "Click this link to open Vault secrets: $LAB_URL:6102/ui/vault/secrets/secret/kv/list/ai-platform-engineering/"
+export VAULT_ADDR="http://localhost:8200"
+export VAULT_TOKEN=$(kubectl get secret -n vault vault-root-token -o jsonpath='{.data.token}' | base64 -d)
+vault login "$VAULT_TOKEN"
 ```
 
-**4.4.2: Configure Global LLM Settings:**
+### 4.4: Verify Vault CLI is working and check existing secrets
 
-The `global` secret is required and contains LLM provider configuration shared across all agents. You can copy this from `.env_vars` file you have been using for the workshop.
+Run below command to list existing secret paths:
 
 ```bash
-cat "$HOME/.env_vars" \
-| grep -vE '^\s*(#|$)' \
-| sed -E 's/^\s*export\s+//' \
-| sed -E 's/"/\\"/g; s/^([^=]+)=(.*)$/"\1": "\2"/' \
-| paste -sd, - \
-| sed '1s/^/{/; $s/$/}/'
+vault kv list secret/ai-platform-engineering/
 ```
 
-You can copy and paste the output to the `global` secret in the Vault UI.
+This should return a list of keys that exist in the `ai-platform-engineering` namespace:
 
-![Vault UI - Global LLM Settings](images/vault-secrets.svg)
+```
+Keys
+----
+argocd-secret
+backstage-secret
+github-secret
+global
+jira-secret
+pagerduty-secret
+slack-secret
+```
+
+which are pre-populated vault secret paths but the actual secrets are not populated yet.
+
+### 4.5: Configure Global LLM Credentials
+
+We will use the credentials from the `.env_vars` file you have been using for the workshop to populate the global LLM credentials:
+
+```bash
+source $HOME/.env_vars
+vault kv put secret/ai-platform-engineering/global \
+  LLM_PROVIDER=azure-openai \
+  AZURE_OPENAI_API_KEY="${AZURE_OPENAI_API_KEY}" \
+  AZURE_OPENAI_ENDPOINT="${AZURE_OPENAI_ENDPOINT}" \
+  AZURE_OPENAI_DEPLOYMENT="${AZURE_OPENAI_DEPLOYMENT}" \
+  AZURE_OPENAI_API_VERSION="${AZURE_OPENAI_API_VERSION}"
+```
+
+and now check this secret has been correctly stored in vault:
+
+```bash
+vault kv get secret/ai-platform-engineering/global
+```
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>📝 Note:</strong> We support other LLM providers as well. Currently, we support Azure OpenAI, OpenAI, and AWS Bedrock. Check out our <a href="https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup#step-3-update-secrets">documentation</a> for more details.
 </div>
 
-**Use vault CLI to edit the `global` secret:**
+### 4.6: Configure Agent-Specific Secrets
 
-`vault cli` is pre-installed in your lab environment. First, configure the vault cli with root token:
+As you saw in [Step 4.4](#44-verify-vault-cli-is-working-and-check-existing-secrets), we have several sub-agents configured to work in this platform. For this workshop, we will only use a subset of the agents, but if you have personal credentials for other agents, feel free to populate the secrets for those agents as well.
 
-```bash
-export VAULT_ADDR="$LAB_URL:6102"
-export VAULT_SKIP_VERIFY=1   # if lab uses self-signed TLS
+**4.5.1: GitHub Agent**
 
-# Get token from the cluster (root token secret)
-export VAULT_TOKEN=$(kubectl get secret -n vault vault-root-token -o jsonpath='{.data.token}' | base64 -d)
-vault login "$VAULT_TOKEN"
-```
-
-Now, you can edit the `global` secret with the below command:
+Github token has already been configured in the `.env_vars` file you have been using for the workshop. Now, we will populate the github-secret in vault:
 
 ```bash
-vault kv put secret/ai-platform-engineering/global \
-  $(grep -vE '^\s*(#|$)' "$HOME/.env_vars" \
-    | sed -E 's/^\s*export\s+//' \
-    | sed -E 's/"/\\"/g; s/^([^=]+)=(.*)$/\1="\2"/')
+vault kv put secret/ai-platform-engineering/github-secret \
+  GITHUB_PERSONAL_ACCESS_TOKEN="${GITHUB_PERSONAL_ACCESS_TOKEN}"
 ```
 
-3. **Configure Agent-Specific Secrets**: For each specialized agent (GitHub, PagerDuty, Jira), populate their respective secrets with required credentials.
+Verify the github-secret has been correctly stored in vault:
 
-4. **Refresh Colony Secrets**:
+```bash
+vault kv get secret/ai-platform-engineering/github-secret
+```
+
+**4.5.2: ArgoCD Agent**
+
+First open a new terminal and port forward the ArgoCD service:
+
+```bash
+kubectl port-forward -n argocd svc/argocd-server 8080:80
+```
+
+Then now we will populate:
+
+```bash
+export ARGOCD_TOKEN=$(idpbuilder get secrets -p argocd | grep ADMIN_PASSWORD | cut -d'=' -f2)
+vault kv put secret/ai-platform-engineering/argocd-secret \
+  ARGOCD_API_URL="http://localhost:8080" \
+  ARGOCD_VERIFY_SSL="false" \
+  ARGOCD_TOKEN="${ARGOCD_TOKEN}"
+```
+
+**4.5.3: [Optional] Configure other agents**
+
+For the remaining agents (Backstage, Jira, PagerDuty, Slack), you can populate their secrets using the same approach if you have credentials for those services. To see what keys each agent requires, first examine their placeholder secrets in Vault:
+
+```bash
+vault kv get secret/ai-platform-engineering/$AGENT_NAME-secret
+```
+
+Then, you can populate the secrets in the same way as the github and argocd agents:
+
+```
+vault kv put secret/ai-platform-engineering/$AGENT_NAME-secret \
+  <key1>=<value1> \
+  <key2>=<value2> \
+  ...
+```
+
+### 4.6: Refresh Colony Secrets
 
 First, we need to force the secret refresh across the colony:
 
@@ -285,7 +330,7 @@ idpbuilder get secrets | grep USER_PASSWORD | sed 's/.*USER_PASSWORD=\([^,]*\).*
 Open Backstage in your browser:
 
 ```bash
-echo "Click this link to open Backstage: $LAB_URL:6101/"
+echo "Click this link to open Backstage: https://$LABURL:6101/"
 ```
 
 Then login with:
@@ -326,11 +371,11 @@ Feel free to ask anything else and experiment with the multi-agent system!
 Run the below commands to open the various colony services in your browser:
 
 ```bash
-echo "Click this link to open ArgoCD: $LAB_URL:6101/argocd/"
-echo "Click this link to open Gitea: $LAB_URL:6101/gitea/"
-echo "Click this link to open Vault: $LAB_URL:6102/"
-echo "Click this link to open Backstage: $LAB_URL:6101/"
-echo "Click this link to open Keycloak: $LAB_URL:6101/keycloak/admin/master/console/"
+echo "Click this link to open ArgoCD: https://$LABURL:6101/argocd/"
+echo "Click this link to open Gitea: https://$LABURL:6101/gitea/"
+echo "Vault accessible via kubectl port-forward on localhost:8200"
+echo "Click this link to open Backstage: https://$LABURL:6101/"
+echo "Click this link to open Keycloak: https://$LABURL:6101/keycloak/admin/master/console/"
 ```
 
 ## Step 6: Tear down the colony platform

@@ -86,19 +86,7 @@ HTTP mode will connect petstore and weather agents to connect with their respect
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
 ```
 
-**2.1.2: [Optional] STDIO mode**
-
-STDIO mode will connect petstore and weather agents to run the MCP server within the agents themselves.
-
-* `http://localhost:8009/mcp`: mcp server containing data for the available pets retrieved from demo swagger API `https://petstore.swagger.io/v2`
-
-* `http://localhost:8010/mcp`: mcp server that queries real weather data for Earth from the Open-Meteo API on `https://api.open-meteo.com/v1`
-
-```bash
-IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
-```
-
-**2.1.3: What happens (Both modes)**
+**2.1.2: What happens (Both modes)**
 
 - ⏬ Downloads the latest supervisor, petstore and weather agent images from the registry
 - 🌐 Exposes the supervisor agent on `http://localhost:8000`
@@ -284,7 +272,35 @@ Considering the weather in Paris right now, what is the best pet available that 
 What is the weather right now in Arabia Terra? Based on the weather, give me a pet that is suitable for the weather and explain why you chose that pet.
 ```
 
-## Step 6: [Optional] Bonus
+## Step 6: [Optional] Bonus 1: STDIO mode
+
+<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>⚠️ Important:</strong> If you are already running agents in HTTP mode, first stop the docker compose before switching to STDIO mode:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission3.yaml --profile=p2p down
+```
+</div>
+
+STDIO mode will connect petstore and weather agents to run the MCP server within the agents themselves.
+
+* `http://localhost:8009/mcp`: mcp server containing data for the available pets retrieved from demo swagger API `https://petstore.swagger.io/v2`
+
+* `http://localhost:8010/mcp`: mcp server that queries real weather data for Earth from the Open-Meteo API on `https://api.open-meteo.com/v1`
+
+```bash
+IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
+```
+
+## Step 7: [Optional] Bonus 2: AGNTCY SLIM Gateway
+
+<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>⚠️ Important:</strong> If you are already running agents in HTTP mode, first stop the docker compose before switching to STDIO mode:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission3.yaml --profile=p2p down
+```
+</div>
 
 <div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>🌟 Bonus Challenge:</strong> Run this with AGNTCY SLIM Gateway in the middle
@@ -294,7 +310,7 @@ What is the weather right now in Arabia Terra? Based on the weather, give me a p
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=slim up
 ```
 
-## Step 7: Teardown Multi-Agent System
+## Step 8: Teardown Multi-Agent System
 
 <div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>⚠️ Important:</strong> Please teardown the multi-agent system to free up the ports for the next mission.
@@ -316,7 +332,7 @@ docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mis
 
 **Note**: Use the same `--profile` flag that you used when starting the agents.
 
-## Step 8: Mission Checks
+## Mission Checks
 
 ---
 
