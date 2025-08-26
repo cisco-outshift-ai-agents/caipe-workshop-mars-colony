@@ -50,6 +50,31 @@ idpbuilder create \
   --package https://github.com/suwhang-cisco/stacks//ai-platform-engineering
 ```
 
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🚨 Expected Output (Cluster Created, NOT Fully Deployed Yet)</strong>
+  <p style="margin: 8px 0 0 0;">
+    After the command completes, you should see output like the sample below. This confirms KIND cluster creation and that ArgoCD is reachable, <strong>but it does NOT mean the whole platform is deployed</strong>. ArgoCD will continue pulling images and bringing pods online, which typically takes <strong>5–10 minutes</strong>.
+  </p>
+</div>
+
+```text
+...
+########################### Finished Creating IDP Successfully! ############################
+
+
+Can Access ArgoCD at https://cnoe.localtest.me:8443/argocd
+Username: admin
+Password can be retrieved by running: idpbuilder get secrets -p argocd
+```
+
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🚨 Massive Warning for Lab Environment Users</strong>
+  <ul style="margin: 8px 0 0 16px;">
+    <li><strong>Do NOT use</strong> <code>https://cnoe.localtest.me:8443/argocd</code> in the lab environment — that URL is only for local installs.</li>
+    <li>Follow the steps below to set <code>$LAB_URL</code> (Step 1) and then open ArgoCD using <code>$LAB_URL:6101/argocd/</code> (Step 3.2).</li>
+  </ul>
+</div>
+
 ⏰ **Colony Deployment Time**: This takes 5-10 minutes - perfect time to read through the documentation below!
 
 This command will:
@@ -191,7 +216,12 @@ echo "Click this link to open Vault: $LAB_URL:6102/"
 The `global` secret is required and contains LLM provider configuration shared across all agents. You can copy this from `.env_vars` file you have been using for the workshop.
 
 ```bash
-cat $HOME/.env_vars
+cat "$HOME/.env_vars" \
+| grep -vE '^\s*(#|$)' \
+| sed -E 's/^\s*export\s+//' \
+| sed -E 's/"/\\"/g; s/^([^=]+)=(.*)$/"\1": "\2"/' \
+| paste -sd, - \
+| sed '1s/^/{/; $s/$/}/'
 ```
 
 You can copy and paste the output to the `global` secret in the Vault UI.
@@ -201,6 +231,28 @@ You can copy and paste the output to the `global` secret in the Vault UI.
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>📝 Note:</strong> We support other LLM providers as well. Currently, we support Azure OpenAI, OpenAI, and AWS Bedrock. Check out our <a href="https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup#step-3-update-secrets">documentation</a> for more details.
 </div>
+
+**Use vault CLI to edit the `global` secret:**
+
+`vault cli` is pre-installed in your lab environment. First, configure the vault cli with root token:
+
+```bash
+export VAULT_ADDR="$LAB_URL:6102"
+export VAULT_SKIP_VERIFY=1   # if lab uses self-signed TLS
+
+# Get token from the cluster (root token secret)
+export VAULT_TOKEN=$(kubectl get secret -n vault vault-root-token -o jsonpath='{.data.token}' | base64 -d)
+vault login "$VAULT_TOKEN"
+```
+
+Now, you can edit the `global` secret with the below command:
+
+```bash
+vault kv put secret/ai-platform-engineering/global \
+  $(grep -vE '^\s*(#|$)' "$HOME/.env_vars" \
+    | sed -E 's/^\s*export\s+//' \
+    | sed -E 's/"/\\"/g; s/^([^=]+)=(.*)$/\1="\2"/')
+```
 
 3. **Configure Agent-Specific Secrets**: For each specialized agent (GitHub, PagerDuty, Jira), populate their respective secrets with required credentials.
 
