@@ -1,5 +1,28 @@
 # Mission Check 4 - Reconnaissance & Reporting back (RAG + Git agent)
 
+<div style="display: flex; align-items: center; gap: 12px;">
+  <button
+    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    style="
+      background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+    "
+    onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
+    onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
+  >
+    🚀 Start Mission &mdash; 15 min Timer
+  </button>
+  <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #011234;">15:00</span>
+</div>
+
 <br>
 
 ## Overview
@@ -38,22 +61,33 @@ docker compose -f workshop/docker-compose.mission4.yaml up
 
 ```console
 ...
-===================================
-       GITHUB AGENT CONFIG      
-===================================
-AGENT_URL: http://agent-github-p2p:8000⁠
-===================================
-...
-===================================
-       KB-RAG AGENT CONFIG      
-===================================
-AGENT_URL: http://kb-rag:8000⁠
-===================================
-
-...
-2025-08-21 14:10:48,082 - INFO - ✅ Added github to registry (reachable)
-...
-2025-08-21 14:10:48,082 - INFO - ✅ Added kb-rag to registry (reachable)
+platform-engineer-p2p  |        SLACK AGENT CONFIG      ====
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://localhost:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | ===================================8000
+platform-engineer-p2p  |        KB-RAG AGENT CONFIG      ===
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://kb-rag-agent:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | 2025-08-26 12:03:18,817 - INFO - Running connectivity checks for 8 agents (max 4 attempts per agent)...
+platform-engineer-p2p  |        SLACK AGENT CONFIG      
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://localhost:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  |        KB-RAG AGENT CONFIG      
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://kb-rag-agent:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | 2025-08-26 12:03:18,817 - INFO - Running connectivity checks for 8 agents (max 4 attempts per agent)...
+kb-rag-agent           | INFO:     172.19.0.9:53190 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+agent-github-p2p       | INFO:     172.19.0.9:47004 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+platform-engineer-p2p  | 2025-08-26 12:03:18,895 - INFO - HTTP Request: GET http://kb-rag-agent:8000/.well-known/agent.json "HTTP/1.1 200 OK"
+platform-engineer-p2p  | 2025-08-26 12:03:18,895 - INFO - HTTP Request: GET http://kb-rag-agent:8000/.well-known/agent.json "HTTP/1.1 200 OK"
+platform-engineer-p2p  | 2025-08-26 12:03:18,895 - INFO - ✅ Agent kb-rag is reachable at http://kb-rag-agent:8000
+platform-engineer-p2p  | 2025-08-26 12:03:18,896 - INFO - HTTP Request: GET http://agent-github-p2p:8000/.well-known/agent.json "HTTP/1.1 200 OK"
+platform-engineer-p2p  | 2025-08-26 12:03:18,897 - INFO - ✅ Agent github is reachable at http://agent-github-p2p:8000
 ...
 ```
 
@@ -88,7 +122,7 @@ curl http://localhost:8000/.well-known/agent.json | jq
 ## Step 2: Populate RAG database
 <br>
 Now, we will populate the RAG with documentation. The docker-compose stack should have started the `kb-rag-web` service, which is the web ui
-for the RAG server. 
+for the RAG server.
 
 <a href="/" onclick="javascript:event.target.port=6100" target="_blank">Open the RAG Web UI by clicking here (Opens in new tab)</a>
 
@@ -101,7 +135,7 @@ Once the RAG Web UI is open:
 
 **👀 Observe:** The status should show as `✅ Successfully processed 1 URL(s)`
 
-<img src="images/rag-ui-screenshot.png" alt="RAG UI" width="400">
+![RAG UI](images/rag-ui-screenshot.png)
 
 ### Explanation:
 
@@ -112,9 +146,10 @@ Here's what happens:
  - If the page is too large, it is split into chunks, using [Recursive Text Splitter](https://python.langchain.com/docs/how_to/recursive_text_splitter/).
  - Each chunk is sent to embedding model (LLM in this case) to generate embeddings.
  - The embeddings are stored in a vector store (Milvus), along with metadata (source, title, description etc).
- 
+
 <br>
-<img src="images/rag-ingestion.png" alt="RAG ingestion" width="400">
+
+![RAG ingestion](images/rag-ingestion.png)
 
 <br>
 <hr>
@@ -142,7 +177,8 @@ We will now use the UI to query the RAG system and verify it is working.
 docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
 ```
 
-**Note: When prompted for token, press enter ⏎.**
+## Note: When prompted for optional token, press enter.
+![chatcli token](images/chat-cli-token.png)
 
 This should open a CLI chat client. You can now interact with the supervisor agent.
 
@@ -163,7 +199,8 @@ Here's what happens:
  - The agent uses the retrieved document chunks to answer the question.
 
 <br>
-<img src="images/rag-agent-arch.png" alt="RAG Agent Architecture" width="400">
+
+![RAG Agent Architecture](images/rag-agent-arch.png)
 
 <br>
 <hr>
@@ -171,8 +208,8 @@ Here's what happens:
 ## Step 5: Multi-agent interaction
 <br>
 
-Now, we will test the multi-agent interaction by asking the supervisor agent to: 
- - search for information about Mars (reconnaissance) 
+Now, we will test the multi-agent interaction by asking the supervisor agent to:
+ - search for information about Mars (reconnaissance)
  - commit the steps to git repository (report back).
 
 
@@ -192,7 +229,7 @@ Research and write a report on mars surface, then commit it as a text file named
 Here's what happens:
 
  - The supervisor agent determines what needs to be done, and delegates the tasks to the sub agents.
- - It first asks the RAG agent to search for information about Mars surface. 
+ - It first asks the RAG agent to search for information about Mars surface.
  - The RAG agent uses the vector store to find relavant information, and write a report.
  - The supervisor agent then asks the git agent to commit the report as a text file to the repository.
 
@@ -248,7 +285,7 @@ More information on the RAG agent can be found [here](https://github.com/cnoe-io
 
 ### Graph RAG
 
-The AI platform engineering repository also includes **Graph RAG**, which uses Neo4J to create knowledge graphs from structured data (K8s objects, AWS resources). 
+The AI platform engineering repository also includes **Graph RAG**, which uses Neo4J to create knowledge graphs from structured data (K8s objects, AWS resources).
 See the [Graph RAG documentation](https://cnoe-io.github.io/ai-platform-engineering/knowledge_bases/graph_rag) for more details, and how to run it in your local environment.
 
 ### Unified Knowledge Base

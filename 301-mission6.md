@@ -1,5 +1,29 @@
 # Mission Check 6 — Deploy CAIPE (Community AI Platform Engineering) with IDPBuilder
 
+<div style="display: flex; align-items: center; gap: 12px;">
+  <button
+    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    style="
+      background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+    "
+    onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
+    onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
+  >
+    🚀 Start Mission &mdash; 15 min Timer
+  </button>
+  <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #011234;">15:00</span>
+</div>
+
+
 ## Overview
 
 🚀 **Mission Status**: Advanced Mars Inhabitant, you're now ready to deploy the full Community AI Platform Engineering stack to establish the colony's complete AI infrastructure.
@@ -12,6 +36,28 @@ In this mission, you'll deploy the comprehensive CAIPE platform using IDPBuilder
 - **📊 Developer Portal**: Access Backstage with integrated AI assistant capabilities
 - **🌐 Service Mesh**: Configure ingress and networking for colony-wide access
 - **⚡ Production Ready**: Create a versioned, reproducible platform deployment
+
+For anyone going through the workshop on their own, you can also checkout our [vidcast](https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup) for a step by step guide on how to deploy the platform using IDPBuilder.
+
+## 🚀 Deploy the Platform (Takes Time!)
+
+**Run this command first since deployment takes several minutes, then read through the architecture while it deploys:**
+
+```bash
+idpbuilder create \
+  --use-path-routing \
+  --package https://github.com/cnoe-io/stacks//ref-implementation \
+  --package https://github.com/suwhang-cisco/stacks//ai-platform-engineering
+```
+
+⏰ **Colony Deployment Time**: This takes 5-10 minutes - perfect time to read through the documentation below!
+
+This command will:
+
+* Create a KIND cluster for the Mars colony platform
+* Install core platform components (ArgoCD, Vault, Backstage)
+* Deploy the complete CAIPE multi-agent system
+* Configure ingress with path-based routing for colony access
 
 ## Architecture Overview
 
@@ -29,33 +75,28 @@ IDPBuilder is a CLI tool that creates a KIND cluster and deploys platform compon
 6. **AI Integration**: Agent-Forge plugin in Backstage connects to CAIPE MAS Agent
 7. **Multi-Agent System**: Orchestrator manages individual agents for different platform domains
 
-## Prerequisites
+## Prerequisites (Local Machine Only)
 
-For anyone using the lab environment for the workshop, the below prerequisites have been pre-installed for you. If you are using your local machine, ensure you have:
+If you are using your local machine, ensure you have the below prerequisites installed. For anyone using the lab environment for the workshop, the below prerequisites have been pre-installed for you.
 
 - [kubectl](https://kubernetes.io/docs/tasks/tools/) installed and configured
 - [IDPBuilder](https://cnoe.io/docs/idpbuilder/installation) binary installed
 - Docker Desktop or similar container runtime running
 
-## Step 1: Create KIND Cluster with IDPBuilder
+## Step 1: Set Your Lab URL Environment Variable
 
-### Deploy the Complete Platform
+**Set your lab URL so you can easily access all the services:**
+
+Copy your lab URL from the lab environment e.g. `https://outshift-lab-1234abc.demos.eticloud.io` and set it as an environment variable:
 
 ```bash
-idpbuilder create \
-  --use-path-routing \
-  --package https://github.com/cnoe-io/stacks//ref-implementation \
-  --package https://github.com/suwhang-cisco/stacks//ai-platform-engineering
+# Interactive setup - you'll be prompted to enter your lab URL
+read -p "Enter your lab URL (including https://): " LAB_URL
+# Remove trailing slash if present
+LAB_URL=${LAB_URL%/}
+export LAB_URL
+echo "Lab URL set to: $LAB_URL"
 ```
-
-This command will:
-
-* Create a KIND cluster for the Mars colony platform
-* Install core platform components (ArgoCD, Vault, Backstage)
-* Deploy the complete CAIPE multi-agent system
-* Configure ingress with path-based routing for colony access
-
-⏰ **Colony Deployment Time**: This takes a few minutes. Perfect time to review your mission objectives or checkout our [vidcast](https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup) on going through the IDPBuilder step by step ☕
 
 ## Step 2: Verify Colony Infrastructure
 
@@ -66,31 +107,43 @@ kubectl get nodes
 ```
 
 ### Verify all pods are running across the colony
+
 ```bash
 kubectl get pods --all-namespaces
 ```
 
-## Step 2: Access ArgoCD and Monitor Deployments
+## Step 3: Access ArgoCD and Monitor Deployments
+
+**Note:**
+- **Lab Environment**: Use the URLs with your `$LAB_URL` environment variable as shown below
+- **Local Environment**: Replace `$LAB_URL:6101,6102` with `https://cnoe.localtest.me:8443` in all commands
 
 Once the cluster is created, IDPBuilder outputs the ArgoCD URL for monitoring your colony's platform deployment.
 
 ### Get ArgoCD Administrative Access
 
+First, extract admin credentials for the ArgoCD UI:
+
 ```bash
-# Extract admin credentials for platform oversight
 idpbuilder get secrets -p argocd
 ```
 
-### Access Colony Platform Dashboard
+### Access ArgoCD to Monitor Platform Deployment
 
-Open https://cnoe.localtest.me:8443/argocd/ and login with:
+Open ArgoCD in your browser:
+
+```bash
+open $LAB_URL:6101/argocd/
+```
+
+Then login with:
 
 - Username: `admin`
 - Password: `<from the command above>`
 
 Monitor application sync status. Initial synchronization takes 3-5 minutes as the colony platform comes online.
 
-## Step 3: Configure Vault Secrets for Colony Operations
+## Step 4: Configure Vault Secrets for Colony Operations
 
 ### Check Vault application sync status
 
@@ -109,11 +162,21 @@ kubectl get secret vault-root-token -n vault -o jsonpath="{.data}" | \
 
 ### Access Colony Vault Interface
 
-Open https://vault.cnoe.localtest.me:8443/ and login with the root token from the previous step.
+Open Vault in your browser:
+
+```bash
+open $LAB_URL:6102/
+```
+
+Then login with the root token from the previous step.
 
 ### Configure Colony AI Agent Secrets
 
-1. Navigate to `secrets/ai-platform-engineering` in Vault UI: https://vault.cnoe.localtest.me:8443/ui/vault/secrets/secret/kv/list/ai-platform-engineering/
+1. Navigate to `secrets/ai-platform-engineering` in Vault UI:
+
+   ```bash
+   open $LAB_URL:6102/ui/vault/secrets/secret/kv/list/ai-platform-engineering/
+   ```
 
 2. **Configure Global LLM Settings** for colony AI operations:
 
@@ -161,7 +224,13 @@ idpbuilder get secrets | grep USER_PASSWORD | sed 's/.*USER_PASSWORD=\([^,]*\).*
 
 ### Login to Colony Developer Portal
 
-Open https://cnoe.localtest.me:8443/ and login with:
+Open Backstage in your browser:
+
+```bash
+open $LAB_URL:6101/
+```
+
+Then login with:
 
 - Username: `user1`
 - Password: `<from the command above>`
@@ -198,11 +267,35 @@ Feel free to ask anything else and experiment with the multi-agent system!
 
 Your Mars colony platform is now accessible at these coordinates:
 
-- **🎯 ArgoCD** (Platform Operations): https://cnoe.localtest.me:8443/argocd/
-- **🏠 Backstage** (Developer Portal): https://cnoe.localtest.me:8443/
-- **🔐 Vault** (Secret Management): https://vault.cnoe.localtest.me:8443/
-- **👤 Keycloak** (Identity Management): https://cnoe.localtest.me:8443/keycloak/admin/master/console/
-- **📚 Gitea** (Code Repository): https://cnoe.localtest.me:8443/gitea/
+### ArgoCD (Platform Operations
+)
+```bash
+open $LAB_URL:6101/argocd/
+```
+
+### Backstage (Developer Portal)
+
+```bash
+open $LAB_URL:6101/
+```
+
+### Vault (Secret Management)
+
+```bash
+open $LAB_URL:6102/
+```
+
+### Keycloak (Identity Management)
+
+```bash
+open $LAB_URL:6101/keycloak/admin/master/console/
+```
+
+### Gitea (Code Repository)
+
+```bash
+open $LAB_URL:6101/gitea/
+```
 
 ## Step 6: Tear down the colony platform
 

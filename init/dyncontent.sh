@@ -18,7 +18,10 @@ fi
 #sed -i -e "s/%%LABID%%/Station $TWODIG/g" /var/www/html/lab/meta/metadata
 
 #labcontent
-sed -i -e "s|%%LABNAME%%|$LABNAME|g" /var/www/html/lab/201-mission4.html
+#sed -i -e "s|%%LABNAME%%|$LABNAME|g" /var/www/html/lab/201-mission4.html
+find /var/www/html/lab -type f -exec sed -i "s|%%LABNAME%%|$LABNAME|g" {} \;
+find /var/www/html/lab -type f -exec sed -i "s|%%LABURL%%|$LABURL|g" {} \;
+
 
 #lab prompt
 #sed -i -e "s#outshift>#outshift-lab$TWODIG>#g" /home/ubuntu/.bashrc

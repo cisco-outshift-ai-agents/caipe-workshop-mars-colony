@@ -1,23 +1,19 @@
 {
     "title": "Workshop - Mission Control for the Mars Colony",
     "labguideVisible": true,
-    "uploadEnabled": false,
+    "uploadEnabled": true,
+    "trackingEnabled": true,
     "additionalOptionsEnabled": true,
     "splitPosition": 50,
     "displayMode": "terminal",
     "chapters": [
         {
-            "title": "Welcome",
+            "title": "Mission Brief",
             "file": "00-overview",
             "panel": "none"
         },
         {
-            "title": "Intro to CAIPE",
-            "file": "01-intro",
-            "panel": "none"
-        },
-        {
-            "title": "Bring Mission Control Online",
+            "title": "Start Ignition",
             "file": "101-mission1"
         },
         {
@@ -25,33 +21,28 @@
             "file": "102-mission2"
         },
         {
-            "title": "Scan the Skies",
+            "title": "Cosmic Forecast",
             "file": "103-mission3"
         },
         {
-            "title": "Reconnaissance & Reporting back",
+            "title": "Reconnaissance & Reporting",
             "file": "201-mission4"
         },
         {
-            "title": "Report your mission findings",
-            "file": "202-mission5"
-        },
-        {
-            "title": "Assemble with idpbuilder",
+            "title": "Fully Assembled",
             "file": "301-mission6"
         },
         {
-            "title": "Assemble with idpbuilder (bonus)",
+            "title": "Trace Odyssey",
             "file": "401-mission7"
         },
         {
-            "title": "Assemble with idpbuilder",
-            "file": "402-mission8"
-        },
-
-        {
-          "title": "Conclusion",
+          "title": "Mission Debrief",
           "file": "1000-conclusion"
+        },
+        {
+          "title": "Bonus: AGNTCY",
+          "file": "501-agntcy"
         }
     ]
 

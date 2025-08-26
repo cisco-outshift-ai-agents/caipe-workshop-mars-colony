@@ -1,5 +1,28 @@
 # Mission Check 3 — Multi-Agent Weather + Petstore System
 
+<div style="display: flex; align-items: center; gap: 12px;">
+  <button
+    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    style="
+      background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+    "
+    onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
+    onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
+  >
+    🚀 Start Mission &mdash; 15 min Timer
+  </button>
+  <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #011234;">15:00</span>
+</div>
+
 ## Overview
 
 In this mission, you'll run a **multi-agent system** that coordinates critical Mars colony operations across multiple domains:
@@ -32,6 +55,15 @@ The dynamic monitoring is performed in the background and will check if the pets
 ## Step 2: Start Multi-Agent System
 
 ### Launch the multi-agent stack with Docker Compose:
+
+For this mission, we will use the HTTP mode. You can also try out the STDIO mode afterward if you prefer.
+
+#### HTTP mode
+
+```bash
+IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
+```
+#### [Optional] STDIO mode
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
@@ -179,6 +211,14 @@ Get me weather for New York and find me all cats that are available for adoption
 If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
 ```
 
+## Bonus
+
+**Run this with AGNTCY SLIM Gateway in the middle**
+
+```
+IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=slim up
+```
+
 ## Mission Checks
 
 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
@@ -207,5 +247,10 @@ If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
     <strong>Combined Responses: Receive unified answers that incorporate data from multiple agents</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Bonus: Run with AGNTCY SLIM Gateway</strong>
   </label>
 </div>
