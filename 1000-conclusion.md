@@ -23,6 +23,8 @@ Congratulations on completing your missions! 🚀 While our official journey wra
 
 Thank you for being part of this journey! We hope to see you at future events and in the CAIPE community. Keep exploring, building, and collaborating! 🦸‍♂️🦸‍♀️🤖🌌
 
-<center><img src="images/get-involved-community.svg" alt="Mission Control" width="1000"></center>
-
-
+<center>
+  <a href="https://cnoe-io.github.io/ai-platform-engineering/community/" target="_blank">
+    <img src="images/get-involved-community.svg" alt="Mission Control" width="1000">
+  </a>
+</center>
