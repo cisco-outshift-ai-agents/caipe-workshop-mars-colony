@@ -259,12 +259,14 @@ from langgraph.prebuilt import create_react_agent
 from langchain_openai import AzureChatOpenAI
 import os
 
+mcp_server_file_path = os.path.join(os.environ["HOME"], "work", "simple_mars_mcp_server.py")
+
 async def main():
     # Create server parameters for stdio connection
     server_params = StdioServerParameters(
         command="python3",
         # Make sure to update to the full absolute path to your simple_mars_mcp_server.py file
-        args=["$HOME/work/simple_mars_mcp_server.py"],
+        args=[mcp_server_file_path],
     )
 
     async with stdio_client(server_params) as (read, write):
