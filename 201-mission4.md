@@ -236,6 +236,18 @@ Here's what happens:
 <br>
 <hr>
 
+
+## Final step: Tear down the mult-agent system
+
+Run the following in one of the terminals:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml down
+```
+
+<br>
+<hr>
+
 ## Mission Checks
 <br>
 
