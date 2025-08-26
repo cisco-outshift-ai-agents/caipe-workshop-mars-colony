@@ -154,7 +154,7 @@ ls -l
 ```
 
 ```bash
-chmod +x $HOME/work/simple_react_agent.py && python3 $HOME/work/simple_react_agent.py
+python3 $HOME/work/simple_react_agent.py
 ```
 
 ## What is a Multi-Agent System (MAS)?
@@ -311,7 +311,7 @@ ls -l
 ```
 
 ```bash
-chmod +x $HOME/work/simple_react_agent_using_mcp.py && python3 $HOME/work/simple_react_agent_using_mcp.py
+python3 $HOME/work/simple_react_agent_using_mcp.py
 ```
 
 ## Difference between an AI agent vs MCP server
