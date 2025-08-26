@@ -61,18 +61,33 @@ docker compose -f workshop/docker-compose.mission4.yaml up
 
 ```console
 ...
-===================================
-       GITHUB AGENT CONFIG
-===================================
-AGENT_URL: http://agent-github-p2p:8000⁠
-===================================
-===================================
-       KB-RAG AGENT CONFIG
-===================================
-AGENT_URL: http://kb-rag:8000⁠
-===================================
-2025-08-21 14:10:48,082 - INFO - ✅ Added github to registry (reachable)
-2025-08-21 14:10:48,082 - INFO - ✅ Added kb-rag to registry (reachable)
+platform-engineer-p2p  |        SLACK AGENT CONFIG      ====
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://localhost:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | ===================================8000
+platform-engineer-p2p  |        KB-RAG AGENT CONFIG      ===
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://kb-rag-agent:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | 2025-08-26 12:03:18,817 - INFO - Running connectivity checks for 8 agents (max 4 attempts per agent)...
+platform-engineer-p2p  |        SLACK AGENT CONFIG      
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://localhost:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  |        KB-RAG AGENT CONFIG      
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | AGENT_URL: http://kb-rag-agent:8000
+platform-engineer-p2p  | ===================================
+platform-engineer-p2p  | 2025-08-26 12:03:18,817 - INFO - Running connectivity checks for 8 agents (max 4 attempts per agent)...
+kb-rag-agent           | INFO:     172.19.0.9:53190 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+agent-github-p2p       | INFO:     172.19.0.9:47004 - "GET /.well-known/agent.json HTTP/1.1" 200 OK
+platform-engineer-p2p  | 2025-08-26 12:03:18,895 - INFO - HTTP Request: GET http://kb-rag-agent:8000/.well-known/agent.json "HTTP/1.1 200 OK"
+platform-engineer-p2p  | 2025-08-26 12:03:18,895 - INFO - HTTP Request: GET http://kb-rag-agent:8000/.well-known/agent.json "HTTP/1.1 200 OK"
+platform-engineer-p2p  | 2025-08-26 12:03:18,895 - INFO - ✅ Agent kb-rag is reachable at http://kb-rag-agent:8000
+platform-engineer-p2p  | 2025-08-26 12:03:18,896 - INFO - HTTP Request: GET http://agent-github-p2p:8000/.well-known/agent.json "HTTP/1.1 200 OK"
+platform-engineer-p2p  | 2025-08-26 12:03:18,897 - INFO - ✅ Agent github is reachable at http://agent-github-p2p:8000
 ...
 ```
 
@@ -157,7 +172,9 @@ We will now use the UI to query the RAG system and verify it is working.
 docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
 ```
 
-Note: When prompted for token, press enter.
+## Note: When prompted for optional token, press enter.
+
+![chatcli token](images/chat-cli-token.png)
 
 This should open a CLI chat client. You can now interact with the supervisor agent.
 
