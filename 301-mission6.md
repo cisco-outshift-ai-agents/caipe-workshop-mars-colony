@@ -124,7 +124,7 @@ kubectl get pods --all-namespaces
 
 Once the cluster is created, IDPBuilder outputs the ArgoCD URL for monitoring your colony's platform deployment.
 
-### Get ArgoCD Administrative Access
+### 3.1: Get ArgoCD Administrative Access
 
 First, extract admin credentials for the ArgoCD UI:
 
@@ -132,7 +132,7 @@ First, extract admin credentials for the ArgoCD UI:
 idpbuilder get secrets -p argocd
 ```
 
-### Access ArgoCD to Monitor Platform Deployment
+### 3.2: Access ArgoCD to Monitor Platform Deployment
 
 Open ArgoCD in your browser:
 
@@ -140,22 +140,28 @@ Open ArgoCD in your browser:
 echo "Click this link to open ArgoCD: $LAB_URL:6101/argocd/"
 ```
 
-Then login with:
+### 3.3: Login to ArgoCD
+
+Use the below credentials to login to ArgoCD:
 
 - Username: `admin`
-- Password: `<from the command above>`
+- Password: `<from step 3.1 above>`
 
 Monitor application sync status. Initial synchronization takes 3-5 minutes as the colony platform comes online.
 
+---
+
 ## Step 4: Configure Vault Secrets for Colony Operations
 
-### Check Vault application sync status
+---
 
-From the ArgoCD UI, you can monitor the sync status of the Vault application.
+### 4.1: Check Vault application sync status
+
+From the ArgoCD UI, you can monitor the sync status of the Vault application. Wait until the sync status is `Synced` for Vault like below:
 
 <img src="images/argocd-vault-sync.svg" alt="Vault application sync status" style="width: 60%; max-width: 400px;">
 
-### Extract Vault Administrative Token
+### 4.2: Extract Vault Administrative Token
 
 After Vault application syncs successfully on ArgoCD, you can extract the root token for colony secret management:
 
@@ -164,43 +170,37 @@ kubectl get secret vault-root-token -n vault -o jsonpath="{.data}" | \
   jq -r 'to_entries[] | "\(.key): \(.value | @base64d)"'
 ```
 
-### Access Colony Vault Interface
+### 4.3: Access Colony Vault Interface
 
-Open Vault in your browser:
+Open Vault in your browser and login with the root token from the previous step.
 
 ```bash
 echo "Click this link to open Vault: $LAB_URL:6102/"
 ```
 
-Then login with the root token from the previous step.
+### 4.4: Configure Colony AI Agent Secrets
 
-### Configure Colony AI Agent Secrets
+**4.4.1: Navigate to `secrets/ai-platform-engineering` in Vault UI:**
 
-1. Navigate to `secrets/ai-platform-engineering` in Vault UI:
-
-   ```bash
+```bash
    echo "Click this link to open Vault secrets: $LAB_URL:6102/ui/vault/secrets/secret/kv/list/ai-platform-engineering/"
-   ```
+```
 
-2. **Configure Global LLM Settings** for colony AI operations:
+**4.4.2: Configure Global LLM Settings:**
 
-   The `global` secret is required and contains LLM provider configuration shared across all agents. For this workshop, we will use Azure OpenAI. Run below command to get our LLM credentials from the lab environment:
+The `global` secret is required and contains LLM provider configuration shared across all agents. You can copy this from `.env_vars` file you have been using for the workshop.
 
-   ```bash
-   echo "LLM_PROVIDER: azure-openai"
-   echo "AZURE_OPENAI_API_KEY: $AZURE_OPENAI_API_KEY"
-   echo "AZURE_OPENAI_ENDPOINT: $AZURE_OPENAI_ENDPOINT"
-   echo "AZURE_OPENAI_DEPLOYMENT: $AZURE_OPENAI_DEPLOYMENT"
-   echo "AZURE_OPENAI_API_VERSION: $AZURE_OPENAI_API_VERSION"
-   ```
+```bash
+cat $HOME/.env_vars
+```
 
-   You can copy and paste the output to the `global` secret in the Vault UI.
+You can copy and paste the output to the `global` secret in the Vault UI.
 
-   ![Vault UI - Global LLM Settings](images/vault-secrets.svg)
+![Vault UI - Global LLM Settings](images/vault-secrets.svg)
 
-   <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
-   <strong>📝 Note:</strong> We support other LLM providers as well. Currently, we support Azure OpenAI, OpenAI, and AWS Bedrock. Check out our <a href="https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup#step-3-update-secrets">documentation</a> for more details.
-   </div>
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>📝 Note:</strong> We support other LLM providers as well. Currently, we support Azure OpenAI, OpenAI, and AWS Bedrock. Check out our <a href="https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup#step-3-update-secrets">documentation</a> for more details.
+</div>
 
 3. **Configure Agent-Specific Secrets**: For each specialized agent (GitHub, PagerDuty, Jira), populate their respective secrets with required credentials.
 
