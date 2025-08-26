@@ -81,22 +81,22 @@ _Please give us a ⭐️ on GitHub. Your support helps grow our community and ke
 
 Let's review some key concepts.
 
-### What is an Agent?
+## What is an Agent?
 
 An AI Agent is a system that uses a Large Language Model (LLM) to decide the flow of an application
 
-### Anatomy of agent
+## Anatomy of agent
 
 ![Anatomy of agent](images/agent-anatomy.svg)
 
-### ReAct Loop
+## ReAct Loop
 
 Reason and Act (ReAct) is a common
 design pattern used in agentic systems to help LLMs decide the next action or tool to use
 
 <center><img src="images/react-agent.svg" alt="Mission Control" width="200"></center>
 
-#### [Optional] Try it yourself: Create a Simple ReAct Agent
+### [Optional] Try it yourself: Create a Simple ReAct Agent
 
 ```bash
 pip install -U langgraph "langchain[openai]"
@@ -155,7 +155,7 @@ ls -l
 chmod +x $HOME/work/simple_react_agent.py && python3 $HOME/work/simple_react_agent.py
 ```
 
-### What is a Multi-Agent System (MAS)?
+## What is a Multi-Agent System (MAS)?
 
 A Multi-Agent System (MAS) is an agentic AI system composed of multiple, independent and interacting agents to achieve a common goal
 
@@ -193,7 +193,7 @@ Supervisor of Supervisor agents
 * [LangChain - Multi-agent systems](https://langchain-ai.github.io/langgraph/concepts/multi_agent/)
 * [LangChain - Benchmarking Multi-Agent Architectures](https://blog.langchain.com/benchmarking-multi-agent-architectures/)
 
-### CAPIE Architecture
+## CAPIE Architecture
 
 <center><img src="https://raw.githubusercontent.com/cnoe-io/ai-platform-engineering/refs/heads/main/docs/docs/architecture/images/mas_architecture.svg" alt="Mission Control" width="400"></center>
 
@@ -205,7 +205,7 @@ MCP (Model Context Protocol) standardizes how large language models (LLMs) can g
 <center><img src="images/mcp.svg" alt="Mission Control" width="200"></center>
 
 
-#### [Optional] Try it yourself: Create a Simple ReAct Agent with MCP Server
+### [Optional] Try it yourself: Create a Simple ReAct Agent with MCP Server
 
 ```bash
 pip install -U langgraph "langchain[openai]"
@@ -311,7 +311,7 @@ Agentic Systems landscape is evolving rapidly, understanding the distinction bet
 
 * [Agent Memory (Long-term and Short-term)](https://blog.langchain.com/memory-for-agents/)
 * [Prompt/Context Engineering](https://blog.langchain.com/context-engineering-for-agents/)
-* Agent Orchestration
+* [Agent Orchestration](https://outshift.cisco.com/blog/architecting-jarvis-technical-deep-dive-into-its-multi-agent-system-design?search=jarvis)
 * [Tool Pruning via RAG](https://github.com/langchain-ai/langgraph-bigtool)
 
 **Reference blog:**
