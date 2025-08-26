@@ -4,25 +4,24 @@
   <button
     onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
     style="
-      background: linear-gradient(90deg, #d7263d 0%, #ff7300 60%, #ffb88c 100%);
+      background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
       color: #fff;
       border: none;
       border-radius: 6px;
       padding: 8px 18px;
-      font-size: 1em;
+      font-size: 1.1em;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       transition: background 0.2s;
     "
-    onmouseover="this.style.background='linear-gradient(90deg, #ff7300 0%, #d7263d 100%)'"
-    onmouseout="this.style.background='linear-gradient(90deg, #d7263d 0%, #ff7300 60%, #ffb88c 100%)'"
+    onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
+    onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
   >
     🚀 Start Mission &mdash; 15 min Timer
   </button>
-  <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #d7263d;">15:00</span>
+  <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #011234;">15:00</span>
 </div>
-
 
 ## Overview
 
