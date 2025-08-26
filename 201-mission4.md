@@ -48,7 +48,7 @@ cd $HOME/work/ai-platform-engineering
 Copy over the mission4 environment variables file:
 
 ```bash
-cp $HOME/.env_vars .env
+cp $HOME/.env_vars .env.mission4
 ```
 
 Start the Docker Compose stack that includes both RAG and Git agents:
