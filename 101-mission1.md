@@ -1,26 +1,27 @@
 # Mission Check 1 — Start Ignition: Download Mission and Learn the Controls
 
-<button
-  onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
-  style="
-    background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 12px 28px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin-bottom: 8px;
-    transition: background 0.2s;
-  "
-  onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
-  onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
->
-  🚀 Start Mission 1 &mdash; 15 min Timer
-</button>
-<span id="timer1" class="timer" style="font-family: monospace; font-size: 1.2em; margin-left: 12px; color: #007cba;">15:00</span>
+<div style="display: flex; align-items: center; gap: 12px;">
+  <button
+    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    style="
+      background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+    "
+    onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
+    onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
+  >
+    🚀 Start Mission &mdash; 15 min Timer
+  </button>
+  <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #011234;">15:00</span>
+</div>
 
 ## Clone CAIPE
 
@@ -80,23 +81,83 @@ _Please give us a ⭐️ on GitHub. Your support helps grow our community and ke
 
 Let's review some key concepts.
 
-### What is an Agent?
+## What is an Agent?
 
 An AI Agent is a system that uses a Large Language Model (LLM) to decide the flow of an application
 
-### Anatomy of agent
+## Anatomy of agent
 
 ![Anatomy of agent](images/agent-anatomy.svg)
 
-### ReAct Loop
+## ReAct Loop
 
 Reason and Act (ReAct) is a common
 design pattern used in agentic systems to help LLMs decide the next action or tool to use
 
 <center><img src="images/react-agent.svg" alt="Mission Control" width="200"></center>
 
+### [Optional] Try it yourself: Create a Simple ReAct Agent
 
-### What is a Multi-Agent System (MAS)?
+```bash
+pip install -U langgraph "langchain[openai]"
+```
+
+```bash
+# Create the Python file with LangChain Azure code
+cat > $HOME/work/simple_react_agent.py << 'EOF'
+from langgraph.prebuilt import create_react_agent  # Import helper to build a ReAct agent
+from langchain_openai import AzureChatOpenAI       # Import Azure OpenAI LLM wrapper
+import os
+import random
+
+# Tool 1: Simulate checking oxygen level in the Mars habitat
+def check_oxygen_level() -> str:
+    """Returns the current oxygen level in the Mars habitat."""
+    print("[TOOL] check_oxygen_level was called")
+    oxygen_level = round(random.uniform(18.0, 23.0), 1)
+    return f"Oxygen level is optimal at {oxygen_level}%."
+
+# Tool 2: Simulate checking a rover's battery status
+def rover_battery_status(rover_name: str) -> str:
+    """Returns the battery status for a given Mars rover."""
+    print(f"[TOOL] rover_battery_status was called for rover: {rover_name}")
+    battery_percent = random.randint(50, 99)
+    return f"Rover {rover_name} battery at {battery_percent}% and functioning normally."
+
+# Initialize the Azure OpenAI LLM using environment variables for deployment and API version
+llm = AzureChatOpenAI(
+    azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),      # e.g., "gpt-4o"
+    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")    # e.g., "2025-03-01-preview"
+)
+
+# Create a ReAct agent with the LLM and the two tools above
+agent = create_react_agent(
+    model=llm,
+    tools=[check_oxygen_level, rover_battery_status],
+    prompt="You are Mission Control for a Mars colony. Use your tools to help astronauts stay safe and keep the rovers running!"
+)
+
+# Run the agent with a user message asking about oxygen and a rover's battery
+response = agent.invoke({"messages": [{"role": "user", "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"}]})
+
+# Print the final AI response(s) to the user
+print("Final Response:")
+for message in response['messages']:
+    # Each message is an object with a 'content' attribute (if present)
+    if hasattr(message, 'content') and message.content:
+        print(f"AI: {message.content}")
+EOF
+```
+
+```bash
+ls -l
+```
+
+```bash
+python3 $HOME/work/simple_react_agent.py
+```
+
+## What is a Multi-Agent System (MAS)?
 
 A Multi-Agent System (MAS) is an agentic AI system composed of multiple, independent and interacting agents to achieve a common goal
 
@@ -134,7 +195,7 @@ Supervisor of Supervisor agents
 * [LangChain - Multi-agent systems](https://langchain-ai.github.io/langgraph/concepts/multi_agent/)
 * [LangChain - Benchmarking Multi-Agent Architectures](https://blog.langchain.com/benchmarking-multi-agent-architectures/)
 
-### CAPIE Architecture
+## CAPIE Architecture
 
 <center><img src="https://raw.githubusercontent.com/cnoe-io/ai-platform-engineering/refs/heads/main/docs/docs/architecture/images/mas_architecture.svg" alt="Mission Control" width="400"></center>
 
@@ -145,13 +206,121 @@ MCP (Model Context Protocol) standardizes how large language models (LLMs) can g
 
 <center><img src="images/mcp.svg" alt="Mission Control" width="200"></center>
 
+
+### [Optional] Try it yourself: Create a Simple ReAct Agent with MCP Server
+
+```bash
+pip install -U langgraph "langchain[openai]"
+```
+
+```bash
+pip install langchain-mcp-adapters
+```
+
+```bash
+# Create the MCP server file with Mars colony tools
+cat > $HOME/work/simple_mars_mcp_server.py << 'EOF'
+from mcp.server.fastmcp import FastMCP
+import random
+
+mcp = FastMCP("Mars Colony")
+
+@mcp.tool()
+def check_oxygen_level() -> str:
+    """Returns the current oxygen level in the Mars habitat."""
+    print("Tool called: check_oxygen_level")
+    oxygen_level = round(random.uniform(18.0, 23.0), 1)
+    return f"Oxygen level is optimal at {oxygen_level}%."
+
+@mcp.tool()
+def rover_battery_status(rover_name: str) -> str:
+    """Returns the battery status for a given Mars rover."""
+    print(f"Tool called: rover_battery_status (rover_name={rover_name})")
+    battery_percent = random.randint(50, 99)
+    return f"Rover {rover_name} battery at {battery_percent}% and functioning normally."
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
+EOF
+```
+
+```bash
+ls -l
+```
+
+```bash
+# Create the MCP client file that connects to the Mars server
+cat > $HOME/work/simple_react_agent_using_mcp.py << 'EOF'
+import asyncio
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+from langchain_mcp_adapters.tools import load_mcp_tools
+from langgraph.prebuilt import create_react_agent
+from langchain_openai import AzureChatOpenAI
+import os
+
+mcp_server_file_path = os.path.join(os.environ["HOME"], "work", "simple_mars_mcp_server.py")
+
+async def main():
+    # Create server parameters for stdio connection
+    server_params = StdioServerParameters(
+        command="python3",
+        # Make sure to update to the full absolute path to your simple_mars_mcp_server.py file
+        args=[mcp_server_file_path],
+    )
+
+    async with stdio_client(server_params) as (read, write):
+        async with ClientSession(read, write) as session:
+            # Initialize the connection
+            await session.initialize()
+
+            # Get tools from the MCP server
+            tools = await load_mcp_tools(session)
+
+            # Initialize the Azure OpenAI LLM using environment variables
+            llm = AzureChatOpenAI(
+                azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")
+            )
+
+            # Create a ReAct agent with the LLM and the MCP tools
+            agent = create_react_agent(
+                model=llm,
+                tools=tools,
+                prompt="You are Mission Control for a Mars colony. Use your tools to help astronauts stay safe and keep the rovers running!"
+            )
+
+            # Run the agent with a user message
+            agent_response = await agent.ainvoke({
+                "messages": [{"role": "user", "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"}]
+            })
+
+            # Print the final AI response(s) to the user
+            print("Final Response:")
+            for message in agent_response['messages']:
+                if hasattr(message, 'content') and message.content:
+                    print(f"AI: {message.content}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+EOF
+```
+
+```bash
+ls -l
+```
+
+```bash
+python3 $HOME/work/simple_react_agent_using_mcp.py
+```
+
 ## Difference between an AI agent vs MCP server
 
 Agentic Systems landscape is evolving rapidly, understanding the distinction between AI Agents and MCP Servers is crucial for building scalable agentic systems. While MCP Servers provide a standardized interface for tools and data sources, AI Agents leverage these capabilities to perform complex reasoning, planning, and execution tasks. As MCP protocol advances the lines are blurring, as of today, AI Agents are superset of what MCP server can do but some agents are directly exposed via MCP.
 
 * [Agent Memory (Long-term and Short-term)](https://blog.langchain.com/memory-for-agents/)
 * [Prompt/Context Engineering](https://blog.langchain.com/context-engineering-for-agents/)
-* Agent Orchestration
+* [Agent Orchestration](https://outshift.cisco.com/blog/architecting-jarvis-technical-deep-dive-into-its-multi-agent-system-design?search=jarvis)
 * [Tool Pruning via RAG](https://github.com/langchain-ai/langgraph-bigtool)
 
 **Reference blog:**
@@ -177,7 +346,7 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 * [Agntcy App SDK](https://github.com/agntcy/app-sdk)
 * [coffeeAgntcy](https://github.com/agntcy/coffeeAgntcy/tree/main)
 
-**_Note: More bonus missions are available to try offline for a deeper dive into AGNTCY._**
+**_Note: SLIM will be demo'ed in one of the missions. Additional bonus AGNTCY mission is available to try offline for a deeper dive into AGNTCY._**
 
 **Reference:**
 
@@ -189,16 +358,25 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> ⭐ Star the <a href="https://github.com/cnoe-io/ai-platform-engineering" target="_blank">CAIPE GitHub repository</a></strong>
+    <strong> ⭐ Starred the <a href="https://github.com/cnoe-io/ai-platform-engineering" target="_blank">CAIPE GitHub repository</a></strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> 📖 Check out the <a href="https://cnoe-io.github.io/ai-platform-engineering/" target="_blank">CAIPE documentation</a></strong>
+    <strong> 📖 Checked out the <a href="https://cnoe-io.github.io/ai-platform-engineering/" target="_blank">CAIPE documentation</a></strong>
+  </label>
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> 🤖 Tried the Simple ReAct Agent example in your environment</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> 🌐 Visit the <a href="https://agntcy.org/" target="_blank">AGNTCY website</a> and explore <a href="https://github.com/agntcy/coffeeAgntcy" target="_blank">Coffee Agntcy</a></strong>
+    <strong> 🔗 Tried the Simple ReAct Agent with MCP Server integration (see docs/examples)</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> 🌐 Visited the <a href="https://agntcy.org/" target="_blank">AGNTCY website</a> and explored <a href="https://github.com/agntcy/coffeeAgntcy" target="_blank">Coffee Agntcy</a></strong>
   </label>
 </div>
