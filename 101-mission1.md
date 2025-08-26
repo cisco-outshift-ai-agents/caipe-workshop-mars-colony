@@ -148,6 +148,10 @@ EOF
 ```
 
 ```bash
+ls -l
+```
+
+```bash
 chmod +x $HOME/work/simple_react_agent.py && python3 $HOME/work/simple_react_agent.py
 ```
 
@@ -234,6 +238,10 @@ def rover_battery_status(rover_name: str) -> str:
 if __name__ == "__main__":
     mcp.run(transport="stdio")
 EOF
+```
+
+```bash
+ls -l
 ```
 
 ```bash
