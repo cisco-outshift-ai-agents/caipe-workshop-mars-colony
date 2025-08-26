@@ -71,7 +71,7 @@ Password can be retrieved by running: idpbuilder get secrets -p argocd
   <strong>🚨 Massive Warning for Lab Environment Users</strong>
   <ul style="margin: 8px 0 0 16px;">
     <li><strong>Do NOT use</strong> <code>https://cnoe.localtest.me:8443/argocd</code> in the lab environment — that URL is only for local installs.</li>
-    <li>Follow the steps below to set <code>$LABURL</code> (Step 1) and then open ArgoCD using <code>https://$LABURL:6101/argocd/</code> (Step 3.2).</li>
+    <li>Follow the steps below to set <code>&#36;LABURL</code> (Step 1) and then open ArgoCD using <code>https://&#36;LABURL:6101/argocd/</code> (Step 3.2).</li>
   </ul>
 </div>
 
