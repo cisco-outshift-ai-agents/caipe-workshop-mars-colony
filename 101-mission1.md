@@ -336,7 +336,7 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 * [Agntcy App SDK](https://github.com/agntcy/app-sdk)
 * [coffeeAgntcy](https://github.com/agntcy/coffeeAgntcy/tree/main)
 
-**_Note: More bonus missions are available to try offline for a deeper dive into AGNTCY._**
+**_Note: SLIM will be demo'ed in one of the missions. Additional bonus AGNTCY mission is available to try offline for a deeper dive into AGNTCY._**
 
 **Reference:**
 
@@ -354,6 +354,15 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
     <strong> 📖 Check out the <a href="https://cnoe-io.github.io/ai-platform-engineering/" target="_blank">CAIPE documentation</a></strong>
+  </label>
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> 🤖 Try the <a href="#optional-try-it-yourself-create-a-simple-react-agent">Simple ReAct Agent example</a> in your environment</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> 🔗 Try the Simple ReAct Agent with MCP Server integration (see docs/examples)</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
