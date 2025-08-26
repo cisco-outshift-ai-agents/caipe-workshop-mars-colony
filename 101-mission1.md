@@ -145,7 +145,7 @@ EOF
 ```
 
 ```bash
-chmod +x $HOME/work/simple_react_agent.py && python $HOME/work/simple_react_agent.py
+chmod +x $HOME/work/simple_react_agent.py && python3 $HOME/work/simple_react_agent.py
 ```
 
 ### What is a Multi-Agent System (MAS)?
