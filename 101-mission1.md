@@ -108,6 +108,7 @@ cat > $HOME/work/simple_react_agent.py << 'EOF'
 from langchain_openai import AzureChatOpenAI
 from langchain.agents import create_react_agent
 from langchain.tools import tool
+from langchain.prompts import PromptTemplate
 import os
 
 @tool
@@ -126,10 +127,16 @@ llm = AzureChatOpenAI(
     openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")
 )
 
+# Create a proper prompt template
+prompt = PromptTemplate(
+    input_variables=["input"],
+    template="You are Mission Control for a Mars colony. Use your tools to help astronauts stay safe and keep the rovers running!\n\n{input}"
+)
+
 agent = create_react_agent(
     llm=llm,
     tools=[check_oxygen_level, rover_battery_status],
-    prompt="You are Mission Control for a Mars colony. Use your tools to help astronauts stay safe and keep the rovers running!"
+    prompt=prompt
 )
 
 # Run the agent: Ask about oxygen and rover battery
