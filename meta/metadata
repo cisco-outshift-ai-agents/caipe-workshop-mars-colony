@@ -38,7 +38,8 @@
         },
         {
           "title": "Mission Debrief",
-          "file": "1000-conclusion"
+          "file": "1000-conclusion",
+          "panel": "none"
         },
         {
           "title": "Bonus: AGNTCY",

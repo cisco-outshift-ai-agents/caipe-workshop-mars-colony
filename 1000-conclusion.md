@@ -22,6 +22,6 @@ Congratulations on completing your missions! 🚀 While our official journey wra
   - You will receive a survey email directly from Webex.
 
 
-![Get Involved in Community](images/get-involved-community.svg)
+<center><img src="images/react-agent.svg" alt="Mission Control" width="200"></center>
 
 Thank you for being part of this journey! We hope to see you at future events and in the CAIPE community. Keep exploring, building, and collaborating! 🦸‍♂️🦸‍♀️🤖🌌
