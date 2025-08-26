@@ -114,9 +114,13 @@ kubectl get pods --all-namespaces
 
 ## Step 3: Access ArgoCD and Monitor Deployments
 
-**Note:**
-- **Lab Environment**: Use the URLs with your `$LAB_URL` environment variable as shown below
-- **Local Environment**: Replace `$LAB_URL:6101,6102` with `https://cnoe.localtest.me:8443` in all commands
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>📝 Note:</strong>
+<ul>
+<li><strong>Lab Environment</strong>: Use the URLs with your <code>$LAB_URL</code> environment variable as shown below</li>
+<li><strong>Local Environment</strong>: Replace <code>$LAB_URL:6101,6102</code> with <code>https://cnoe.localtest.me:8443</code> in all commands</li>
+</ul>
+</div>
 
 Once the cluster is created, IDPBuilder outputs the ArgoCD URL for monitoring your colony's platform deployment.
 
@@ -133,7 +137,7 @@ idpbuilder get secrets -p argocd
 Open ArgoCD in your browser:
 
 ```bash
-open $LAB_URL:6101/argocd/
+echo "Click this link to open ArgoCD: $LAB_URL:6101/argocd/"
 ```
 
 Then login with:
@@ -165,7 +169,7 @@ kubectl get secret vault-root-token -n vault -o jsonpath="{.data}" | \
 Open Vault in your browser:
 
 ```bash
-open $LAB_URL:6102/
+echo "Click this link to open Vault: $LAB_URL:6102/"
 ```
 
 Then login with the root token from the previous step.
@@ -175,7 +179,7 @@ Then login with the root token from the previous step.
 1. Navigate to `secrets/ai-platform-engineering` in Vault UI:
 
    ```bash
-   open $LAB_URL:6102/ui/vault/secrets/secret/kv/list/ai-platform-engineering/
+   echo "Click this link to open Vault secrets: $LAB_URL:6102/ui/vault/secrets/secret/kv/list/ai-platform-engineering/"
    ```
 
 2. **Configure Global LLM Settings** for colony AI operations:
@@ -194,7 +198,9 @@ Then login with the root token from the previous step.
 
    ![Vault UI - Global LLM Settings](images/vault-secrets.svg)
 
-   **NOTE:** We support other LLM providers as well. Currently, we support Azure OpenAI, OpenAI, and AWS Bedrock. Check out our [documentation](https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup#step-3-update-secrets) for more details.
+   <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+   <strong>📝 Note:</strong> We support other LLM providers as well. Currently, we support Azure OpenAI, OpenAI, and AWS Bedrock. Check out our <a href="https://cnoe-io.github.io/ai-platform-engineering/getting-started/idpbuilder/setup#step-3-update-secrets">documentation</a> for more details.
+   </div>
 
 3. **Configure Agent-Specific Secrets**: For each specialized agent (GitHub, PagerDuty, Jira), populate their respective secrets with required credentials.
 
@@ -227,7 +233,7 @@ idpbuilder get secrets | grep USER_PASSWORD | sed 's/.*USER_PASSWORD=\([^,]*\).*
 Open Backstage in your browser:
 
 ```bash
-open $LAB_URL:6101/
+echo "Click this link to open Backstage: $LAB_URL:6101/"
 ```
 
 Then login with:
@@ -263,38 +269,16 @@ Show me existing projects in Jira.
 
 Feel free to ask anything else and experiment with the multi-agent system!
 
-## Colony Communication Endpoints
+## Useful URLs
 
-Your Mars colony platform is now accessible at these coordinates:
-
-### ArgoCD (Platform Operations
-)
-```bash
-open $LAB_URL:6101/argocd/
-```
-
-### Backstage (Developer Portal)
+Run the below commands to open the various colony services in your browser:
 
 ```bash
-open $LAB_URL:6101/
-```
-
-### Vault (Secret Management)
-
-```bash
-open $LAB_URL:6102/
-```
-
-### Keycloak (Identity Management)
-
-```bash
-open $LAB_URL:6101/keycloak/admin/master/console/
-```
-
-### Gitea (Code Repository)
-
-```bash
-open $LAB_URL:6101/gitea/
+echo "Click this link to open ArgoCD: $LAB_URL:6101/argocd/"
+echo "Click this link to open Gitea: $LAB_URL:6101/gitea/"
+echo "Click this link to open Vault: $LAB_URL:6102/"
+echo "Click this link to open Backstage: $LAB_URL:6101/"
+echo "Click this link to open Keycloak: $LAB_URL:6101/keycloak/admin/master/console/"
 ```
 
 ## Step 6: Tear down the colony platform
@@ -347,6 +331,12 @@ kind delete cluster --name localdev
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
     <strong>🚀 Test platform agent interactions: "What agents are available?"</strong>
   </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>"Teardown" the colony platform</strong>
+  </label>
+
 </div>
 
 ## Troubleshooting

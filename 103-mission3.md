@@ -302,8 +302,16 @@ IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission
 
 You can stop all agents by pressing `Ctrl+C` (or `Cmd+C` on Mac) in the terminal. Or if you have already closed the terminal, ensure you run the specific docker compose down command:
 
+For p2p mode:
+
 ```bash
 docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission3.yaml --profile=p2p down
+```
+
+For slim mode:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission3.yaml --profile=slim down
 ```
 
 **Note**: Use the same `--profile` flag that you used when starting the agents.
