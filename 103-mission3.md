@@ -80,7 +80,7 @@ HTTP mode will connect petstore and weather agents to connect with their respect
 
 * `https://petstore.outshift.io/mcp`: mcp server containing data for the available pet companions from Earth
 
-* `https://weather.outshift.io/mcp`: mcp server containing mock weather data for Mars
+* `https://weather.outshift.io/mcp`: mcp server that can retrieve real weather data for Earth using the Open-Meteo API as well as mock weather data for Mars
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
@@ -92,7 +92,7 @@ STDIO mode will connect petstore and weather agents to run the MCP server within
 
 * `http://localhost:8009/mcp`: mcp server containing data for the available pets retrieved from demo swagger API `https://petstore.swagger.io/v2`
 
-* `http://localhost:8010/mcp`: mcp server that queries real weather data for Earth from `https://api.open-meteo.com/v1`
+* `http://localhost:8010/mcp`: mcp server that queries real weather data for Earth from the Open-Meteo API on `https://api.open-meteo.com/v1`
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
@@ -153,9 +153,13 @@ agent-weather-p2p      | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press
 
 **Supervisor agent logs:**
 
+The supervisor agent logs can be quite verbose as it checks for up to 9 possible agents. Here's how to filter for the key success indicators:
+
 ```bash
-docker logs platform-engineer-p2p
+docker logs platform-engineer-p2p 2>&1 | grep -F -B8 'Uvicorn running on http://0.0.0.0:8000'
 ```
+
+This will show the logs from the start of the supervisor agent until the Uvicorn server is running like below:
 
 ```
 ...
@@ -232,6 +236,10 @@ What can you help me with?
 
 ### 5.2: Weather-Specific Commands
 
+---
+
+For Earth weather data, you can use the following commands:
+
 ```bash
 What's the current weather in San Francisco?
 ```
@@ -240,14 +248,24 @@ What's the current weather in San Francisco?
 Give me a 5-day forecast for London
 ```
 
-### 5.3: Petstore Commands (from Mission 2)
+For Mars weather data, you can use the following commands:
 
 ```bash
-Add a new dog named Max
+What regoins in Mars can you find the weather for?
 ```
 
 ```bash
-Show me pets with 'cold' tags
+What is the weather right now in Arabia Terra?
+```
+
+### 5.3: Petstore Commands (from Mission 2)
+
+```bash
+Get me all the available pets
+```
+
+```bash
+Show me pets with 'Hot Climate Lover' tags
 ```
 
 ### 5.4: Cross-Agent Scenarios
@@ -255,15 +273,15 @@ Show me pets with 'cold' tags
 Test scenarios that require both agents:
 
 ```bash
-Get me weather for New York and find me all cats that are available for adoption.
+Is it going to rain in Tokyo tomorrow and also a summary of pets by status.
 ```
 
 ```bash
- What’s the weather like in Paris right now? If it’s cold, think dogs (cold‑tolerant). If it’s hot, think fish or reptiles. If it’s rainy/snowy, think indoor cats. Show available petstore pets that fit
+Considering the weather in Paris right now, what is the best pet available that I can adapt? First, get all the available pets and then based on the weather, provide the best pet recommendation.
 ```
 
 ```bash
-If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
+What is the weather right now in Arabia Terra? Based on the weather, give me a pet that is suitable for the weather and explain why you chose that pet.
 ```
 
 ## Step 6: [Optional] Bonus
