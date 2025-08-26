@@ -33,8 +33,17 @@ The dynamic monitoring is performed in the background and will check if the pets
 
 ### Launch the multi-agent stack with Docker Compose:
 
+For this mission, we will use the HTTP mode. You can also try out the STDIO mode afterward if you prefer.
+
+#### HTTP mode
+
 ```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
+```
+#### [Optional] STDIO mode
+
+```bash
+IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
 ```
 
 ### What happens:
