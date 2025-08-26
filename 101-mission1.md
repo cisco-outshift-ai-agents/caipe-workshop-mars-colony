@@ -201,7 +201,7 @@ MCP (Model Context Protocol) standardizes how large language models (LLMs) can g
 <center><img src="images/mcp.svg" alt="Mission Control" width="200"></center>
 
 
-#### [Optional] Try it yourself: Create a Simple ReAct Agent
+#### [Optional] Try it yourself: Create a Simple ReAct Agent with MCP Server
 
 ```bash
 pip install -U langgraph "langchain[openai]"
