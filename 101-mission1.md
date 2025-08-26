@@ -96,6 +96,52 @@ design pattern used in agentic systems to help LLMs decide the next action or to
 
 <center><img src="images/react-agent.svg" alt="Mission Control" width="200"></center>
 
+#### [Optional] Try it yourself: Create a Simple ReAct Agent
+
+```bash
+pip install -U langgraph "langchain[openai]"
+```
+
+```bash
+# Create the Python file with LangChain Azure code
+cat > $HOME/work/simple_react_agent.py << 'EOF'
+from langchain_openai import AzureChatOpenAI
+from langchain.agents import create_react_agent
+from langchain.tools import tool
+import os
+
+@tool
+def check_oxygen_level() -> str:
+    """Check the current oxygen level in the Mars habitat."""
+    return "Oxygen level is optimal at 21%."
+
+@tool
+def rover_battery_status(rover_name: str) -> str:
+    """Get the current battery status of a Mars rover."""
+    return f"Rover {rover_name} battery at 87% and functioning normally."
+
+# Initialize Azure OpenAI client (replace with your deployment info)
+llm = AzureChatOpenAI(
+    azure_deployment=os.getenv("AZURE_DEPLOYMENT_NAME"),
+    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")
+)
+
+agent = create_react_agent(
+    llm=llm,
+    tools=[check_oxygen_level, rover_battery_status],
+    prompt="You are Mission Control for a Mars colony. Use your tools to help astronauts stay safe and keep the rovers running!"
+)
+
+# Run the agent: Ask about oxygen and rover battery
+agent.invoke(
+    {"messages": [{"role": "user", "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"}]}
+)
+EOF
+```
+
+```bash
+chmod +x $HOME/work/simple_react_agent.py && python $HOME/work/simple_react_agent.py
+```
 
 ### What is a Multi-Agent System (MAS)?
 
