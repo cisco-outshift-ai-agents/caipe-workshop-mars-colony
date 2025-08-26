@@ -105,38 +105,49 @@ pip install -U langgraph "langchain[openai]"
 ```bash
 # Create the Python file with LangChain Azure code
 cat > $HOME/work/simple_react_agent.py << 'EOF'
-from langgraph.prebuilt import create_react_agent
-from langchain_openai import AzureChatOpenAI
+from langgraph.prebuilt import create_react_agent  # Import helper to build a ReAct agent
+from langchain_openai import AzureChatOpenAI       # Import Azure OpenAI LLM wrapper
 import os
 
+# Tool 1: Simulate checking oxygen level in the Mars habitat
 def check_oxygen_level() -> str:
-    """Check the current oxygen level in the Mars habitat."""
+    """Returns the current oxygen level in the Mars habitat."""
     return "Oxygen level is optimal at 21%."
 
+# Tool 2: Simulate checking a rover's battery status
 def rover_battery_status(rover_name: str) -> str:
-    """Get the current battery status of a Mars rover."""
+    """Returns the battery status for a given Mars rover."""
     return f"Rover {rover_name} battery at 87% and functioning normally."
 
-# Initialize Azure OpenAI client
+# Initialize the Azure OpenAI LLM using environment variables for deployment and API version
 llm = AzureChatOpenAI(
-    azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")
+    azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),      # e.g., "gpt-35-turbo"
+    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")    # e.g., "2023-05-15"
 )
 
+# Create a ReAct agent with the LLM and the two tools above
 agent = create_react_agent(
     model=llm,
     tools=[check_oxygen_level, rover_battery_status],
     prompt="You are Mission Control for a Mars colony. Use your tools to help astronauts stay safe and keep the rovers running!"
 )
 
-# Run the agent: Ask about oxygen and rover battery
+# Run the agent with a user message asking about oxygen and a rover's battery
 response = agent.invoke(
-    {"messages": [{"role": "user", "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"}]}
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"
+            }
+        ]
+    }
 )
 
-# Print the final AI response
+# Print the final AI response(s) to the user
 print("Final Response:")
 for message in response['messages']:
+    # Each message is an object with a 'content' attribute (if present)
     if hasattr(message, 'content') and message.content:
         print(f"AI: {message.content}")
 EOF
