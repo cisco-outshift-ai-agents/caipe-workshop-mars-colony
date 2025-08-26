@@ -178,11 +178,13 @@ Monitor application sync status. Initial synchronization takes 3-5 minutes as th
 
 From the ArgoCD UI, you can monitor the sync status of the Vault application. Wait until the sync status is `Synced` for Vault like below:
 
+**Note:** Vault will be on the 2nd page of the ArgoCD UI.
+
 <img src="images/argocd-vault-sync.svg" alt="Vault application sync status" style="width: 60%; max-width: 400px;">
 
 ### 4.2: Port forward to Vault service
 
-First, port forward to Vault service so we can use this to directly access the vault service:
+First, open up a **new terminal** and run the below command to port forward to Vault service so we can use this to directly access the vault service:
 
 ```bash
 # Port forward Vault service (run in background)
@@ -191,7 +193,7 @@ kubectl port-forward -n vault svc/vault 8200:8200
 
 ### 4.3: Configure Vault CLI
 
-Now, open a **new terminal**, and run the below commands to configure the vault cli with the root token:
+Now, come back to the original terminal and run the below commands to configure the vault cli with the root token:
 
 ```bash
 export VAULT_ADDR="http://localhost:8200"
