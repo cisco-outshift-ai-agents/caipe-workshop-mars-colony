@@ -16,7 +16,8 @@ LABURL=`head -n 3 $ETIPATH/details | tail -1`
 sudo cp -f $ETIPATH/labinit/update/content/init/nginx_rag /etc/nginx/sites-enabled
 sudo cp -f $ETIPATH/labinit/update/content/init/nginx_idpbuilder /etc/nginx/sites-enabled
 sudo cp -f $ETIPATH/labinit/update/content/init/nginx_vault /etc/nginx/sites-enabled
-sudo cp -f $ETIPATH/labinit/update/content/init/nginx_coffee_agntcy /etc/nginx/sites-enabled
+sudo cp -f $ETIPATH/labinit/update/content/init/nginx_coffee_agntcy_ui /etc/nginx/sites-enabled
+sudo cp -f $ETIPATH/labinit/update/content/init/nginx_coffee_agntcy_agent /etc/nginx/sites-enabled
 
 sudo nginx -s reload
 

@@ -109,6 +109,8 @@ docker compose logs -f
 docker compose down
 ```
 
+<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Corto UI</a>
+
 ## Lungo
 
 A more advanced setup that will evolve over time as we mature components. The first release shows agents that use A2A communication via configurable transports (default: SLIM), are structured as directed LangGraphs, and include an MCP weather-aware farm that fetches live data. It also shows how to enable observability using Observe SDK.
