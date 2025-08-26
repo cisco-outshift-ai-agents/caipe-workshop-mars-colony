@@ -133,16 +133,7 @@ agent = create_react_agent(
 )
 
 # Run the agent with a user message asking about oxygen and a rover's battery
-response = agent.invoke(
-    {
-        "messages": [
-            {
-                "role": "user",
-                "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"
-            }
-        ]
-    }
-)
+response = agent.invoke({"messages": [{"role": "user", "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"}]})
 
 # Print the final AI response(s) to the user
 print("Final Response:")
