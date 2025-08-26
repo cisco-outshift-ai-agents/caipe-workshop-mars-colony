@@ -220,7 +220,7 @@ Research and write a report on mars surface, then commit it as a text file named
 ```
 
 
-**👀 Observe:** While the agent is working, in the first terminal tab, you should see the ai platform engineering supervisor agent delegate tasks to `kb-rag` and `github` agents.
+**👀 Observe:** While the agent is working, in the first terminal tab, you should see the ai platform engineering supervisor agent delegate tasks to `kb-rag` and `github` agents. Please note that this step might take a bit of time as the agents go back and forth to figure out the task.
 
 **👀 Observe:** Back in the CLI chat client, the agent should have created a report (named `%%LABNAME%%-report.txt`) about the martian surface, and commited it to the [workshop git repository](https://github.com/outshiftcaipe/mission-mars-colony).
 
@@ -241,9 +241,13 @@ Here's what happens:
 
 Run the following in one of the terminals:
 
+**➕ Open another terminal** (top-right '+' icon), and run the following command:
+
 ```bash
 docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml down
 ```
+
+Then close all the tabs that were opened for this mission.
 
 <br>
 <hr>
