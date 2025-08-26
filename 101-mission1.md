@@ -1,26 +1,27 @@
 # Mission Check 1 — Start Ignition: Download Mission and Learn the Controls
 
-<button
-  onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
-  style="
-    background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 12px 28px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin-bottom: 8px;
-    transition: background 0.2s;
-  "
-  onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
-  onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
->
-  🚀 Start Mission &mdash; 15 min Timer
-</button>
-<span id="timer1" class="timer" style="font-family: monospace; font-size: 1.2em; margin-left: 12px; color: #007cba;">15:00</span>
+<div style="display: flex; align-items: center; gap: 12px;">
+  <button
+    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    style="
+      background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+    "
+    onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
+    onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
+  >
+    🚀 Start Mission &mdash; 15 min Timer
+  </button>
+  <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #007cba;">15:00</span>
+</div>
 
 ## Clone CAIPE
 
