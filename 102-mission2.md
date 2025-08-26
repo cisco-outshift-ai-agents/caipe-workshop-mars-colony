@@ -76,29 +76,40 @@ The petstore agent can run in two different MCP (Model Control Protocol) modes, 
     <td>🔗 <strong>STDIO</strong></td>
     <td>The agent starts its own MCP server process and communicates directly through simple text commands (like a conversation through a pipe).</td>
     <td>
-      - Faster communication (no network delays)<br>
-      - Everything runs in one place<br>
-      - Simpler setup for development<br>
-      - No authentication needed
+      <ul>
+        <li>Faster communication (no network delays)</li>
+        <li>Everything runs in one place</li>
+        <li>Simpler setup for development</li>
+        <li>No authentication needed</li>
+      </ul>
     </td>
   </tr>
   <tr>
     <td>🌐 <strong>HTTP</strong></td>
     <td>The agent connects to a separate MCP server running elsewhere using web requests (like calling an API over the internet).</td>
     <td>
-      - MCP server can serve multiple agents<br>
-      - Better for production deployments<br>
-      - Can scale components independently<br>
-      - Supports authentication and security
+      <ul>
+        <li>MCP server can serve multiple agents</li>
+        <li>Better for production deployments</li>
+        <li>Can scale components independently</li>
+        <li>Supports authentication and security</li>
+      </ul>
     </td>
   </tr>
 </table>
 
 The following diagrams illustrate how the chat client connects to the petstore agent in each mode:
 
-| **STDIO Mode** | **HTTP Mode** |
-|:---------------:|:-------------:|
-| <img src="images/mission2-stdio.svg" width="300"> | <img src="images/mission2-http.svg" width="300"> |
+<table class="mode-table">
+  <tr>
+    <th style="text-align: center; width: 50%;"><strong>STDIO Mode</strong></th>
+    <th style="text-align: center; width: 50%;"><strong>HTTP Mode</strong></th>
+  </tr>
+  <tr>
+    <td style="text-align: center; width: 50%;"><img src="images/mission2-stdio.svg" width="300"></td>
+    <td style="text-align: center; width: 50%;"><img src="images/mission2-http.svg" width="300"></td>
+  </tr>
+</table>
 
 ## Step 1: Navigate to AI Platform Engineering Repository
 
@@ -107,6 +118,8 @@ cd $HOME/work/ai-platform-engineering
 ```
 
 ## Step 2: Set Up Environment Variables
+
+---
 
 ### 2.1: Copy the example environment file
 
@@ -135,6 +148,8 @@ sed -i \
 
 You can also check the variables have been set correctly in the `.env` file by going to the IDE tab on the top right of this page (`</>`) and locating the file under `ai-platform-engineering/` directory.
 
+---
+
 ## Step 3: Run the Petstore Agent
 
 You can run the petstore agent in two different MCP (Model Control Protocol) modes. For this workshop, we will use the HTTP mode but you can also use the STDIO mode if you prefer (see [[Optional] 3.2: Using MCP STDIO Mode](#optional-32-using-mcp-stdio-mode)).
@@ -143,14 +158,14 @@ You can run the petstore agent in two different MCP (Model Control Protocol) mod
 
 HTTP mode enables network-based communication with remote MCP servers, useful for production deployments or when the MCP server is running separately. In this mode, the agent connects to a separately hosted internal MCP server running at https://petstore.outshift.io/mcp, which then handles the Petstore API operations.
 
-#### 3.1.1: Set the Petstore API key
+**3.1.1: Set the Petstore API key**
 
 ```bash
 PETSTORE_MCP_API_KEY=$(echo -n 'caiperocks' | sha256sum | cut -d' ' -f1) && \
 sed -i "s|^PETSTORE_MCP_API_KEY=.*|PETSTORE_MCP_API_KEY=${PETSTORE_MCP_API_KEY}|" .env
 ```
 
-#### 3.1.2: Run the petstore agent
+**3.1.2: Run the petstore agent**
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission2.yaml up
@@ -235,7 +250,9 @@ Wait for the agent's welcome message with example skills and CLI prompt `🧑�
 
 ## Step 6: Interact with the Petstore Agent
 
-### Discovery Commands
+---
+
+### 6.1: Discovery Commands
 
 Try these example interactions:
 
@@ -247,7 +264,11 @@ What actions can you perform?
 Show me what you can do with pets
 ```
 
-### Pet Management Examples
+### 6.2: Pet Management Examples
+
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>ℹ️ Info:</strong> HTTP mode persists data so you can try adding pets and then retrieve them. However, STDIO mode uses a demo sandbox where data is not persisted, so create/update/delete operations may not reflect in subsequent reads.
+</div>
 
 ```bash
 Find all available pets in the store
@@ -265,11 +286,7 @@ Get a summary of pets by status
 I want to add a new pet to the store
 ```
 
-<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
-<strong>⚠️ Warning:</strong> If you're using the STDIO mode, the Petstore API used here (<code>https://petstore.swagger.io/v2</code>) is a public demo sandbox. Create/update/delete requests may return 200 OK but data is not persisted, so subsequent reads may not reflect your changes.
-</div>
-
-### Store Operations
+### 6.3: Store Operations
 
 ```bash
 Check store inventory levels
@@ -286,7 +303,7 @@ Show me pets with 'rain proof' tag
 - ✅ **Interactive guidance** - Agent will ask for required details when needed e.g. ask to add a new pet and it will ask for required details like name, category, status, etc.
 - ✅ **Rich summaries** - Shows counts and statistics without overwhelming data
 
-## Teardown that agent and chat client
+## Step 7: Teardown that agent and chat client
 
 <div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>⚠️ Important:</strong> Please teardown the agent and chat client to free up the ports for the next mission.
@@ -300,6 +317,7 @@ docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mis
 
 ## Mission Checks
 
+---
 
 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
   <h4 style="margin-top: 0; color: #007cba;">🚀 Colony Mission Checklist</h4>
@@ -351,6 +369,8 @@ docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mis
 </div>
 
 
+---
+
 ## Troubleshooting
 
 Here are some common issues you may encounter and how to fix them.
@@ -383,11 +403,11 @@ make show-env
 make run-rebuild
 ```
 
-## [Optional] Build and run the petstore agent locally
+## [Optional] Step 3: Build and run the petstore agent locally
 
 ---
 
-### Set up environment variables
+### 3.1: Set up environment variables
 
 If you are using your local machine, first get the `AZURE_OPENAI_API_KEY` from the lab environment:
 
@@ -409,7 +429,7 @@ sed -i \
   .env
 ```
 
-### Build and run the petstore agent locally
+### 3.2: Build and run the petstore agent locally
 
 You can also build and run the petstore agent locally:
 
