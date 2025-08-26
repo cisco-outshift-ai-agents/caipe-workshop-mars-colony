@@ -18,7 +18,7 @@
   onmouseover="this.style.background='linear-gradient(90deg, #28a745 0%, #007cba 100%)'"
   onmouseout="this.style.background='linear-gradient(90deg, #007cba 0%, #28a745 100%)'"
 >
-  🚀 Start Mission 1 &mdash; 15 min Timer
+  🚀 Start Mission &mdash; 15 min Timer
 </button>
 <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.2em; margin-left: 12px; color: #007cba;">15:00</span>
 
