@@ -48,7 +48,7 @@ cd $HOME/work/ai-platform-engineering
 Copy over the mission4 environment variables file:
 
 ```bash
-cp .env.mission4 .env
+cp $HOME/.env_vars .env
 ```
 
 Start the Docker Compose stack that includes both RAG and Git agents:
@@ -97,7 +97,7 @@ The docker-compose stack should start the following services:
 - `agent-github-p2p` : The git agent
 - `kb-rag-agent` : The RAG agent
 - `kb-rag-server` : The RAG server
-- `kb-rag-web`: The RAG web interface
+- `kb-rag-web`: The RAG web UI
 - `milvus-standalone`: The Milvus vector database
 - `etcd`: Needed for Milvus
 - `minio`: Needed for Milvus
@@ -105,13 +105,16 @@ The docker-compose stack should start the following services:
 
 **🫸 Wait:** Wait until this process is completed.
 
-You can verify the supervisor agent is healthy by checking the health endpoint.
+Once you see the logs above, you can verify the supervisor agent is healthy by checking the health endpoint.
 
 **➕ Open another terminal** (top-right '+' icon), and run the following command:
 
 ```bash
 curl http://localhost:8000/.well-known/agent.json | jq
 ```
+
+**👀 Observe:** The response should be a JSON object (the A2A agent card).
+
 
 <br>
 <hr>
@@ -125,7 +128,7 @@ for the RAG server.
 
 Once the RAG Web UI is open:
 
-1. Copy the URL for Mars wiki page (https://en.wikipedia.org/wiki/Mars) and paste it in `Ingest URL` field
+1. Copy the URL for Mars wiki page `https://en.wikipedia.org/wiki/Mars` and paste it in `Ingest URL` field
 2. Click `Ingest` button
 3. **🫸 Wait:** Wait for the ingestion to complete
 
@@ -168,12 +171,13 @@ We will now use the UI to query the RAG system and verify it is working.
 ## Step 4: Using the RAG Agent
 <br>
 
+**➕ Open another terminal** (top-right '+' icon), and run the following command:
+
 ```bash
 docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
 ```
 
 ## Note: When prompted for optional token, press enter.
-
 ![chatcli token](images/chat-cli-token.png)
 
 This should open a CLI chat client. You can now interact with the supervisor agent.
@@ -215,7 +219,10 @@ In the CLI chat client, ask the agent:
 Research and write a report on mars surface, then commit it as a text file named '%%LABNAME%%-report.txt' to my github repository https://github.com/outshiftcaipe/mission-mars-colony
 ```
 
-**👀 Observe:** The agent should create a report (named `%%LABNAME%%-report.txt`), and commit it to the [workshop git repository](https://github.com/outshiftcaipe/mission-mars-colony).
+
+**👀 Observe:** While the agent is working, in the first terminal tab, you should see the ai platform engineering supervisor agent delegate tasks to `kb-rag` and `github` agents.
+
+**👀 Observe:** Back in the CLI chat client, the agent should have created a report (named `%%LABNAME%%-report.txt`) about the martian surface, and commited it to the [workshop git repository](https://github.com/outshiftcaipe/mission-mars-colony).
 
 ### Explanation:
 
@@ -272,14 +279,14 @@ Here's what happens:
 ## 📖 Further Reading
 <br>
 
+### RAG Agent
+
+More information on the RAG agent can be found [here](https://github.com/cnoe-io/ai-platform-engineering/tree/main/ai_platform_engineering/knowledge_bases/rag).
+
 ### Graph RAG
 
 The AI platform engineering repository also includes **Graph RAG**, which uses Neo4J to create knowledge graphs from structured data (K8s objects, AWS resources).
 See the [Graph RAG documentation](https://cnoe-io.github.io/ai-platform-engineering/knowledge_bases/graph_rag) for more details, and how to run it in your local environment.
-
-### RAG Agent
-
-More information on the RAG agent can be found [here](https://github.com/cnoe-io/ai-platform-engineering/tree/main/ai_platform_engineering/knowledge_bases/rag).
 
 ### Unified Knowledge Base
 
