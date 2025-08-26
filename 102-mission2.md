@@ -152,6 +152,12 @@ You can also check the variables have been set correctly in the `.env` file by g
 
 ## Step 3: Run the Petstore Agent
 
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>💡 Mode Selection Tip:</strong><br>
+- Use <strong>STDIO mode</strong> for local development and testing with minimal overhead<br>
+- Use <strong>HTTP mode</strong> for production environments or when you need to connect to remotely hosted MCP servers
+</div>
+
 You can run the petstore agent in two different MCP (Model Control Protocol) modes. For this workshop, we will use the HTTP mode but you can also use the STDIO mode if you prefer (see [[Optional] 3.2: Using MCP STDIO Mode](#optional-32-using-mcp-stdio-mode)).
 
 ### 3.1: Using Remote MCP Streamable HTTP Mode
@@ -179,6 +185,8 @@ IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission
 - 📋 Shows logs directly in terminal
 - 🚀 **Advantage**: Supports remote MCP servers, useful for production deployments, better separation of concerns
 
+---
+
 ### [Optional] 3.2: Using MCP STDIO Mode
 
 STDIO mode runs the MCP server embedded within the agent container, using standard input/output streams for internal communication. The embedded MCP server then connects to the external Petstore API.
@@ -195,7 +203,9 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 - 📋 Shows logs directly in terminal
 - 🚀 **Advantage**: Lower latency, direct process communication
 
-### 3.2: Expected Output (Both Modes)
+---
+
+### 3.3: Expected Output (Both Modes)
 
 Regardless of which mode you choose, you should see the following output:
 
@@ -217,11 +227,7 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 <strong>🎯 Success indicator:</strong> Ensure you wait until you see the message: <code>Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)</code> regardless of the mode you choose.
 </div>
 
-<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
-<strong>💡 Mode Selection Tip:</strong><br>
-- Use <strong>STDIO mode</strong> for local development and testing with minimal overhead<br>
-- Use <strong>HTTP mode</strong> for production environments or when you need to connect to remotely hosted MCP servers
-</div>
+
 
 ## Step 4: Test the Petstore Agent
 

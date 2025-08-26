@@ -28,14 +28,16 @@
 In this mission, you'll run a **multi-agent system** that coordinates critical Mars colony operations across multiple domains:
 
 - **🐾 Petstore Agent**: Manages colony biological companions from Mission 2 - essential for morale and psychological well-being during long Mars deployments
-- **🌤️ Weather Agent**: Monitors Earth weather conditions to optimize interplanetary trade routes and supply deliveries - knowing Earth's weather patterns helps predict launch windows and cargo capacity for supply missions
+- **🌤️ Weather Agent**: Monitors weather conditions to optimize interplanetary trade routes and supply deliveries - knowing weather patterns helps predict launch windows and cargo capacity for supply missions
 - **🧠 Supervisor Agent**: Acts as the colony's central command coordinator, orchestrating complex operations that require data from multiple specialized systems
 
 This demonstrates **agent-to-agent communication** where the supervisor can intelligently route requests to specialized agents and combine their responses.
 
 ## Step 1: Configure Multi-Agent Environment
 
-**💡 Tip:** You can also click the IDE button on the top right of this page to open the `.env` file in the IDE and edit it that way. Edit lines 1-18 with the following agent configuration:
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>💡 Tip:</strong> You can also click the IDE button on the top right of this page to open the `.env` file in the IDE and edit it that way. Edit lines 1-18 with the following agent configuration:
+</div>
 
 Run the below command to update the `.env` file with the following agent configuration:
 
@@ -54,22 +56,37 @@ The dynamic monitoring is performed in the background and will check if the pets
 
 ## Step 2: Start Multi-Agent System
 
-### Launch the multi-agent stack with Docker Compose:
+---
+
+### 2.1: Launch the multi-agent stack with Docker Compose:
 
 For this mission, we will use the HTTP mode. You can also try out the STDIO mode afterward if you prefer.
 
-#### HTTP mode
+**2.1.1: HTTP mode**
+
+HTTP mode will connect petstore and weather agents to connect with their respective remote MCP servers that are hosted by Outshift at:
+
+* `https://petstore.outshift.io/mcp`: mcp server containing data for the available pet companions from Earth
+
+* `https://weather.outshift.io/mcp`: mcp server containing mock weather data for Mars
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
 ```
-#### [Optional] STDIO mode
+
+**2.1.2: [Optional] STDIO mode**
+
+STDIO mode will connect petstore and weather agents to run the MCP server within the agents themselves.
+
+* `http://localhost:8009/mcp`: mcp server containing data for the available pets retrieved from demo swagger API `https://petstore.swagger.io/v2`
+
+* `http://localhost:8010/mcp`: mcp server that queries real weather data for Earth from `https://api.open-meteo.com/v1`
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.mission3.yaml --profile=p2p up
 ```
 
-### What happens:
+**2.1.3: What happens (Both modes)**
 
 - ⏬ Downloads the latest supervisor, petstore and weather agent images from the registry
 - 🌐 Exposes the supervisor agent on `http://localhost:8000`
@@ -78,12 +95,20 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 - 🔗 Uses peer-to-peer (p2p) mode to connect the supervisor agent to the petstore and weather agents
 - 📋 Shows logs directly in terminal for all three agents
 
-### Expected output:
+**2.1.4: Expected output:**
+
 Look out for the following logs for each agent:
 
-**💡 Tip:** You can also see the logs for a single agent by running `docker logs -f <platform-engineer-p2p|agent-weather-p2p|agent-petstore-p2p>` on a new terminal.
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>💡 Tip:</strong> You can also see the logs for a single agent by running <code>docker logs -f &lt;platform-engineer-p2p|agent-weather-p2p|agent-petstore-p2p&gt;</code> on a new terminal.
+</div>
 
-#### Petstore agent logs:
+**Petstore agent logs:**
+
+```bash
+docker logs -f agent-petstore-p2p
+```
+
 ```
 ...
 agent-petstore-p2p     | ===================================
@@ -98,8 +123,14 @@ agent-petstore-p2p     | INFO:     Application startup complete.
 agent-petstore-p2p     | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-#### Weather agent logs:
+**Weather agent logs:**
+
+```bash
+docker logs -f agent-weather-p2p
 ```
+
+```
+...
 agent-weather-p2p      | ===================================
 agent-weather-p2p      |        WEATHER AGENT CONFIG
 agent-weather-p2p      | ===================================
@@ -112,8 +143,14 @@ agent-weather-p2p      | INFO:     Application startup complete.
 agent-weather-p2p      | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-#### Supervisor agent logs:
+**Supervisor agent logs:**
+
+```bash
+docker logs -f platform-engineer-p2p
 ```
+
+```
+...
 platform-engineer-p2p  | 2025-08-21 13:36:04,058 - INFO - Dynamic monitoring enabled for 2 agents
 platform-engineer-p2p  | 2025-08-21 13:36:04,062 - INFO - [LLM] AzureOpenAI deployment=gpt-4o api_version=2025-03-01-preview
 platform-engineer-p2p  | 2025-08-21 13:36:04,809 - INFO - Graph updated with 2 agent tools
@@ -124,23 +161,29 @@ platform-engineer-p2p  | INFO:     Application startup complete.
 platform-engineer-p2p  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-**🎯 Success indicator:** Wait until you see all three agents running and the supervisor reports successful connectivity checks as shown in the logs above.
+<div style="border: 1px solid #28a745; border-left: 4px solid #28a745; background-color: #f8fff9; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>🎯 Success indicator:</strong> Wait until you see all three agents running and the supervisor reports successful connectivity checks as shown in the logs above.
+</div>
 
 ## Step 3: Test the agent health
 
+---
+
 We can now check each agent card to see what capabilities are available. Open a new terminal and run the following command to test the agent health:
 
-### Weather agent card:
+### 3.1: Weather agent card
+
 ```bash
 curl http://localhost:8009/.well-known/agent.json | jq
 ```
 
-### Petstore agent card:
+### 3.2: Petstore agent card
+
 ```bash
 curl http://localhost:8010/.well-known/agent.json | jq
 ```
 
-### Supervisor agent card:
+### 3.3: Supervisor agent card
 
 This is the supervisor agent card. It will show the combined capabilities of the petstore and weather agents.
 
@@ -152,7 +195,9 @@ curl http://localhost:8000/.well-known/agent.json | jq
 
 Once all agents are running, start the chat client:
 
-**💡 Tip:**  When askes to `💬 Enter token (optional): `, press enter.
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>💡 Tip:</strong> When asked to <code>💬 Enter token (optional): </code>, press enter.
+</div>
 
 
 ```bash
@@ -163,7 +208,9 @@ The client will connect to the supervisor agent and show available capabilities 
 
 ## Step 5: Test Multi-Agent Interactions
 
-### Discovery Commands
+---
+
+### 5.1: Discovery Commands
 
 Try these to explore the multi-agent capabilities:
 
@@ -175,7 +222,7 @@ What agents are available?
 What can you help me with?
 ```
 
-### Weather-Specific Commands
+### 5.2: Weather-Specific Commands
 
 ```bash
 What's the current weather in San Francisco?
@@ -185,7 +232,7 @@ What's the current weather in San Francisco?
 Give me a 5-day forecast for London
 ```
 
-### Petstore Commands (from Mission 2)
+### 5.3: Petstore Commands (from Mission 2)
 
 ```bash
 Add a new dog named Max
@@ -195,7 +242,7 @@ Add a new dog named Max
 Show me pets with 'cold' tags
 ```
 
-### Cross-Agent Scenarios
+### 5.4: Cross-Agent Scenarios
 
 Test scenarios that require both agents:
 
@@ -211,15 +258,33 @@ Get me weather for New York and find me all cats that are available for adoption
 If it's going to rain tomorrow in Tokyo, should I delay outdoor pet deliveries?
 ```
 
-## Bonus
+## Step 6: [Optional] Bonus
 
-**Run this with AGNTCY SLIM Gateway in the middle**
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>🌟 Bonus Challenge:</strong> Run this with AGNTCY SLIM Gateway in the middle
+</div>
 
-```
+```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=slim up
 ```
 
-## Mission Checks
+## Step 7: Teardown Multi-Agent System
+
+<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>⚠️ Important:</strong> Please teardown the multi-agent system to free up the ports for the next mission.
+</div>
+
+You can stop all agents by pressing `Ctrl+C` (or `Cmd+C` on Mac) in the terminal. Or if you have already closed the terminal, ensure you run the specific docker compose down command:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission3.yaml --profile=p2p down
+```
+
+**Note**: Use the same `--profile` flag that you used when starting the agents.
+
+## Step 8: Mission Checks
+
+---
 
 <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #007cba;">
   <h4 style="margin-top: 0; color: #007cba;">🚀 Mars Colony Multi-Agent Mission Checklist</h4>
@@ -253,4 +318,10 @@ IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
     <strong>Bonus: Run with AGNTCY SLIM Gateway</strong>
   </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong>Teardown: All agents are stopped</strong>
+  </label>
+
 </div>
