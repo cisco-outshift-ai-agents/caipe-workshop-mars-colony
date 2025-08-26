@@ -31,6 +31,12 @@ In this mission, you'll run a **multi-agent system** that coordinates critical M
 - **🌤️ Weather Agent**: Monitors weather conditions to optimize interplanetary trade routes and supply deliveries - knowing weather patterns helps predict launch windows and cargo capacity for supply missions
 - **🧠 Supervisor Agent**: Acts as the colony's central command coordinator, orchestrating complex operations that require data from multiple specialized systems
 
+### Architecture Overview
+
+<div style="text-align: center;">
+<img src="images/mission3.svg" width="400" alt="Multi-Agent System Architecture">
+</div>
+
 This demonstrates **agent-to-agent communication** where the supervisor can intelligently route requests to specialized agents and combine their responses.
 
 ## Step 1: Configure Multi-Agent Environment
@@ -38,6 +44,12 @@ This demonstrates **agent-to-agent communication** where the supervisor can inte
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>💡 Tip:</strong> You can also click the IDE button on the top right of this page to open the `.env` file in the IDE and edit it that way. Edit lines 1-18 with the following agent configuration:
 </div>
+
+First, ensure you are in the correct directory:
+
+```bash
+cd $HOME/work/ai-platform-engineering
+```
 
 Run the below command to update the `.env` file with the following agent configuration:
 
@@ -97,16 +109,12 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 
 **2.1.4: Expected output:**
 
-Look out for the following logs for each agent:
-
-<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
-<strong>💡 Tip:</strong> You can also see the logs for a single agent by running <code>docker logs -f &lt;platform-engineer-p2p|agent-weather-p2p|agent-petstore-p2p&gt;</code> on a new terminal.
-</div>
+Look out for the following logs for each agent in a new terminal:
 
 **Petstore agent logs:**
 
 ```bash
-docker logs -f agent-petstore-p2p
+docker logs agent-petstore-p2p
 ```
 
 ```
@@ -126,7 +134,7 @@ agent-petstore-p2p     | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press
 **Weather agent logs:**
 
 ```bash
-docker logs -f agent-weather-p2p
+docker logs agent-weather-p2p
 ```
 
 ```
@@ -146,7 +154,7 @@ agent-weather-p2p      | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press
 **Supervisor agent logs:**
 
 ```bash
-docker logs -f platform-engineer-p2p
+docker logs platform-engineer-p2p
 ```
 
 ```
