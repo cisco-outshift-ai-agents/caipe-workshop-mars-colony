@@ -87,7 +87,7 @@ Here’s a polished version of your text with improved flow and consistency:
 - **Mission Check 4 — Reconnaissance & Reporting: Knowledge Base RAG and Reporting** 📚🧠
     - Integrate the Retrieval Augmented Generation Agent.
     - Launch the **Knowledge Base RAG system** 🗂️, ingest docs, and query them. 🔍
-    - Use the **GitHub + Work Tracking Agent** 🐙📋 to write a combined report from Petstore, Weather, and RAG. 📨
+    - Use the **RAG + GitHub Agent** 🐙📋 to write a report and commit to Git repository. 📨
 
 - **Mission Check 5 — Assemble Full CAIPE with idpbuilder** 🛠️📦
     - Package the full CAIPE stack into reproducible, deployable bundles. 🎁
