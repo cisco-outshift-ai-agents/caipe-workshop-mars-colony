@@ -64,7 +64,11 @@ idpbuilder create \
 
 Can Access ArgoCD at https://cnoe.localtest.me:8443/argocd
 Username: admin
-Password can be retrieved by running: idpbuilder get secrets -p argocd
+Password can be retrieved by running:
+
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d; echo
+```
 ```
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
@@ -148,7 +152,7 @@ Once the cluster is created, IDPBuilder outputs the ArgoCD URL for monitoring yo
 First, extract admin credentials for the ArgoCD UI:
 
 ```bash
-idpbuilder get secrets -p argocd
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d; echo
 ```
 
 ### 3.2: Access ArgoCD to Monitor Platform Deployment
@@ -201,6 +205,7 @@ export VAULT_TOKEN=$(kubectl get secret -n vault vault-root-token -o jsonpath='{
 vault login "$VAULT_TOKEN"
 ```
 
+<a id="step-4-4"></a>
 ### 4.4: Verify Vault CLI is working and check existing secrets
 
 Run below command to list existing secret paths:
@@ -236,7 +241,15 @@ vault kv put secret/ai-platform-engineering/global \
   AZURE_OPENAI_API_KEY="${AZURE_OPENAI_API_KEY}" \
   AZURE_OPENAI_ENDPOINT="${AZURE_OPENAI_ENDPOINT}" \
   AZURE_OPENAI_DEPLOYMENT="${AZURE_OPENAI_DEPLOYMENT}" \
-  AZURE_OPENAI_API_VERSION="${AZURE_OPENAI_API_VERSION}"
+  AZURE_OPENAI_API_VERSION="${AZURE_OPENAI_API_VERSION}" \
+  AWS_ACCESS_KEY_ID="" \
+  AWS_SECRET_ACCESS_KEY="" \
+  AWS_REGION="" \
+  AWS_BEDROCK_MODEL_ID="" \
+  AWS_BEDROCK_PROVIDER="" \
+  OPENAI_API_KEY="" \
+  OPENAI_ENDPOINT="" \
+  OPENAI_MODEL_NAME=""
 ```
 
 and now check this secret has been correctly stored in vault:
@@ -251,7 +264,7 @@ vault kv get secret/ai-platform-engineering/global
 
 ### 4.6: Configure Agent-Specific Secrets
 
-As you saw in [Step 4.4](#44-verify-vault-cli-is-working-and-check-existing-secrets), we have several sub-agents configured to work in this platform. For this workshop, we will only use a subset of the agents, but if you have personal credentials for other agents, feel free to populate the secrets for those agents as well.
+As you saw in [Step 4.4](#step-4-4), we have several sub-agents configured to work in this platform. For this workshop, we will only use a subset of the agents, but if you have personal credentials for other agents, feel free to populate the secrets for those agents as well.
 
 **4.5.1: GitHub Agent**
 
@@ -279,11 +292,17 @@ kubectl port-forward -n argocd svc/argocd-server 8080:80
 Then now we will populate:
 
 ```bash
-export ARGOCD_TOKEN=$(idpbuilder get secrets -p argocd | grep ADMIN_PASSWORD | cut -d'=' -f2)
+export ARGOCD_TOKEN=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d)
 vault kv put secret/ai-platform-engineering/argocd-secret \
   ARGOCD_API_URL="http://localhost:8080" \
   ARGOCD_VERIFY_SSL="false" \
   ARGOCD_TOKEN="${ARGOCD_TOKEN}"
+```
+
+Verify the argocd-secret has been correctly stored in vault:
+
+```bash
+vault kv get secret/ai-platform-engineering/argocd-secret
 ```
 
 **4.5.3: [Optional] Configure other agents**
@@ -309,6 +328,12 @@ First, we need to force the secret refresh across the colony:
 
 ```bash
 kubectl delete secret --all -n ai-platform-engineering
+```
+
+Once deleted, external secrets manager will automatically re-create the secrets with the latest values.
+
+```bash
+kubectl get secrets -n ai-platform-engineering
 ```
 
 Then, we need to restart the agent pods to pick up the new secrets:
