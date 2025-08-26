@@ -108,21 +108,24 @@ cat > $HOME/work/simple_react_agent.py << 'EOF'
 from langgraph.prebuilt import create_react_agent  # Import helper to build a ReAct agent
 from langchain_openai import AzureChatOpenAI       # Import Azure OpenAI LLM wrapper
 import os
+import random
 
 # Tool 1: Simulate checking oxygen level in the Mars habitat
 def check_oxygen_level() -> str:
     """Returns the current oxygen level in the Mars habitat."""
-    return "Oxygen level is optimal at 21%."
+    oxygen_level = round(random.uniform(19.5, 22.0), 1)
+    return f"Oxygen level is optimal at {oxygen_level}%."
 
 # Tool 2: Simulate checking a rover's battery status
 def rover_battery_status(rover_name: str) -> str:
     """Returns the battery status for a given Mars rover."""
-    return f"Rover {rover_name} battery at 87% and functioning normally."
+    battery_percent = random.randint(60, 99)
+    return f"Rover {rover_name} battery at {battery_percent}% and functioning normally."
 
 # Initialize the Azure OpenAI LLM using environment variables for deployment and API version
 llm = AzureChatOpenAI(
-    azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),      # e.g., "gpt-35-turbo"
-    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")    # e.g., "2023-05-15"
+    azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),      # e.g., "gpt-4o"
+    openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")    # e.g., "2025-03-01-preview"
 )
 
 # Create a ReAct agent with the LLM and the two tools above
