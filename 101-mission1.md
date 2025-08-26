@@ -262,7 +262,7 @@ import os
 async def main():
     # Create server parameters for stdio connection
     server_params = StdioServerParameters(
-        command="python",
+        command="python3",
         # Make sure to update to the full absolute path to your simple_mars_mcp_server.py file
         args=["$HOME/work/simple_mars_mcp_server.py"],
     )
@@ -302,6 +302,10 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 EOF
+```
+
+```bash
+ls -l
 ```
 
 ```bash
