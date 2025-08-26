@@ -113,13 +113,13 @@ import random
 # Tool 1: Simulate checking oxygen level in the Mars habitat
 def check_oxygen_level() -> str:
     """Returns the current oxygen level in the Mars habitat."""
-    oxygen_level = round(random.uniform(19.5, 22.0), 1)
+    oxygen_level = round(random.uniform(18.0, 23.0), 1)
     return f"Oxygen level is optimal at {oxygen_level}%."
 
 # Tool 2: Simulate checking a rover's battery status
 def rover_battery_status(rover_name: str) -> str:
     """Returns the battery status for a given Mars rover."""
-    battery_percent = random.randint(60, 99)
+    battery_percent = random.randint(50, 99)
     return f"Rover {rover_name} battery at {battery_percent}% and functioning normally."
 
 # Initialize the Azure OpenAI LLM using environment variables for deployment and API version
