@@ -348,25 +348,25 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> ⭐ Star the <a href="https://github.com/cnoe-io/ai-platform-engineering" target="_blank">CAIPE GitHub repository</a></strong>
+    <strong> ⭐ Starred the <a href="https://github.com/cnoe-io/ai-platform-engineering" target="_blank">CAIPE GitHub repository</a></strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> 📖 Check out the <a href="https://cnoe-io.github.io/ai-platform-engineering/" target="_blank">CAIPE documentation</a></strong>
+    <strong> 📖 Checked out the <a href="https://cnoe-io.github.io/ai-platform-engineering/" target="_blank">CAIPE documentation</a></strong>
   </label>
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> 🤖 Try the <a href="#optional-try-it-yourself-create-a-simple-react-agent">Simple ReAct Agent example</a> in your environment</strong>
-  </label>
-
-  <label style="display: block; margin: 10px 0; cursor: pointer;">
-    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> 🔗 Try the Simple ReAct Agent with MCP Server integration (see docs/examples)</strong>
+    <strong> 🤖 Tried the Simple ReAct Agent example in your environment</strong>
   </label>
 
   <label style="display: block; margin: 10px 0; cursor: pointer;">
     <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
-    <strong> 🌐 Visit the <a href="https://agntcy.org/" target="_blank">AGNTCY website</a> and explore <a href="https://github.com/agntcy/coffeeAgntcy" target="_blank">Coffee Agntcy</a></strong>
+    <strong> 🔗 Tried the Simple ReAct Agent with MCP Server integration (see docs/examples)</strong>
+  </label>
+
+  <label style="display: block; margin: 10px 0; cursor: pointer;">
+    <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+    <strong> 🌐 Visited the <a href="https://agntcy.org/" target="_blank">AGNTCY website</a> and explored <a href="https://github.com/agntcy/coffeeAgntcy" target="_blank">Coffee Agntcy</a></strong>
   </label>
 </div>
