@@ -69,7 +69,6 @@ Password can be retrieved by running:
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d; echo
 ```
-```
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
   <strong>🚨 Massive Warning for Lab Environment Users</strong>
@@ -343,6 +342,35 @@ kubectl delete pod --all -n ai-platform-engineering
 ```
 
 ## Step 4: Access Colony Developer Portal (Backstage)
+
+
+### Lab reset: Reinitialize Postgres and Backstage
+
+Due to the lab environment and snapshotting, we'll reset Postgres data and restart Backstage so it re-initializes with the password in `backstage-env-vars`:
+
+```bash
+# Namespace
+NS=backstage
+
+# Scale Postgres down
+kubectl -n $NS scale sts/postgresql --replicas=0
+
+# Capture PV name and delete PVC (wipes DB data)
+PV=$(kubectl -n $NS get pvc data-postgresql-0 -o jsonpath='{.spec.volumeName}')
+kubectl -n $NS delete pvc data-postgresql-0
+
+# If PV reclaim policy is Retain, delete the PV as well
+kubectl get pv "$PV" -o jsonpath='{.spec.persistentVolumeReclaimPolicy}'; echo
+kubectl delete pv "$PV" || true
+
+# Scale Postgres up (re-initializes with POSTGRES_* from backstage-env-vars)
+kubectl -n $NS scale sts/postgresql --replicas=1
+kubectl -n $NS rollout status sts/postgresql
+
+# Restart Backstage to connect to fresh DB
+kubectl -n $NS rollout restart deploy/backstage
+kubectl -n $NS rollout status deploy/backstage
+```
 
 ### Get Colony Portal Credentials
 
