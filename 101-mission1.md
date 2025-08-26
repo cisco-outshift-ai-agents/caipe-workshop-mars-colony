@@ -342,9 +342,14 @@ The AGNTCY project provides the complete infrastructure stack for agent collabor
 * [Agent Directory](https://docs.agntcy.org/dir/overview/)
   * [OASF Record](https://docs.agntcy.org/oasf/open-agentic-schema-framework/)
 * [SLIM](https://docs.agntcy.org/messaging/slim-core/)
-* [Agent Identity](https://docs.agntcy.org/messaging/slim-core/)
+* [Agent Identity](https://identity-docs.outshift.com/docs/intro/)
 * [Agntcy App SDK](https://github.com/agntcy/app-sdk)
 * [coffeeAgntcy](https://github.com/agntcy/coffeeAgntcy/tree/main)
+
+**Outshift Hosted services:**
+
+- **Agent Directory** [https://agent-directory.outshift.com/explore](https://agent-directory.outshift.com/explore)
+- **Agent Identity** [https://agent-identity.outshift.com/dashboard](https://agent-identity.outshift.com/dashboard)
 
 **_Note: SLIM will be demo'ed in one of the missions. Additional bonus AGNTCY mission is available to try offline for a deeper dive into AGNTCY._**
 
