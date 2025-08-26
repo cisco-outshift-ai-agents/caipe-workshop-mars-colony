@@ -343,6 +343,7 @@ kubectl delete pod --all -n ai-platform-engineering
 
 ## Step 4: Access Colony Developer Portal (Backstage)
 
+---
 
 ### Lab reset: Reinitialize Postgres and Backstage
 
