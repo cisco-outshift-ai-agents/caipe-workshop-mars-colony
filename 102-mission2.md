@@ -1,18 +1,3 @@
-<style>
-.callout {
-  border: 1px solid;
-  border-left: 4px solid;
-  padding: 16px;
-  margin: 16px 0;
-  border-radius: 4px;
-}
-.success { border-color: #28a745; background-color: #f8fff9; }
-.info { border-color: #007cba; background-color: #f0f8ff; }
-.warning { border-color: #ffc107; background-color: #fffef0; }
-.tip { border-color: #17a2b8; background-color: #f0ffff; }
-.callout strong { color: inherit; }
-</style>
-
 # Mission Check 2 — Run Standalone Petstore Agent
 
 <div style="display: flex; align-items: center; gap: 12px;">
@@ -70,6 +55,15 @@ The petstore agent can run in two different MCP (Model Control Protocol) modes, 
 .mode-table th {
   font-weight: bold;
 }
+.mode-table th:nth-child(1), .mode-table td:nth-child(1) {
+  width: 20%;
+}
+.mode-table th:nth-child(2), .mode-table td:nth-child(2) {
+  width: 40%;
+}
+.mode-table th:nth-child(3), .mode-table td:nth-child(3) {
+  width: 40%;
+}
 </style>
 
 <table class="mode-table">
@@ -114,15 +108,15 @@ cd $HOME/work/ai-platform-engineering
 
 ## Step 2: Set Up Environment Variables
 
-### Copy the example environment file:
+### 2.1: Copy the example environment file
 
 ```bash
 cp .env.example .env
 ```
 
-### Edit the environment file with your LLM credentials:
+### 2.2: Edit the environment file with your LLM credentials
 
-<div class="callout info">
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>📝 NOTE:</strong> If you prefer to build and run the agent locally, refer to the step at the bottom of this page: <a href="#optional-build-and-run-the-petstore-agent-locally">Optional: Build and run the petstore agent locally</a>.
 </div>
 
@@ -149,14 +143,14 @@ You can run the petstore agent in two different MCP (Model Control Protocol) mod
 
 HTTP mode enables network-based communication with remote MCP servers, useful for production deployments or when the MCP server is running separately. In this mode, the agent connects to a separately hosted internal MCP server running at https://petstore.outshift.io/mcp, which then handles the Petstore API operations.
 
-#### Set the Petstore API key
+#### 3.1.1: Set the Petstore API key
 
 ```bash
 PETSTORE_MCP_API_KEY=$(echo -n 'caiperocks' | sha256sum | cut -d' ' -f1) && \
 sed -i "s|^PETSTORE_MCP_API_KEY=.*|PETSTORE_MCP_API_KEY=${PETSTORE_MCP_API_KEY}|" .env
 ```
 
-#### Run the petstore agent
+#### 3.1.2: Run the petstore agent
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission2.yaml up
@@ -186,7 +180,7 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 - 📋 Shows logs directly in terminal
 - 🚀 **Advantage**: Lower latency, direct process communication
 
-### Expected Output (Both Modes)
+### 3.2: Expected Output (Both Modes)
 
 Regardless of which mode you choose, you should see the following output:
 
@@ -204,11 +198,11 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-<div class="callout success">
+<div style="border: 1px solid #28a745; border-left: 4px solid #28a745; background-color: #f8fff9; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>🎯 Success indicator:</strong> Ensure you wait until you see the message: <code>Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)</code> regardless of the mode you choose.
 </div>
 
-<div class="callout tip">
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>💡 Mode Selection Tip:</strong><br>
 - Use <strong>STDIO mode</strong> for local development and testing with minimal overhead<br>
 - Use <strong>HTTP mode</strong> for production environments or when you need to connect to remotely hosted MCP servers
@@ -216,21 +210,18 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
 ## Step 4: Test the Petstore Agent
 
-### Test the agent health
-
-Open a new terminal and run the following command to test the agent health:
+Open a new terminal and run the following command to test the agent health. You should see the agent card with petstore capabilities. This includes the agent's name, description, and capabilities including example prompts that you can use to test the agent.
 
 ```bash
 curl http://localhost:8000/.well-known/agent.json | jq
 ```
 
-You should see the agent card with petstore capabilities. This includes the agent's name, description, and capabilities including example prompts that you can use to test the agent.
 
 ## Step 5: Connect Chat Client
 
 Once you confirm the agent is running, start the chat client:
 
-<div class="callout tip">
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>💡 Tip:</strong> When asked to <code>💬 Enter token (optional): </code>, press enter.
 </div>
 
@@ -274,7 +265,7 @@ Get a summary of pets by status
 I want to add a new pet to the store
 ```
 
-<div class="callout warning">
+<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>⚠️ Warning:</strong> If you're using the STDIO mode, the Petstore API used here (<code>https://petstore.swagger.io/v2</code>) is a public demo sandbox. Create/update/delete requests may return 200 OK but data is not persisted, so subsequent reads may not reflect your changes.
 </div>
 
@@ -297,7 +288,7 @@ Show me pets with 'rain proof' tag
 
 ## Teardown that agent and chat client
 
-<div class="callout warning">
+<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>⚠️ Important:</strong> Please teardown the agent and chat client to free up the ports for the next mission.
 </div>
 
@@ -393,6 +384,8 @@ make run-rebuild
 ```
 
 ## [Optional] Build and run the petstore agent locally
+
+---
 
 ### Set up environment variables
 
