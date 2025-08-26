@@ -149,6 +149,10 @@ Here’s a polished version of your text with improved flow and consistency:
   For access to long-term LLM usage beyond the lab, request your keys via the Circuit portal:
   [🔗 **Circuit SharePoint: API & RAG Options**](https://cisco.sharepoint.com/sites/CIRCUIT/SitePages/API-RAG-options.aspx?web=1)
 
+* **LangSmith Agent/LLM Tracing**
+  For access to LangSmith Agent/LLM Tracing, request your license here:
+  [🔗 **LangSmith User Onboarding**](https://runon.cisco.com/c/r/runon/Services/LANGSMITH/ov/langsmith_architecture.html#langsmith-architecture)
+
 
 If you run into turbulence or want to study up before or after the mission, check out our [🔗 **CAIPE Sharepoint**](https://cisco.sharepoint.com/sites/CAIPE/)
 

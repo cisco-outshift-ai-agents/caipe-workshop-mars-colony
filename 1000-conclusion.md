@@ -21,4 +21,7 @@ Congratulations on completing your missions! 🚀 While our official journey wra
   - Share your feedback and suggestions to help us improve future workshops!
   - You will receive a survey email directly from Webex.
 
+
+![Get Involved in Community](images/get-involved-community.svg)
+
 Thank you for being part of this journey! We hope to see you at future events and in the CAIPE community. Keep exploring, building, and collaborating! 🦸‍♂️🦸‍♀️🤖🌌
