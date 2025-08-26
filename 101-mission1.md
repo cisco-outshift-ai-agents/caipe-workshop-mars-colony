@@ -304,7 +304,6 @@ EOF
 chmod +x $HOME/work/simple_react_agent_using_mcp.py && python3 $HOME/work/simple_react_agent_using_mcp.py
 ```
 
-
 ## Difference between an AI agent vs MCP server
 
 Agentic Systems landscape is evolving rapidly, understanding the distinction between AI Agents and MCP Servers is crucial for building scalable agentic systems. While MCP Servers provide a standardized interface for tools and data sources, AI Agents leverage these capabilities to perform complex reasoning, planning, and execution tasks. As MCP protocol advances the lines are blurring, as of today, AI Agents are superset of what MCP server can do but some agents are directly exposed via MCP.
