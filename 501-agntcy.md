@@ -69,10 +69,6 @@ cd $HOME/work
 ```
 
 ```bash
-pwd
-```
-
-```bash
 git clone https://github.com/agntcy/coffeeAgntcy
 ```
 
@@ -81,7 +77,11 @@ cd $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/corto
 ```
 
 ```bash
-source $HOME/.env_vars && \
+pwd
+```
+
+```bash
+touch .env && source $HOME/.env_vars && \
 sed -i \
   -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
   -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
@@ -121,11 +121,11 @@ cd $HOME/work
 ```
 
 ```bash
-pwd
+git clone https://github.com/agntcy/coffeeAgntcy
 ```
 
 ```bash
-git clone https://github.com/agntcy/coffeeAgntcy
+pwd
 ```
 
 ```bash
@@ -133,7 +133,7 @@ cd $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo
 ```
 
 ```bash
-source $HOME/.env_vars && \
+touch .env && source $HOME/.env_vars && \
 sed -i \
   -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
   -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
@@ -144,11 +144,7 @@ sed -i \
 ```
 
 ```bash
-cd coffeeAgntcy
-```
-
-```bash
-docker compose up
+docker compose up -d
 ```
 
 ```bash
