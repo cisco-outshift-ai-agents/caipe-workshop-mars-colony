@@ -200,6 +200,103 @@ MCP (Model Context Protocol) standardizes how large language models (LLMs) can g
 
 <center><img src="images/mcp.svg" alt="Mission Control" width="200"></center>
 
+
+#### [Optional] Try it yourself: Create a Simple ReAct Agent
+
+```bash
+pip install -U langgraph "langchain[openai]"
+```
+
+```bash
+pip install langchain-mcp-adapters
+```
+
+```bash
+# Create the MCP server file with Mars colony tools
+cat > $HOME/work/simple_mars_mcp_server.py << 'EOF'
+from mcp.server.fastmcp import FastMCP
+import random
+
+mcp = FastMCP("Mars Colony")
+
+@mcp.tool()
+def check_oxygen_level() -> str:
+    """Returns the current oxygen level in the Mars habitat."""
+    oxygen_level = round(random.uniform(18.0, 23.0), 1)
+    return f"Oxygen level is optimal at {oxygen_level}%."
+
+@mcp.tool()
+def rover_battery_status(rover_name: str) -> str:
+    """Returns the battery status for a given Mars rover."""
+    battery_percent = random.randint(50, 99)
+    return f"Rover {rover_name} battery at {battery_percent}% and functioning normally."
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
+EOF
+```
+
+```bash
+# Create the MCP client file that connects to the Mars server
+cat > $HOME/work/simple_react_agent_using_mcp.py << 'EOF'
+import asyncio
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+from langchain_mcp_adapters.tools import load_mcp_tools
+from langgraph.prebuilt import create_react_agent
+from langchain_openai import AzureChatOpenAI
+import os
+
+async def main():
+    # Create server parameters for stdio connection
+    server_params = StdioServerParameters(
+        command="python",
+        # Make sure to update to the full absolute path to your simple_mars_mcp_server.py file
+        args=["$HOME/work/simple_mars_mcp_server.py"],
+    )
+
+    async with stdio_client(server_params) as (read, write):
+        async with ClientSession(read, write) as session:
+            # Initialize the connection
+            await session.initialize()
+
+            # Get tools from the MCP server
+            tools = await load_mcp_tools(session)
+
+            # Initialize the Azure OpenAI LLM using environment variables
+            llm = AzureChatOpenAI(
+                azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                openai_api_version=os.getenv("AZURE_OPENAI_API_VERSION")
+            )
+
+            # Create a ReAct agent with the LLM and the MCP tools
+            agent = create_react_agent(
+                model=llm,
+                tools=tools,
+                prompt="You are Mission Control for a Mars colony. Use your tools to help astronauts stay safe and keep the rovers running!"
+            )
+
+            # Run the agent with a user message
+            agent_response = await agent.ainvoke({
+                "messages": [{"role": "user", "content": "Mission Control, what's the oxygen level and the battery status of Rover Spirit?"}]
+            })
+
+            # Print the final AI response(s) to the user
+            print("Final Response:")
+            for message in agent_response['messages']:
+                if hasattr(message, 'content') and message.content:
+                    print(f"AI: {message.content}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+EOF
+```
+
+```bash
+chmod +x $HOME/work/simple_react_agent_using_mcp.py && python3 $HOME/work/simple_react_agent_using_mcp.py
+```
+
+
 ## Difference between an AI agent vs MCP server
 
 Agentic Systems landscape is evolving rapidly, understanding the distinction between AI Agents and MCP Servers is crucial for building scalable agentic systems. While MCP Servers provide a standardized interface for tools and data sources, AI Agents leverage these capabilities to perform complex reasoning, planning, and execution tasks. As MCP protocol advances the lines are blurring, as of today, AI Agents are superset of what MCP server can do but some agents are directly exposed via MCP.
