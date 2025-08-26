@@ -153,9 +153,6 @@ Here’s a polished version of your text with improved flow and consistency:
   For access to LangSmith Agent/LLM Tracing, request your license here:
   [🔗 **LangSmith User Onboarding**](https://runon.cisco.com/c/r/runon/Services/LANGSMITH/ov/langsmith_architecture.html#langsmith-architecture)
 
-
-If you run into turbulence or want to study up before or after the mission, check out our [🔗 **CAIPE Sharepoint**](https://cisco.sharepoint.com/sites/CAIPE/)
-
 ---
 
 ## 🌠 **Final Call**
@@ -164,3 +161,5 @@ Suit up, power up your consoles, and get ready to take control of the **next fro
 
 **Countdown to launch starts now…**
 **T-minus 3… 2… 1… 🚀**
+
+![](https://i.pinimg.com/originals/04/70/04/0470047f1d5600d87617917c1f3796b3.gif)

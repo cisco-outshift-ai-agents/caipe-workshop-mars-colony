@@ -4,17 +4,17 @@ Congratulations on completing your missions! 🚀 While our official journey wra
 
 ## Bonus Missions and Community Resources
 
-- **✨ Bonus Exercises**
-  - Explore additional hands-on challenges to deepen your skills and have even more fun! Check out the [CAIPE Bonus Missions](https://cnoe-io.github.io/ai-platform-engineering/) for more details.
+- **✨ Bonus Exercise**
+  - Explore the `Bonus: AGNTCY` mission
 
-- **🌐 CAIPE Community Webex Channel**
-  - Join the conversation and connect with fellow explorers on our [CAIPE Community Webex Channel](https://eurl.io/#bOa9oXKAn).
+- **🌐 CAIPE Internal Cisco Webex Channel**
+  - Join the conversation and connect with fellow explorers on our [AI Platform Engineering Community Webex Channel](https://eurl.io/#bOa9oXKAn).
 
-- **📅 Office Hours & Community Events**
+- **📅 Office Hours & External Community Events**
   - Participate in our **CAIPE Cisco Month Office Hours** for live Q&A, troubleshooting, and networking with the CAIPE community.
   - Find the schedule and join links here: [CAIPE Office Hours](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-Office-Hours.aspx)
 
-- **💬 Stay Connected**
+- **💬 Stay engaged with external community and join our weekly meeting**
   - For ongoing support, updates, and to connect with fellow participants, join our [CAIPE Community Slack Channel and Community Meetings](https://cnoe-io.github.io/ai-platform-engineering/community/).
 
 - **📝 Feedback**
