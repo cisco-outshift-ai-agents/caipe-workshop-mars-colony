@@ -177,7 +177,7 @@ We will now use the UI to query the RAG system and verify it is working.
 docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
 ```
 
-## Note: When prompted for optional token, press enter.
+## Note: When prompted for optional token, press enter ⏎.
 ![chatcli token](images/chat-cli-token.png)
 
 This should open a CLI chat client. You can now interact with the supervisor agent.
