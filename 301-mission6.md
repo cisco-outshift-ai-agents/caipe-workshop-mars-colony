@@ -329,7 +329,7 @@ First, we need to force the secret refresh across the colony:
 kubectl delete secret --all -n ai-platform-engineering
 ```
 
-Once deleted, external secrets manager will automatically re-create the secrets with the latest values.
+Once deleted, external secrets manager will automatically re-create the secrets with the latest values. Run below command to verify that the secrets have been re-created:
 
 ```bash
 kubectl get secrets -n ai-platform-engineering
