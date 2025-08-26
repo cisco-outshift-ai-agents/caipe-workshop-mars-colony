@@ -111,6 +111,10 @@ The following diagrams illustrate how the chat client connects to the petstore a
   </tr>
 </table>
 
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>📝 NOTE:</strong> If you prefer to build and run the agent locally, refer to the step at the bottom of this page: <a href="#optional-step-3-build-and-run-the-petstore-agent-locally">Optional Step 3: Build and run the petstore agent locally</a>.
+</div>
+
 ## Step 1: Navigate to AI Platform Engineering Repository
 
 ```bash
@@ -128,10 +132,6 @@ cp .env.example .env
 ```
 
 ### 2.2: Edit the environment file with your LLM credentials
-
-<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; padding: 16px; margin: 16px 0; border-radius: 4px;">
-<strong>📝 NOTE:</strong> If you prefer to build and run the agent locally, refer to the step at the bottom of this page: <a href="#optional-build-and-run-the-petstore-agent-locally">Optional: Build and run the petstore agent locally</a>.
-</div>
 
 For this workshop, we will use Azure OpenAI. The API credentials are available in the `.env_vars` file in your home directory. Run below command in the terminal to source the variables from `.env_vars` and update the `.env` file you just created:
 
@@ -403,33 +403,25 @@ make show-env
 make run-rebuild
 ```
 
-## [Optional] Step 3: Build and run the petstore agent locally
+## [Optional] Steps 1-3: Build and run the petstore agent locally
 
 ---
 
-### 3.1: Set up environment variables
+### Set up environment variables
 
-If you are using your local machine, first get the `AZURE_OPENAI_API_KEY` from the lab environment:
-
-```bash
-source $HOME/.env_vars && echo $AZURE_OPENAI_API_KEY
-```
-
-Then run below command in your local terminal to set up your environment variables. When asked to enter the API key, paste the value you just copied from the lab environment:
+If you are using your local machine, first get the Azure OpenAI credentials from the lab environment:
 
 ```bash
-source $HOME/.env_vars && \
-read -s -p "Enter your Azure OpenAI API key: " AZURE_OPENAI_API_KEY && echo && \
-sed -i \
-  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
-  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
-  -e "s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|" \
-  -e "s|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|" \
-  -e "s|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|" \
-  .env
+cat $HOME/.env_vars
 ```
 
-### 3.2: Build and run the petstore agent locally
+Then run below to copy the example environment file to your local machine and update the `.env` file with the Azure OpenAI credentials:
+
+```bash
+cp .env.example .env
+```
+
+### Build and run the petstore agent locally
 
 You can also build and run the petstore agent locally:
 
