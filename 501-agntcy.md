@@ -98,7 +98,9 @@ docker compose up -d
 docker compose logs -f
 ```
 
-<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Corto UI</a>
+<a href="/" onclick="javascript:event.target.port=6103" target="_blank" style="display: inline-block; font-size: 1.5em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 18px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.12); margin: 24px 0; text-align: center;">
+  🚀 Open Corto UI
+</a>
 
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
@@ -163,7 +165,9 @@ docker compose up -d
 docker compose logs -f
 ```
 
-<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Lungo UI</a>
+<a href="/" onclick="javascript:event.target.port=6103" target="_blank" style="display: inline-block; font-size: 1.5em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 18px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.12); margin: 24px 0; text-align: center;">
+  🚀 Open Lungo UI
+</a>
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
   <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
