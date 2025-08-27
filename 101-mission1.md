@@ -25,7 +25,7 @@
 
 
 <div style="border: 1px solid #007cba; border-left: 6px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 16px; margin: 18px 0; border-radius: 4px;">
-  <strong>💡 General Lab Exercises Guidance:</strong><br>
+  <strong>💡 Lab Exercises Guidance:</strong><br>
   <span style="color: #005fa3;">
     If your lab terminal reloads or disconnects, <b>all commands in these missions are designed to be safely re-run in the same sequence</b>. <br><br>
     <b>Can't finish a mission before the instructor moves on?</b> No problem! You can continue with the next mission and return to any earlier mission during breakouts or after the workshop. <br><br>
