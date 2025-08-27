@@ -79,7 +79,11 @@ Steps:
    - Run:
 
    ```bash
-   IMAGE_TAG=latest docker compose -f workshop/docker-compose.mission7.yaml up
+   IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_HOST=https://langfuse.dev.outshift.io docker compose -f workshop/docker-compose.mission7.yaml up -d
+   ```
+
+   ```bash
+   docker compose logs -f
    ```
 
 5) Run the chat CLI and make an example query
