@@ -188,7 +188,9 @@ We will now use the UI to query the RAG system and verify it is working.
 ## Step 4: Using the RAG Agent
 <br>
 
-**➕ Open another terminal** (top-right '+' icon), and run the following command:
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Tip:</strong> You can open a new terminal by clicking the <strong>+</strong> button in your terminal window. This allows you to run commands in parallel without stopping your running services.
+</div>
 
 ```bash
 docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
@@ -258,7 +260,9 @@ Here's what happens:
 
 Run the following in one of the terminals:
 
-**➕ Open another terminal** (top-right '+' icon), and run the following command:
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Tip:</strong> You can open a new terminal by clicking the <strong>+</strong> button in your terminal window. This allows you to run commands in parallel without stopping your running services.
+</div>
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
   <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
