@@ -58,7 +58,7 @@ Steps:
    </div>
 
    ```bash
-   cat <<EOF > .env
+   cat <<EOF >> .env
    LANGFUSE_PUBLIC_KEY=pk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
    LANGFUSE_SECRET_KEY=sk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
    LANGFUSE_TRACING_ENABLED=True
