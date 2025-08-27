@@ -46,12 +46,12 @@ Steps:
 2) Create an API key
 
    - In the Langfuse UI, create a new project with your username.
-       - ![](images/langfuse-create-new-project.svg)
-       - ![](images/langfuse-new-project-userid.svg)
+       <img src="images/langfuse-create-new-project.svg" alt="Create new project in Langfuse" width="400"/>
+       - <img src="images/langfuse-new-project-userid.svg" alt="New project with your user ID" width="400"/>
    - Create API Key.
-       - ![](images/langfuse-create-keys.svg)
+       - <img src="images/langfuse-create-keys.svg" alt="Create API Key" width="400"/>
    - Copy both the Secret and Public keys.
-       - ![](images/langfuse-copy-keys.svg)
+       - <img src="images/langfuse-copy-keys.svg" alt="Copy Secret and Public keys" width="400"/>
 
 ## 3. Configure your environment
 
