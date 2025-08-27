@@ -215,6 +215,11 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
 Open a new terminal and run the following command to test the agent health. You should see the agent card with petstore capabilities. This includes the agent's name, description, and capabilities including example prompts that you can use to test the agent.
 
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Note:</strong> Click the <strong>+</strong> button on the terminal window to open a <strong>new terminal</strong> before running the following commands.
+</div>
+
+
 ```bash
 curl http://localhost:8000/.well-known/agent.json | jq
 ```
