@@ -34,8 +34,12 @@
 </div>
 
 
-##add warning
-agent isn't authenticted when using through backstage. this will be fixed in the coming weeks.
+<div style="border: 1px solid #f39c12; border-left: 6px solid #f39c12; background-color: #fef9e7; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>⚠️ Authentication Notice</strong>
+  <p style="margin: 8px 0 0 0;">
+    Currently, agents are not fully authenticated when accessed through Backstage. This authentication enhancement is scheduled for an upcoming platform release. The agents remain functional for testing and demonstration purposes.
+  </p>
+</div>
 
 
 
