@@ -140,13 +140,9 @@ kubectl get pods --all-namespaces
 
 ## Step 3: Access ArgoCD and Monitor Deployments
 
-<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
-<strong>📝 Note:</strong>
-<ul>
-<li><strong>Lab Environment</strong>: Use the URLs with your <code>$LABURL</code> environment variable as shown below</li>
-<li><strong>Local Environment</strong>: Replace <code>https://$LABURL:6101,6102</code> with <code>https://cnoe.localtest.me:8443</code> in all commands</li>
-</ul>
-</div>
+> 📝 **Note:**
+> - **Lab Environment:** Use the URLs with your `$LABURL` environment variable as shown below.
+> - **Local Environment:** Replace `https://$LABURL:6101,6102` with `https://cnoe.localtest.me:8443` in all commands.
 
 <a href="https://outshift-lab-d8n6400.demos.eticloud.io:6101/argocd" target="_blank" style="display: inline-block; font-size: 1.25em; font-weight: 600; background: #007cba; color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none;">
   🚀 Open ArgoCD
