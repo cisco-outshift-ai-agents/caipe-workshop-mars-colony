@@ -41,7 +41,10 @@ Steps:
 
 3) Configure your environment
 
-   - Open your .env file and add the following (replace with your generated keys).
+   <div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
+     <strong>💡 Tip:</strong> You are about to create a <code>.env</code> file containing your Langfuse API secrets. Keep these keys safe and do not share them publicly.
+   </div>
+   - Open your <code>.env</code> file and add the following (replace with your generated keys).
 
    ```bash
    cat <<EOF > .env
