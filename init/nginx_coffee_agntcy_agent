@@ -1,33 +1,88 @@
+# Map incoming Origin header dynamically so we can echo it back
+map $http_origin $cors_allow_origin {
+    default $http_origin;
+}
+
 server {
     listen [::]:6104 ssl ipv6only=on;
     listen 6104 ssl;
+
     ssl_certificate /etc/cert/fullchain.pem;
     ssl_certificate_key /etc/cert/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
     root /var/www/html;
 
-    # Proxy API routes to backend
+    # Common variables for CORS
+    set $cors_methods "GET, POST, PUT, PATCH, DELETE, OPTIONS";
+    set $cors_headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization";
+
+    ###################################
+    # /agent/ endpoint
+    ###################################
     location /agent/ {
+        # Hide upstream CORS to avoid duplicate headers
+        proxy_hide_header Access-Control-Allow-Origin;
+        proxy_hide_header Access-Control-Allow-Credentials;
+        proxy_hide_header Access-Control-Allow-Headers;
+        proxy_hide_header Access-Control-Allow-Methods;
+
+        # Handle preflight requests (OPTIONS)
+        if ($request_method = OPTIONS) {
+            add_header Access-Control-Allow-Origin $cors_allow_origin always;
+            add_header Access-Control-Allow-Credentials "true" always;
+            add_header Access-Control-Allow-Methods $cors_methods always;
+            add_header Access-Control-Allow-Headers $cors_headers always;
+            add_header Access-Control-Max-Age "86400" always;
+            return 204;
+        }
+
+        # Normal response headers
+        add_header Access-Control-Allow-Origin $cors_allow_origin always;
+        add_header Access-Control-Allow-Credentials "true" always;
+        add_header Access-Control-Expose-Headers "Content-Length,Content-Range" always;
+
+        # Proxy to backend
         proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
+        proxy_set_header Host               $host;
+        proxy_set_header X-Forwarded-Proto  $scheme;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header Upgrade            $http_upgrade;
+        proxy_set_header Connection         "upgrade";
         proxy_pass http://127.0.0.1:8000;
         proxy_read_timeout 86400s;
         proxy_send_timeout 86400s;
     }
 
-    # Proxy other API routes if needed
+    ###################################
+    # /api/ endpoint
+    ###################################
     location /api/ {
+        proxy_hide_header Access-Control-Allow-Origin;
+        proxy_hide_header Access-Control-Allow-Credentials;
+        proxy_hide_header Access-Control-Allow-Headers;
+        proxy_hide_header Access-Control-Allow-Methods;
+
+        if ($request_method = OPTIONS) {
+            add_header Access-Control-Allow-Origin $cors_allow_origin always;
+            add_header Access-Control-Allow-Credentials "true" always;
+            add_header Access-Control-Allow-Methods $cors_methods always;
+            add_header Access-Control-Allow-Headers $cors_headers always;
+            add_header Access-Control-Max-Age "86400" always;
+            return 204;
+        }
+
+        add_header Access-Control-Allow-Origin $cors_allow_origin always;
+        add_header Access-Control-Allow-Credentials "true" always;
+        add_header Access-Control-Expose-Headers "Content-Length,Content-Range" always;
+
         proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
+        proxy_set_header Host               $host;
+        proxy_set_header X-Forwarded-Proto  $scheme;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header Upgrade            $http_upgrade;
+        proxy_set_header Connection         "upgrade";
         proxy_pass http://127.0.0.1:8000;
         proxy_read_timeout 86400s;
         proxy_send_timeout 86400s;
