@@ -407,6 +407,7 @@ docker logs agent-github-p2p
 docker logs kb-rag-agent
 docker logs kb-rag-server
 docker logs kb-rag-web
+docker logs platform-engineer-p2p
 ```
 
 ### General errors
