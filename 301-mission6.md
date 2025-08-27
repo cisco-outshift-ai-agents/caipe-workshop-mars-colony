@@ -527,14 +527,19 @@ Now check keycloak admin console:
 kubectl -n keycloak get secret keycloak-config -o jsonpath='{.data.KEYCLOAK_ADMIN_PASSWORD}' | base64 -d; echo
 ```
 
-Username: cnoe-admin
-Password: <from the command above>
+- Username: `cnoe-admin`
+- Password: `<from the command above>`
 
 ### 5.8: Login to Colony Developer Portal
 
 Open Backstage in your browser:
 
 <a href="/" onclick="javascript:event.target.port=6101" target="_blank">Open Backstage by clicking here (opens in new tab)</a>
+
+```bash
+kubectl -n keycloak get secret keycloak-config -o jsonpath='{.data.USER_PASSWORD}' | base64 -d; echo
+```
+
 
 Then login with:
 
