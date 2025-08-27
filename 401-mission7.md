@@ -191,6 +191,14 @@ In production, your system will use a JWT or Bearer token for authentication her
 What's the weather in london?
 ```
 
+```bash
+show my github info
+```
+
+```bash
+How is the weather in San Jose? and tabule github activity in cnoe-io org and compare it with 5 day forecast
+```
+
 ## 6. View the trace in Langfuse
 
 <a href="https://langfuse.dev.outshift.io/" target="_blank" style="display: inline-block; font-size: 1.2em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); margin: 18px 0; text-align: center;">
