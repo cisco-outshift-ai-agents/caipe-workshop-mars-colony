@@ -60,11 +60,11 @@ Steps:
    ```
 
    ```bash
-   read -s -p "Enter your LANGFUSE_SECRET_KEY: " LF_SEC_KEY; echo; sed -i "s|^LANGFUSE_SECRET_KEY=.*|LANGFUSE_SECRET_KEY=$LF_SEC_KEY|" .env
+   read -s -p "Enter your LANGFUSE_SECRET_KEY (pasted text won't show, just press enter): " LF_SEC_KEY; echo; sed -i "s|^LANGFUSE_SECRET_KEY=.*|LANGFUSE_SECRET_KEY=$LF_SEC_KEY|" .env
    ```
 
    ```bash
-   read -s -p "Enter your LANGFUSE_PUBLIC_KEY: " LF_PUB_KEY; echo; sed -i "s|^LANGFUSE_PUBLIC_KEY=.*|LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY|" .env
+   read -s -p "Enter your LANGFUSE_PUBLIC_KEY (pasted text won't show anything, just press enter): " LF_PUB_KEY; echo; sed -i "s|^LANGFUSE_PUBLIC_KEY=.*|LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY|" .env
    ```
 
 4) Start Mission 7 services
