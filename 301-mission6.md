@@ -140,17 +140,11 @@ kubectl get pods --all-namespaces
 
 ## Step 3: Access ArgoCD and Monitor Deployments
 
-<div>
-  <b>Note:</b>
-  <ul>
-    <li>
-      <b>Lab Environment:</b>
-      Use URLs with your <code>$LABURL</code> variable.
-    </li>
-    <li>
-      <b>Local Environment:</b>
-      Replace <code>https://$LABURL:6101</code> or <code>https://$LABURL:6102</code> with <code>https://cnoe.localtest.me:8443</code> in all commands.
-    </li>
+<div style="border-left: 4px solid #007cba; background: #f0f8ff; padding: 14px 18px; margin: 16px 0; border-radius: 6px;">
+  <strong>📝 Note:</strong>
+  <ul style="margin-top: 8px;">
+    <li><strong>Lab Environment:</strong> Use the URLs with your $LABURL environment variable as shown below.</li>
+    <li><strong>Local Environment:</strong> Replace https://$LABURL:6101,6102 with <code>https://cnoe.localtest.me:8443</code> in all commands.</li>
   </ul>
 </div>
 
