@@ -152,7 +152,7 @@ export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
 ```
 
 ```bash
-sed -i "s|VITE_EXCHANGE_API_URL:.*|VITE_EXCHANGE_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo/docker-compose.yaml
+sed -i "s|VITE_EXCHANGE_APP_API_URL:.*|VITE_EXCHANGE_APP_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo/docker-compose.yaml
 ```
 
 ```bash
@@ -163,7 +163,7 @@ docker compose up -d
 docker compose logs -f
 ```
 
-<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Corto UI</a>
+<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Lungo UI</a>
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
   <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
