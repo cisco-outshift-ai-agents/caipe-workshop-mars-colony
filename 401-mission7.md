@@ -187,5 +187,5 @@ What's the weather in london?
 </div>
 
 ```bash
-docker-compose -f workshop/docker-compose.mission7.yaml down
+cd $HOME/work/ai-platform-engineering && docker compose -f workshop/docker-compose.mission7.yaml down
 ```
