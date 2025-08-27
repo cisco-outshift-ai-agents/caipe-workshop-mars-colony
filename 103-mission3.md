@@ -62,6 +62,14 @@ sed -i \
   .env
 ```
 
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Tip:</strong> Check if they are set in your .env
+</div>
+
+```bash
+cat .env | grep -Ei 'weather|petstore|skip_agent|agent_connectivity' | sed -E 's/(=.{3}).+/\1****/'
+```
+
 The connectivity check is performed when the supervisor agent starts. It will check if the petstore and weather agents are running and if they are, it will add them to the supervisor agent's memory.
 
 The dynamic monitoring is performed in the background and will check if the petstore and weather agents are running every 5 minutes. If any of the agents is unavailable, the supervisor agent will remove it from available tools until it is back online.

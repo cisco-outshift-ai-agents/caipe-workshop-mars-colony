@@ -113,6 +113,15 @@ design pattern used in agentic systems to help LLMs decide the next action or to
 
 ### [Optional] Try it yourself: Create a Simple ReAct Agent
 
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Tip:</strong> Before you begin, check if your Azure credentials are set in your environment.
+</div>
+
+```bash
+env | grep -Ei 'azure' | sed -E 's/(=.{3}).+/\1****/'
+```
+
+
 ```bash
 pip install -U langgraph "langchain[openai]"
 ```

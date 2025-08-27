@@ -146,12 +146,17 @@ else
 fi
 ```
 
+- Check environment variable (partially masked)
+```bash
+cat .env | grep -Ei 'azure|github|langfuse' | sed -E 's/(=.{3}).+/\1****/'
+```
+
 ## 4. Start Mission 7 services
 
 **Run:**
 
 ```bash
-IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_SECRET_KEY=$LANGFUSE_SECRET_KEY LANGFUSE_PUBLIC_KEY=$LANGFUSE_PUBLIC_KEY LANGFUSE_HOST=https://langfuse.dev.outshift.io docker compose -f workshop/docker-compose.mission7.yaml up -d
+IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_SECRET_KEY=$LANGFUSE_SECRET_KEY LANGFUSE_PUBLIC_KEY=$LANGFUSE_PUBLIC_KEY LANGFUSE_HOST=https://langfuse.dev.outshift.io LANGFUSE_TRACING_ENABLED=True docker compose -f workshop/docker-compose.mission7.yaml up -d
 ```
 
 ```bash

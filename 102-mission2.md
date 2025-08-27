@@ -146,7 +146,15 @@ sed -i \
   .env
 ```
 
-You can also check the variables have been set correctly in the `.env` file by going to the IDE tab on the top right of this page (`</>`) and locating the file under `ai-platform-engineering/` directory.
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Tip:</strong> Check if your Azure credentials are set in your .env
+</div>
+
+```bash
+cat .env | grep -Ei 'azure|llm' | sed -E 's/(=.{3}).+/\1****/'
+```
+
+Alternatively, you can also check the variables have been set correctly in the `.env` file by going to the IDE tab on the top right of this page (`</>`) and locating the file under `ai-platform-engineering/` directory.
 
 ---
 
