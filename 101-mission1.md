@@ -154,7 +154,7 @@ EOF
 ```
 
 ```bash
-ls -l
+clear && ls -l
 ```
 
 ```bash
@@ -249,7 +249,7 @@ EOF
 ```
 
 ```bash
-ls -l
+clear && ls -l
 ```
 
 ```bash
@@ -311,7 +311,7 @@ EOF
 ```
 
 ```bash
-ls -l
+clear && ls -l
 ```
 
 ```bash
