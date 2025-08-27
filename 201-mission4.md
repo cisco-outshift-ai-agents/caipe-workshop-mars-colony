@@ -183,8 +183,9 @@ We will now use the UI to query the RAG system and verify it is working.
 
 **Type:** `Axial tilt` in the query box, then **Click:** `Search` button
 
-**👀 Observe:** The response should return relevant document chunks. The chunks may not be formatted in a way that is easy to read. As long as some document chunks are returned, the RAG system is working.
-
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>👀 Observe:</strong> The response should return relevant document chunks. The chunks may not be formatted in a way that is easy to read. As long as some document chunks are returned, the RAG system is working.
+</div>
 
 <br>
 <hr>
@@ -218,7 +219,9 @@ This should open a CLI chat client. You can now interact with the supervisor age
 What is the axial tilt of Mars?
 ```
 
-**👀 Observe:** The agent should respond with the axial tilt of Mars, and cite the source of the information.
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>👀 Observe:</strong> The agent should respond with the axial tilt of Mars, and cite the source of the information.
+</div>
 
 ### Explanation:
 
