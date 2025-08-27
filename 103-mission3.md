@@ -331,6 +331,10 @@ docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mis
 </div>
 
 ```bash
+cd $HOME/work/ai-platform-engineering
+```
+
+```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=slim up
 ```
 
