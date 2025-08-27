@@ -58,7 +58,7 @@ cp $HOME/.env_vars .env.mission4
 Start the Docker Compose stack that includes both RAG and Git agents:
 
 ```bash
-docker compose -f workshop/docker-compose.mission4.yaml up
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml up
 ```
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
@@ -126,7 +126,7 @@ curl http://localhost:8000/.well-known/agent.json | jq
 ```
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>👀 Observe:</strong> The response should be a JSON object (the A2A agent card).
+  <strong>👀 Observe:</strong> The response should be a JSON object (the A2A agent card). If you get an error, wait for a few seconds and try again. The agent might still be starting up.
 </div>
 
 <br>
@@ -249,7 +249,7 @@ Now, we will test the multi-agent interaction by asking the supervisor agent to:
 In the CLI chat client, ask the agent:
 
 ```bash
-Research and write a report on mars surface, then commit/upload it as a text file named '%%LABNAME%%-report.txt' with commit message "mars-surface-report" to repo https://github.com/outshiftcaipe/mission-mars-colony on the `main` branch.
+Research and write a report on mars surface in markdown format, then commit/upload it as a markdown file named '%%LABNAME%%-report.md' with commit message "mars-surface-report" to repo https://github.com/outshiftcaipe/mission-mars-colony on the `main` branch.
 ```
 
 <div style="border-left: 4px solid #007cba; background: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
@@ -262,7 +262,7 @@ Research and write a report on mars surface, then commit/upload it as a text fil
 
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>👀 Observe:</strong> Back in the CLI chat client, the agent should have created a report (named <code>%%LABNAME%%-report.txt</code>) about the martian surface, and committed it to the <a href="https://github.com/outshiftcaipe/mission-mars-colony" target="_blank">workshop git repository</a>.
+  <strong>👀 Observe:</strong> Back in the CLI chat client, the agent should have created a report (named <code>%%LABNAME%%-report.md</code>) about the martian surface, and committed it to the <a href="https://github.com/outshiftcaipe/mission-mars-colony" target="_blank">workshop git repository</a>.
 </div>
 
 ### Explanation:
@@ -362,3 +362,37 @@ Currently there is a open discussion on how to unify different RAG systems, and 
 ### Github agent
 
 The Github agent can be used as is. Please refer to the [Github agent documentation](https://github.com/cnoe-io/ai-platform-engineering/tree/main/ai_platform_engineering/agents/github) for more details.
+
+
+## 🛠 Troubleshooting
+
+### Port already in use
+
+If you get a port already in use error from docker, you may still be running containers from previous missions. You can run `docker ps` to see what containers are running, and `docker stop <container_id>` to stop them. 
+
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🛑 Do not stop essential containers</strong>
+  <ul style="margin: 8px 0 0 16px;">
+    <li><strong>Important:</strong> DO NOT STOP containers with name <code>etilab</code>  and <code>localdev-control-plane</code>. These are needed to run the workshop. </li>
+  </ul>
+</div>
+
+
+### Could not find message from source agent
+
+If you see an error similar to this:
+
+```
+Could not find message from source agent github_tools_agent. Found names: {'platform_engineer_supervisor'} 
+```
+
+There might be an issue with the communication between the agents. Try restarting the docker-compose stack by running:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml down
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml up
+```
+
+### General errors
+
+If you have issues with any agents not responding properly, try the prompt again after a few seconds, or restart the docker-compose stack as shown above.
