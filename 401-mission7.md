@@ -46,10 +46,6 @@ Steps:
     ```
 
     ```bash
-    pwd
-    ```
-
-    ```bash
     git clone https://github.com/cnoe-io/ai-platform-engineering
     ```
 
