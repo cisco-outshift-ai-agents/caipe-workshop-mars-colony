@@ -79,19 +79,33 @@ Steps:
    - Run:
 
    ```bash
-   IMAGE_TAG=latest docker-compose -f workshop/docker-compose.mission7.yaml up
+   IMAGE_TAG=latest docker compose -f workshop/docker-compose.mission7.yaml up
    ```
 
 5) Run the chat CLI and make an example query
 
    - Run:
 
+  <div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
+    <strong>💡 Tip:</strong> You can open a new terminal by clicking the <strong>+</strong> button in your terminal window. This allows you to run commands in parallel without stopping your running services.
+  </div>
+
    ```bash
    docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
    ```
-   - Ask the app: *What's the weather in london?*
 
-6) View the trace in Langfuse
+   - Ask the app:
+
+  ```bash
+  What's the weather in london?
+  ```
+
+1) View the trace in Langfuse
+
+<a href="https://langfuse.dev.outshift.io/" target="_blank" style="display: inline-block; font-size: 1.2em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); margin: 18px 0; text-align: center;">
+  🚀 Open Langfuse Observability Dashboard
+</a>
+
 
    - Return to the Langfuse dashboard.
    - Open Traces and find the new trace for your query.
