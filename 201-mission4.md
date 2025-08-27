@@ -32,7 +32,11 @@ In this mission, you'll deploy and interact with specialized agents for **knowle
 - **📚 RAG Agent**: Use Retrieval-Augmented Generation (RAG) to answer questions about Mars
 - **🔧 Git Agent**: Automate git operations like commits, pushes, and repository management
 
-This demonstrates how agents can access external knowledge bases and automate development workflows.
+The following diagram shows the architecture of the RAG system:
+
+<br>
+<img src="images/rag-overview-arch.png" alt="RAG Architecture" width="400">
+
 
 <br>
 <hr>
@@ -48,7 +52,7 @@ cd $HOME/work/ai-platform-engineering
 Copy over the mission4 environment variables file:
 
 ```bash
-cp $HOME/.env_vars .env
+cp $HOME/.env_vars .env.mission4
 ```
 
 Start the Docker Compose stack that includes both RAG and Git agents:
@@ -216,7 +220,7 @@ Now, we will test the multi-agent interaction by asking the supervisor agent to:
 In the CLI chat client, ask the agent:
 
 ```bash
-Research and write a report on mars surface, then commit it as a text file named '%%LABNAME%%-report.txt' to my github repository https://github.com/outshiftcaipe/mission-mars-colony
+Research and write a report on mars surface, then commit/upload it as a text file named '%%LABNAME%%-report.txt' with commit message "mars-surface-report" to repo https://github.com/outshiftcaipe/mission-mars-colony on the `main` branch.
 ```
 
 
