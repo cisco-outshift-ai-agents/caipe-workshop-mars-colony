@@ -400,7 +400,13 @@ docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mis
 
 ### Terminal refreshed and can't see logs
 
-If your terminal refreshed and you can no longer see the docker compose logs, you can view individual container logs using:
+If your terminal refreshed and you can no longer see the docker compose logs, first run this to see the last 50 lines:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml logs -f --tail 50
+```
+
+If you want to see individual container logs, you can use:
 
 ```bash
 docker logs agent-github-p2p
