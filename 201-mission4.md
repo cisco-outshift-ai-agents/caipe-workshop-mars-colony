@@ -57,7 +57,10 @@ Start the Docker Compose stack that includes both RAG and Git agents:
 docker compose -f workshop/docker-compose.mission4.yaml up
 ```
 
-**👀 Observe:** You should see the following in the logs:
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>👀 Observe:</strong> You should see the following in the logs:
+</div>
+
 
 ```console
 ...
@@ -113,16 +116,14 @@ Once you see the logs above, you can verify the supervisor agent is healthy by c
   <strong>💡 Tip:</strong> You can open a new terminal by clicking the <strong>+</strong> button in your terminal window. This allows you to run commands in parallel without stopping your running services.
 </div>
 
-<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>👀 Observe:</strong> The response should be a JSON object (the A2A agent card).
-</div>
 
 ```bash
 curl http://localhost:8000/.well-known/agent.json | jq
 ```
 
-**👀 Observe:** The response should be a JSON object (the A2A agent card).
-
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>👀 Observe:</strong> The response should be a JSON object (the A2A agent card).
+</div>
 
 <br>
 <hr>
