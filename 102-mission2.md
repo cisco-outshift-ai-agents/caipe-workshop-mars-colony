@@ -317,8 +317,12 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 
 ## Step 8: Teardown that agent and chat client
 
-<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 16px; margin: 16px 0; border-radius: 4px;">
-<strong>⚠️ Important:</strong> Please teardown the agent and chat client to free up the ports for the next mission.
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
+  <ul style="margin: 8px 0 0 16px;">
+    <li><strong>Important:</strong> Run <code>docker compose down</code> in your terminal to stop and remove all running containers for this demo before moving on to the next steps.</li>
+    <li>This ensures a clean environment and prevents port conflicts or resource issues.</li>
+  </ul>
 </div>
 
 You can stop the agent and chat client by pressing `Ctrl+C` (or `Cmd+C` on Mac) in each terminal. Or if you have already closed the terminals, ensure you run the specific docker compose down command to make sure the agent has stopped:

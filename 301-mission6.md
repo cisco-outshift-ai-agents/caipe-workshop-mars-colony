@@ -438,6 +438,14 @@ echo "Click this link to open Keycloak: https://$LABURL:6101/keycloak/admin/mast
 
 ## Step 6: Tear down the colony platform
 
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🛑 Before You Proceed: Tear Down Your KIND Cluster</strong>
+  <ul style="margin: 8px 0 0 16px;">
+    <li><strong>Important:</strong> Run <code>kind delete cluster --name localdev</code> in your terminal to delete the KIND cluster and clean up all platform resources before moving on to the next steps.</li>
+    <li>This ensures a clean environment and frees up system resources.</li>
+  </ul>
+</div>
+
 ```bash
 kind delete cluster --name localdev
 ```

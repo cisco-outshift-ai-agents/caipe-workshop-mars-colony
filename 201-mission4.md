@@ -71,12 +71,12 @@ platform-engineer-p2p  | ===================================
 platform-engineer-p2p  | AGENT_URL: http://kb-rag-agent:8000
 platform-engineer-p2p  | ===================================
 platform-engineer-p2p  | 2025-08-26 12:03:18,817 - INFO - Running connectivity checks for 8 agents (max 4 attempts per agent)...
-platform-engineer-p2p  |        SLACK AGENT CONFIG      
+platform-engineer-p2p  |        SLACK AGENT CONFIG
 platform-engineer-p2p  | ===================================
 platform-engineer-p2p  | AGENT_URL: http://localhost:8000
 platform-engineer-p2p  | ===================================
 platform-engineer-p2p  | ===================================
-platform-engineer-p2p  |        KB-RAG AGENT CONFIG      
+platform-engineer-p2p  |        KB-RAG AGENT CONFIG
 platform-engineer-p2p  | ===================================
 platform-engineer-p2p  | AGENT_URL: http://kb-rag-agent:8000
 platform-engineer-p2p  | ===================================
@@ -242,6 +242,14 @@ Here's what happens:
 Run the following in one of the terminals:
 
 **➕ Open another terminal** (top-right '+' icon), and run the following command:
+
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
+  <ul style="margin: 8px 0 0 16px;">
+    <li><strong>Important:</strong> Run <code>docker compose down</code> in your terminal to stop and remove all running containers for this demo before moving on to the next steps.</li>
+    <li>This ensures a clean environment and prevents port conflicts or resource issues.</li>
+  </ul>
+</div>
 
 ```bash
 docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml down
