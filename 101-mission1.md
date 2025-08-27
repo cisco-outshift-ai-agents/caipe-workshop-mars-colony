@@ -23,6 +23,17 @@
   <span id="timer1" class="timer" style="font-family: monospace; font-size: 1.1em; color: #011234;">15:00</span>
 </div>
 
+
+<div style="border: 1px solid #007cba; border-left: 6px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 16px; margin: 18px 0; border-radius: 4px;">
+  <strong>💡 General Lab Advice:</strong><br>
+  <span style="color: #005fa3;">
+    If your lab terminal reloads or disconnects, <b>all commands in these missions are designed to be safely re-run in the same sequence</b>. <br><br>
+    <b>Can't finish a mission before the class moves on?</b> No problem! You can continue with the next mission and return to any earlier mission after the workshop. <br>
+    <b>Each mission is designed to be independently runnable</b>—so you can complete them in any order, at your own pace.
+  </span>
+</div>
+
+
 ## Clone CAIPE
 
 Clone the CAIPE (Community AI Platform Engineering) repository
