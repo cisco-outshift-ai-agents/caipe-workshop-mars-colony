@@ -86,7 +86,7 @@ export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
 ```
 
 ```bash
-sed -i "s|VITE_EXCHANGE_API_URL:.*|VITE_EXCHANGE_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAgntcy/coffee_agents/corto/docker-compose.yaml
+sed -i "s|VITE_EXCHANGE_API_URL:.*|VITE_EXCHANGE_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/corto/docker-compose.yaml
 ```
 
 
@@ -152,7 +152,7 @@ export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
 ```
 
 ```bash
-sed -i "s|VITE_EXCHANGE_API_URL:.*|VITE_EXCHANGE_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAgntcy/coffee_agents/corto/docker-compose.yaml
+sed -i "s|VITE_EXCHANGE_API_URL:.*|VITE_EXCHANGE_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo/docker-compose.yaml
 ```
 
 ```bash
