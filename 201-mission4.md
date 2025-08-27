@@ -398,6 +398,17 @@ docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mis
 docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml up
 ```
 
+### Terminal refreshed and can't see logs
+
+If your terminal refreshed and you can no longer see the docker compose logs, you can view individual container logs using:
+
+```bash
+docker logs agent-github-p2p
+docker logs kb-rag-agent
+docker logs kb-rag-server
+docker logs kb-rag-web
+```
+
 ### General errors
 
 If you have issues with any agents not responding properly, try the prompt again after a few seconds, or restart the docker-compose stack as shown above.
