@@ -126,6 +126,7 @@ done
 ```bash
 # LANGFUSE_SECRET_KEY
 read -s -p "Enter your LANGFUSE_SECRET_KEY (pasted text won't show, just press enter): " LF_SEC_KEY; echo
+export LANGFUSE_SECRET_KEY="$LF_SEC_KEY"
 if grep -q "^LANGFUSE_SECRET_KEY=" .env; then
   sed -i "s|^LANGFUSE_SECRET_KEY=.*|LANGFUSE_SECRET_KEY=$LF_SEC_KEY|" .env
 else
@@ -137,6 +138,7 @@ fi
 ```bash
 # LANGFUSE_PUBLIC_KEY
 read -s -p "Enter your LANGFUSE_PUBLIC_KEY (pasted text won't show, just press enter): " LF_PUB_KEY; echo
+export LANGFUSE_PUBLIC_KEY="$LF_PUB_KEY"
 if grep -q "^LANGFUSE_PUBLIC_KEY=" .env; then
   sed -i "s|^LANGFUSE_PUBLIC_KEY=.*|LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY|" .env
 else
@@ -149,7 +151,7 @@ fi
 **Run:**
 
 ```bash
-IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_HOST=https://langfuse.dev.outshift.io docker compose -f workshop/docker-compose.mission7.yaml up -d
+IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_SECRET_KEY=$LANGFUSE_SECRET_KEY LANGFUSE_PUBLIC_KEY=$LANGFUSE_PUBLIC_KEY LANGFUSE_HOST=https://langfuse.dev.outshift.io docker compose -f workshop/docker-compose.mission7.yaml up -d
 ```
 
 ```bash
