@@ -34,11 +34,11 @@ Steps:
 </a>
 
    - Login to <https://langfuse.dev.outshift.io/>
-       - Email:
+       - **Email:**
        ```
        workshop@outshift.io
        ```
-       - Password:
+       - **Password:**
         ```
         workshop-mars-colony
         ```
