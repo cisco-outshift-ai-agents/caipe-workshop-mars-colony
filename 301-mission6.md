@@ -78,7 +78,9 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.pas
   </ul>
 </div>
 
-<a href="/" onclick="javascript:event.target.port=6101/argocd" target="_blank">Open ArgoCD here (Opens in new tab)</a>
+<a href="https://outshift-lab-d8n6400.demos.eticloud.io:6101/argocd" target="_blank" style="display: inline-block; font-size: 1.5em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 18px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.12); margin: 24px 0; text-align: center;">
+  🚀 Open ArgoCD here (Opens in new tab)
+</a>
 
 This command will:
 
