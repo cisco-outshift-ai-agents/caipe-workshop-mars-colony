@@ -103,11 +103,19 @@ The docker-compose stack should start the following services:
 - `minio`: Needed for Milvus
 
 
-**🫸 Wait:** Wait until this process is completed.
+<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffef0; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>🫸 Wait:</strong> Wait until this process is completed.
+</div>
 
 Once you see the logs above, you can verify the supervisor agent is healthy by checking the health endpoint.
 
-**➕ Open another terminal** (top-right '+' icon), and run the following command:
+<div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Tip:</strong> You can open a new terminal by clicking the <strong>+</strong> button in your terminal window. This allows you to run commands in parallel without stopping your running services.
+</div>
+
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>👀 Observe:</strong> The response should be a JSON object (the A2A agent card).
+</div>
 
 ```bash
 curl http://localhost:8000/.well-known/agent.json | jq
