@@ -151,7 +151,7 @@ sed -i \
 </div>
 
 ```bash
-cat .env | grep -Ei 'azure|llm' | sed -E 's/(=.{3}).+/\1****/'
+cat .env | grep -Ei 'azure|llm' | sed -E 's/(=.{5}).+/\1****/'
 ```
 
 Alternatively, you can also check the variables have been set correctly in the `.env` file by going to the IDE tab on the top right of this page (`</>`) and locating the file under `ai-platform-engineering/` directory.

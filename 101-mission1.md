@@ -118,7 +118,7 @@ design pattern used in agentic systems to help LLMs decide the next action or to
 </div>
 
 ```bash
-env | grep -Ei 'azure' | sed -E 's/(=.{3}).+/\1****/'
+env | grep -Ei 'azure' | sed -E 's/(=.{5}).+/\1****/'
 ```
 
 

@@ -99,7 +99,7 @@ sed -i \
 
 - Check environment variable (partially masked)
 ```bash
-cat .env | grep -Ei 'azure|github|langfuse' | sed -E 's/(=.{3}).+/\1****/'
+cat .env | grep -Ei 'azure|github|langfuse' | sed -E 's/(=.{5}).+/\1****/'
 ```
 
 - Setup Langfuse environment variables
@@ -148,7 +148,7 @@ fi
 
 - Check environment variable (partially masked)
 ```bash
-cat .env | grep -Ei 'azure|github|langfuse' | sed -E 's/(=.{3}).+/\1****/'
+cat .env | grep -Ei 'azure|github|langfuse' | sed -E 's/(=.{5}).+/\1****/'
 ```
 
 ## 4. Start Mission 7 services

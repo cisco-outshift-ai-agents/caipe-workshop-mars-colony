@@ -67,7 +67,7 @@ sed -i \
 </div>
 
 ```bash
-cat .env | grep -Ei 'weather|petstore|skip_agent|agent_connectivity' | sed -E 's/(=.{3}).+/\1****/'
+cat .env | grep -Ei 'weather|petstore|skip_agent|agent_connectivity' | sed -E 's/(=.{5}).+/\1****/'
 ```
 
 The connectivity check is performed when the supervisor agent starts. It will check if the petstore and weather agents are running and if they are, it will add them to the supervisor agent's memory.
