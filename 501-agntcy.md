@@ -101,8 +101,8 @@ docker compose up -d
 docker compose logs -f
 ```
 
-<a href="/" onclick="event.target.port=6103" target="_blank" style="font-size:1em; background:#007cba; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none;">
-  🚀 Open Lungo UI
+<a href="/" onclick="event.target.port=6103" target="_blank" style="font-size:1.25em; background:#007cba; color:#fff; padding:10px 20px; border-radius:6px; text-decoration:none;">
+  🚀 Open Corto UI
 </a>
 
 
@@ -172,8 +172,8 @@ docker compose up -d
 docker compose logs -f
 ```
 
-<a href="/" onclick="javascript:event.target.port=6103" target="_blank" style="display: inline-block; font-size: 1.5em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 18px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.12); margin: 24px 0; text-align: center;">
-  🚀 Open Lungo UI
+<a href="/" onclick="event.target.port=6103" target="_blank" style="font-size:1.25em; background:#007cba; color:#fff; padding:10px 20px; border-radius:6px; text-decoration:none;">
+  🚀 Open Corto UI
 </a>
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
