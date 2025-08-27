@@ -28,8 +28,8 @@
   <strong>💡 General Lab Advice:</strong><br>
   <span style="color: #005fa3;">
     If your lab terminal reloads or disconnects, <b>all commands in these missions are designed to be safely re-run in the same sequence</b>. <br><br>
-    <b>Can't finish a mission before the instructor moves on?</b> No problem! You can continue with the next mission and return to any earlier mission after the workshop. <br><br>
-    <b>Each mission is designed to be independently runnable</b>—so you can follow-up along with the rest of the workshop.
+    <b>Can't finish a mission before the instructor moves on?</b> No problem! You can continue with the next mission and return to any earlier mission during breakouts or after the workshop. <br><br>
+    <b>Each mission is designed to be independently runnable</b>—so you can follow along with the rest of the workshop.
   </span>
 </div>
 
