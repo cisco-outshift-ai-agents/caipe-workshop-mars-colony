@@ -41,6 +41,18 @@ Steps:
 
 3) Configure your environment
 
+    ```bash
+    cd $HOME/work
+    ```
+
+    ```bash
+    pwd
+    ```
+
+    ```bash
+    git clone https://github.com/cnoe-io/ai-platform-engineering
+    ```
+
    <div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
      <strong>💡 Tip:</strong>
      <ul style="margin: 8px 0 0 18px;">
@@ -48,7 +60,6 @@ Steps:
        <li>Open your <code>.env</code> file and add the following (replace with your generated keys).</li>
      </ul>
    </div>
-
 
    ```bash
    cat <<EOF > .env
