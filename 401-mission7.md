@@ -27,19 +27,33 @@ In this mission, you’ll enable tracing with Langfuse and observe your app’s 
 
 Steps:
 
-1) Log in to Langfuse
+## 1. Log in to Langfuse
 
-   - Go to <https://langfuse.dev.outshift.io/>
-   - Email: workshop@outshift.io
-   - Password: workshop-mars-colony
+<a href="https://langfuse.dev.outshift.io/" target="_blank" style="display: inline-block; font-size: 1em; font-weight: 500; background: #007cba; color: #fff; padding: 6px 14px; border-radius: 5px; text-decoration: none; margin: 10px 0;">
+  🚀 Click to open Langfuse
+</a>
+
+   - Login to <https://langfuse.dev.outshift.io/>
+       - Email:
+       ```
+       workshop@outshift.io
+       ```
+       - Password:
+        ```
+        workshop-mars-colony
+        ```
 
 2) Create an API key
 
-   - In the Langfuse UI, open your project (or create/select the default project).
-   - Navigate to Settings → API Keys.
-   - Create a new API key and copy both the public and secret values.
+   - In the Langfuse UI, create a new project with your username.
+       - ![](images/langfuse-create-new-project.svg)
+       - ![](images/langfuse-new-project-userid.svg)
+   - Create API Key.
+       - ![](images/langfuse-create-keys.svg)
+   - Copy both the Secret and Public keys.
+       - ![](images/langfuse-copy-keys.svg)
 
-3) Configure your environment
+## 3. Configure your environment
 
 ```bash
 cd $HOME/work
@@ -133,7 +147,7 @@ IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_HOST=https://langfuse.dev.outshift
 docker compose -f workshop/docker-compose.mission7.yaml logs -f
 ```
 
-1) Run the chat CLI and make an example query
+## 4. Run the chat CLI and make an example query
 
 **Run:**
 
@@ -161,7 +175,7 @@ In production, your system will use a JWT or Bearer token for authentication her
 What's the weather in london?
 ```
 
-1) View the trace in Langfuse
+## 5. View the trace in Langfuse
 
 <a href="https://langfuse.dev.outshift.io/" target="_blank" style="display: inline-block; font-size: 1.2em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); margin: 18px 0; text-align: center;">
   🚀 Open Langfuse Observability Dashboard
