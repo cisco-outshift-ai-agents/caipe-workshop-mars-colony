@@ -81,19 +81,12 @@ pwd
 ```
 
 ```bash
-touch .env && source $HOME/.env_vars && \
-sed -i \
-  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
-  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
-  -e "s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|" \
-  -e "s|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|" \
-  -e "s|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|" \
-  .env
+export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
+export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
 ```
 
 ```bash
-export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
-export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
+sed -i "s|VITE_EXCHANGE_API_URL:.*|VITE_EXCHANGE_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAgntcy/coffee_agents/corto/docker-compose.yaml
 ```
 
 
@@ -105,11 +98,20 @@ docker compose up -d
 docker compose logs -f
 ```
 
+<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Corto UI</a>
+
+
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
+  <ul style="margin: 8px 0 0 16px;">
+    <li><strong>Important:</strong> Run <code>docker compose down</code> in your terminal to stop and remove all running containers for this demo before moving on to the next steps.</li>
+    <li>This ensures a clean environment and prevents port conflicts or resource issues.</li>
+  </ul>
+</div>
+
 ```bash
 docker compose down
 ```
-
-<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Corto UI</a>
 
 ## Lungo
 
@@ -145,19 +147,12 @@ cd $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo
 ```
 
 ```bash
-touch .env && source $HOME/.env_vars && \
-sed -i \
-  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
-  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
-  -e "s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|" \
-  -e "s|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|" \
-  -e "s|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|" \
-  .env
+export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
+export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
 ```
 
 ```bash
-export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
-export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
+sed -i "s|VITE_EXCHANGE_API_URL:.*|VITE_EXCHANGE_API_URL: ${LABURL}:6104|g" $HOME/work/coffeeAgntcy/coffeeAgntcy/coffee_agents/corto/docker-compose.yaml
 ```
 
 ```bash
@@ -167,6 +162,16 @@ docker compose up -d
 ```bash
 docker compose logs -f
 ```
+
+<a href="/" onclick="javascript:event.target.port=6103" target="_blank">Open Corto UI</a>
+
+<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
+  <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
+  <ul style="margin: 8px 0 0 16px;">
+    <li><strong>Important:</strong> Run <code>docker compose down</code> in your terminal to stop and remove all running containers for this demo before moving on to the next steps.</li>
+    <li>This ensures a clean environment and prevents port conflicts or resource issues.</li>
+  </ul>
+</div>
 
 ```bash
 docker compose down

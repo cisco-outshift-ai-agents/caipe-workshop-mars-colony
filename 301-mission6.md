@@ -78,6 +78,8 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.pas
   </ul>
 </div>
 
+<a href="/" onclick="javascript:event.target.port=6101/argocd" target="_blank">Open ArgoCD here (Opens in new tab)</a>
+
 This command will:
 
 * Create a KIND cluster for the Mars colony platform
