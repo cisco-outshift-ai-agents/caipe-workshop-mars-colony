@@ -245,14 +245,17 @@ In the CLI chat client, ask the agent:
 Research and write a report on mars surface, then commit it as a text file named '%%LABNAME%%-report.txt' to my github repository https://github.com/outshiftcaipe/mission-mars-colony
 ```
 
+<div style="border-left: 4px solid #007cba; background: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>💡 Tip:</strong> Switch to your logs terminal to watch the agents collaborate.
+</div>
+
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #17a2b8; padding: 14px; margin: 16px 0; border-radius: 4px;">
+  <strong>👀 Observe:</strong> While the agent is working, in the first terminal tab, you should see the ai platform engineering supervisor agent delegate tasks to <code>kb-rag</code> and <code>github</code> agents. Please note that this step might take a bit of time as the agents go back and forth to figure out the task.
+</div>
+
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>👀 Observe:</strong>
-  <ul style="margin: 0 0 0 18px;">
-    <li>Switch over to the terminal with <code>docker compose logs</code> running.</li>
-    <li>While the agent is working, you should see the AI Platform Engineering supervisor agent delegate tasks to <code>kb-rag</code> and <code>github</code> agents. This step may take a bit of time as the agents coordinate to complete the task.</li>
-    <li>Back in the CLI chat client, the agent should create a report (named <code>%%LABNAME%%-report.txt</code>) about the Martian surface and commit it to the <a href="https://github.com/outshiftcaipe/mission-mars-colony">workshop git repository</a>.</li>
-  </ul>
+  <strong>👀 Observe:</strong> Back in the CLI chat client, the agent should have created a report (named <code>%%LABNAME%%-report.txt</code>) about the martian surface, and committed it to the <a href="https://github.com/outshiftcaipe/mission-mars-colony" target="_blank">workshop git repository</a>.
 </div>
 
 ### Explanation:
