@@ -54,10 +54,9 @@ cd $HOME/work/ai-platform-engineering
 ```
 
 <div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; color: #007cba; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>💡 Tip:</strong>
+  <strong>💡 Note:</strong>
   <ul style="margin: 8px 0 0 18px;">
-    <li>You are about to create a <code>.env</code> file containing your Langfuse API secrets.</li>
-    <li>Open your <code>.env</code> file and add the following (replace with your generated keys).</li>
+    <li>Update <code>.env</code> file with Langfuse API secrets.</li>
   </ul>
 </div>
 
@@ -90,7 +89,7 @@ read -s -p "Enter your LANGFUSE_SECRET_KEY (pasted text won't show, just press e
 read -s -p "Enter your LANGFUSE_PUBLIC_KEY (pasted text won't show anything, just press enter): " LF_PUB_KEY; echo; sed -i "s|^LANGFUSE_PUBLIC_KEY=.*|LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY|" .env
 ```
 
-4) Start Mission 7 services
+1) Start Mission 7 services
 
 **Run:**
 
