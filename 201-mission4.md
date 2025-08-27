@@ -147,7 +147,7 @@ Once the RAG Web UI is open:
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
   <strong>👀 Observe:</strong>
   <ul style="margin: 0 0 0 18px;">
-    <li>The status in the RAG Web UI should show as <code>✅ Successfully processed 1 URL(s)</code>.</li><br><br>
+    <li>The status in the RAG Web UI should show as <code>✅ Successfully processed 1 URL(s)</code>.</li>
     <li>Switch over to the terminal showing your <code>docker compose logs</code> and observe the <code>kb_rag</code> ingestion logs for details about the document processing.</li>
   </ul>
 </div>
