@@ -322,6 +322,10 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 <strong>⚠️ Important:</strong> If you are already running agents in HTTP mode, first stop the docker compose before switching to STDIO mode:
 
 ```bash
+cd $HOME/work/ai-platform-engineering
+```
+
+```bash
 docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission3.yaml --profile=p2p down
 ```
 </div>
