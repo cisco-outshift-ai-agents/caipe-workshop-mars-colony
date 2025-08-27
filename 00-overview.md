@@ -117,7 +117,6 @@ Here’s a polished version of your text with improved flow and consistency:
 
 - **🆘 Need Help?**
   - Raise your hand and chat with a workshop team member during the session so a team member can start a breakout session.
-  - For additional help, check out the [CAIPE FAQs](https://cisco.sharepoint.com/sites/CAIPE/SitePages/CAIPE-FAQs.aspx) for answers to common workshop and platform questions.
 
 - **🤝 Breakout Sessions**
   - The instructor will guide the lab at a steady pace, but each Mission Check is timed to ensure we cover all the key objectives.
@@ -142,8 +141,8 @@ Here’s a polished version of your text with improved flow and consistency:
 
   * **8 CPUs**
   * **16 GB RAM**
+  * **80 GD Disk Space**
   * Docker installed and ready
-    This ensures your systems don’t burn up during re-entry.
 
 * **LLM Keys**
   For access to long-term LLM usage beyond the lab, request your keys via the Circuit portal:
