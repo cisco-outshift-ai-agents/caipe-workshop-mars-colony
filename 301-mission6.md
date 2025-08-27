@@ -164,11 +164,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.pas
   🚀 Open ArgoCD
 </a>
 
-_[Optional]_
-
-```bash
-echo "ARGOCD_URL=https://$LABURL:6101/argocd/"
-```
+- _[Optional]_
+    ```bash
+    echo "ARGOCD_URL=https://$LABURL:6101/argocd/"
+    ```
 
 ### 3.3: Login to ArgoCD
 
