@@ -385,22 +385,6 @@ If you get a port already in use error from docker, you may still be running con
   </ul>
 </div>
 
-
-### Could not find message from source agent
-
-If you see an error similar to this:
-
-```
-Could not find message from source agent github_tools_agent. Found names: {'platform_engineer_supervisor'} 
-```
-
-There might be an issue with the communication between the agents. Try restarting the docker-compose stack by running:
-
-```bash
-docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml down
-docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml up
-```
-
 ### Terminal refreshed and can't see logs
 
 If your terminal refreshed and you can no longer see the docker compose logs:
@@ -417,6 +401,21 @@ docker logs kb-rag-agent
 docker logs kb-rag-server
 docker logs kb-rag-web
 docker logs platform-engineer-p2p
+```
+
+### Could not find message from source agent
+
+If you see an error similar to this:
+
+```
+Could not find message from source agent github_tools_agent. Found names: {'platform_engineer_supervisor'} 
+```
+
+There might be an issue with the communication between the agents. Try restarting the docker-compose stack by running:
+
+```bash
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml down
+docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission4.yaml up
 ```
 
 ### General errors
