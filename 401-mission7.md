@@ -62,6 +62,18 @@ cd $HOME/work/ai-platform-engineering
 </div>
 
 ```bash
+source $HOME/.env_vars && \
+sed -i \
+  -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
+  -e "s|^AZURE_OPENAI_API_KEY=.*|AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}|" \
+  -e "s|^AZURE_OPENAI_ENDPOINT=.*|AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}|" \
+  -e "s|^AZURE_OPENAI_DEPLOYMENT=.*|AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}|" \
+  -e "s|^AZURE_OPENAI_API_VERSION=.*|AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}|" \
+  -e "s|^GITHUB_PERSONAL_ACCESS_TOKEN=.*|GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PERSONAL_ACCESS_TOKEN}|" \
+  .env
+```
+
+```bash
 cat <<EOF >> .env
 LANGFUSE_PUBLIC_KEY=pk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 LANGFUSE_SECRET_KEY=sk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -87,7 +99,7 @@ IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_HOST=https://langfuse.dev.outshift
 ```
 
 ```bash
-docker compose logs -f
+docker compose -f workshop/docker-compose.mission7.yaml logs -f
 ```
 
 1) Run the chat CLI and make an example query
