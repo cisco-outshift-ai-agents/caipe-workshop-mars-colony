@@ -230,7 +230,11 @@ curl http://localhost:8000/.well-known/agent.json | jq
 Once you confirm the agent is running, start the chat client:
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
-<strong>💡 Tip:</strong> When asked to <code>💬 Enter token (optional): </code>, press enter.
+<strong>💡 Tip:</strong> When asked to <code>💬 Enter token (optional): </code>, just press enter.
+<br>
+<span style="font-size: 0.98em; color: #333;">
+In production, your system will use a JWT or Bearer token for authentication here.
+</span>
 </div>
 
 ```bash
