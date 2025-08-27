@@ -191,6 +191,17 @@ clear && ls -l
 python3 $HOME/work/simple_react_agent.py
 ```
 
+
+<div style="border: 2px solid #28a745; background: #eafaf1; color: #155724; padding: 18px; border-radius: 6px; margin: 18px 0;">
+  <strong>✅ Expected Output:</strong>
+  <pre style="background: #f6fff9; color: #155724; border: none; padding: 12px; border-radius: 4px; font-size: 1em; margin-top: 10px;">
+Final Response:
+AI: Mission Control, what's the oxygen level and the battery status of Rover Spirit?
+AI: Oxygen level is optimal at 20.5%.
+AI: Rover Spirit battery at 98% and functioning normally.
+AI: The oxygen level in the Mars habitat is optimal at 20.5%, and Rover Spirit's battery is at 98%, functioning normally. Everything looks good!  </pre>
+</div>
+
 ## What is a Multi-Agent System (MAS)?
 
 A Multi-Agent System (MAS) is an agentic AI system composed of multiple, independent and interacting agents to achieve a common goal
@@ -347,6 +358,21 @@ clear && ls -l
 ```bash
 python3 $HOME/work/simple_react_agent_using_mcp.py
 ```
+
+<div style="border: 2px solid #28a745; background: #eafaf1; color: #155724; padding: 18px; border-radius: 6px; margin: 18px 0;">
+  <strong>✅ Expected Output:</strong>
+  <pre style="background: #f6fff9; color: #155724; border: none; padding: 12px; border-radius: 4px; font-size: 1em; margin-top: 10px;">
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+Processing request of type CallToolRequest
+Final Response:
+AI: Mission Control, what's the oxygen level and the battery status of Rover Spirit?
+AI: Oxygen level is optimal at 22.5%.
+AI: Rover Spirit battery at 76% and functioning normally.
+AI: The oxygen level in the Mars habitat is optimal at 22.5%. The Rover Spirit's battery is at 76% and functioning normally. All systems are running smoothly!
+  </pre>
+</div>
+
 
 ## Difference between an AI agent vs MCP server
 
