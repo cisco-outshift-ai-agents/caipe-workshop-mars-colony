@@ -267,6 +267,14 @@ Show me what you can do with pets
 <strong>ℹ️ Info:</strong> HTTP mode persists data so you can try adding pets and then retrieve them. However, STDIO mode uses a demo sandbox where data is not persisted, so create/update/delete operations may not reflect in subsequent reads.
 </div>
 
+<div style="border: 1px solid #ffc107; border-left: 4px solid #ffc107; background-color: #fffbe6; color: #856404; padding: 12px; margin: 16px 0; border-radius: 4px;">
+  <strong>⚠️ Note (HTTP MCP mode):</strong> All lab users share the <b>same remote Petstore endpoint</b>. To avoid collisions, use <b>unique pet names</b> and <b>random pet IDs</b> when creating new pets.<br>
+  <span style="font-size: 0.97em;">(Admins will reset the data after the workshop.)</span>
+</div>
+
+
+
+
 ```bash
 Find all available pets in the store
 ```
