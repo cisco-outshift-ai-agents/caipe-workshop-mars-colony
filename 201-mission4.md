@@ -1,4 +1,4 @@
-# Mission Check 4 - Reconnaissance & Reporting back (RAG + Git agent)
+# Mission Check 4 & 5 - Reconnaissance & Reporting back (RAG + Git agent)
 
 <div style="display: flex; align-items: center; gap: 12px;">
   <button
@@ -376,7 +376,7 @@ The Github agent can be used as is. Please refer to the [Github agent documentat
 
 ### Port already in use
 
-If you get a port already in use error from docker, you may still be running containers from previous missions. You can run `docker ps` to see what containers are running, and `docker stop <container_id>` to stop them. 
+If you get a port already in use error from docker, you may still be running containers from previous missions. You can run `docker ps` to see what containers are running, and `docker stop <container_id>` to stop them.
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
   <strong>🛑 Do not stop essential containers</strong>
@@ -408,7 +408,7 @@ docker logs platform-engineer-p2p
 If you see an error similar to this:
 
 ```
-Could not find message from source agent github_tools_agent. Found names: {'platform_engineer_supervisor'} 
+Could not find message from source agent github_tools_agent. Found names: {'platform_engineer_supervisor'}
 ```
 
 There might be an issue with the communication between the agents. Try restarting the docker-compose stack by running:
