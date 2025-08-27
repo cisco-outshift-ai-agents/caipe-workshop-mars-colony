@@ -43,7 +43,7 @@ Steps:
         workshop-mars-colony
         ```
 
-2) Create an API key
+## 2. Create an API key
 
    - In the Langfuse UI, create a new project with your username.
        <img src="images/langfuse-create-new-project.svg" alt="Create new project in Langfuse" width="600"/>
@@ -55,14 +55,17 @@ Steps:
 
 ## 3. Configure your environment
 
+- Change directory to `/home/ubuntu/work`
 ```bash
 cd $HOME/work
 ```
 
+- Clone repo
 ```bash
 git clone https://github.com/cnoe-io/ai-platform-engineering
 ```
 
+- Change directory to repo
 ```bash
 cd $HOME/work/ai-platform-engineering
 ```
@@ -74,12 +77,14 @@ cd $HOME/work/ai-platform-engineering
   </ul>
 </div>
 
+- Copy `.env.example` to `.env` if the file doesn't exist or is empty
 ```bash
 if [ ! -f .env ] || [ ! -s .env ]; then
   cp .env.example .env
 fi
 ```
 
+- Copy credentials from bash `env` to `.env` file
 ```bash
 source $HOME/.env_vars && \
 sed -i \
@@ -92,10 +97,12 @@ sed -i \
   .env
 ```
 
+- Check environment variable (partially masked)
 ```bash
 cat .env | grep -Ei 'azure|github|langfuse' | sed -E 's/(=.{3}).+/\1****/'
 ```
 
+- Setup Langfuse environment variables
 ```bash
 # Define key-value pairs
 declare -A ENV_VARS=(
@@ -115,6 +122,7 @@ for KEY in "${!ENV_VARS[@]}"; do
 done
 ```
 
+- Setup LANGFUSE_SECRET_KEY
 ```bash
 # LANGFUSE_SECRET_KEY
 read -s -p "Enter your LANGFUSE_SECRET_KEY (pasted text won't show, just press enter): " LF_SEC_KEY; echo
@@ -125,6 +133,7 @@ else
 fi
 ```
 
+- Setup LANGFUSE_PUBLIC_KEY
 ```bash
 # LANGFUSE_PUBLIC_KEY
 read -s -p "Enter your LANGFUSE_PUBLIC_KEY (pasted text won't show, just press enter): " LF_PUB_KEY; echo
@@ -135,7 +144,7 @@ else
 fi
 ```
 
-1) Start Mission 7 services
+## 4. Start Mission 7 services
 
 **Run:**
 
@@ -147,7 +156,7 @@ IMAGE_TAG=latest ENABLE_TRACING=true LANGFUSE_HOST=https://langfuse.dev.outshift
 docker compose -f workshop/docker-compose.mission7.yaml logs -f
 ```
 
-## 4. Run the chat CLI and make an example query
+## 5. Run the chat CLI and make an example query
 
 **Run:**
 
@@ -175,7 +184,7 @@ In production, your system will use a JWT or Bearer token for authentication her
 What's the weather in london?
 ```
 
-## 5. View the trace in Langfuse
+## 6. View the trace in Langfuse
 
 <a href="https://langfuse.dev.outshift.io/" target="_blank" style="display: inline-block; font-size: 1.2em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); margin: 18px 0; text-align: center;">
   🚀 Open Langfuse Observability Dashboard
@@ -200,7 +209,7 @@ What's the weather in london?
 </div>
 
 
-## Tear down
+## 7. Tear down
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
   <strong>🛑 Before You Proceed: Bring Down Your Docker Containers</strong>
