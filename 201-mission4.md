@@ -133,7 +133,9 @@ curl http://localhost:8000/.well-known/agent.json | jq
 Now, we will populate the RAG with documentation. The docker-compose stack should have started the `kb-rag-web` service, which is the web ui
 for the RAG server.
 
-<a href="/" onclick="javascript:event.target.port=6100" target="_blank">Open the RAG Web UI by clicking here (Opens in new tab)</a>
+<a href="/" onclick="javascript:event.target.port=6100" target="_blank" style="display: inline-block; font-size: 1.2em; font-weight: bold; background: linear-gradient(90deg, #007cba 0%, #28a745 100%); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.10); margin: 18px 0; text-align: center;">
+  🚀 Open RAG Web UI
+</a>
 
 Once the RAG Web UI is open:
 
