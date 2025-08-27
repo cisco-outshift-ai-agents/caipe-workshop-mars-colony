@@ -262,7 +262,12 @@ Research and write a report on mars surface in markdown format, then commit/uplo
 
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>👀 Observe:</strong> Back in the CLI chat client, the agent should have created a report (named <code>%%LABNAME%%-report.md</code>) about the martian surface, and committed it to the <a href="https://github.com/outshiftcaipe/mission-mars-colony" target="_blank">workshop git repository</a>.
+  <strong>👀 Observe:</strong> 
+  Back in the CLI chat client, the agent should have:
+  <ul style="margin: 0 0 0 18px;">
+  <li>Created a report with name: <strong><code>%%LABNAME%%-report.md</code></strong></li>
+  <li>Committed it to <a href="https://github.com/outshiftcaipe/mission-mars-colony" target="_blank">the workshop git repository</a> with commit message "mars-surface-report".</li>
+  </ul>
 </div>
 
 ### Explanation:
