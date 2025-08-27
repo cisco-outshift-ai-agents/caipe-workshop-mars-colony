@@ -73,11 +73,22 @@ sed -i \
 ```
 
 ```bash
-cat <<EOF >> .env
-ENABLE_TRACKING=true
-LANGFUSE_TRACING_ENABLED=True
-LANGFUSE_HOST=https://langfuse.dev.outshift.io
-EOF
+# Define key-value pairs
+declare -A ENV_VARS=(
+  ["ENABLE_TRACKING"]="true"
+  ["LANGFUSE_TRACING_ENABLED"]="True"
+  ["LANGFUSE_HOST"]="https://langfuse.dev.outshift.io"
+)
+
+# Update or append each key
+for KEY in "${!ENV_VARS[@]}"; do
+  VALUE="${ENV_VARS[$KEY]}"
+  if grep -q "^${KEY}=" .env; then
+    sed -i "s|^${KEY}=.*|${KEY}=${VALUE}|" .env
+  else
+    echo "${KEY}=${VALUE}" >> .env
+  fi
+done
 ```
 
 ```bash
