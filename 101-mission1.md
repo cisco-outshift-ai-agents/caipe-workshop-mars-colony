@@ -85,6 +85,10 @@ Let's review some key concepts.
 
 An AI Agent is a system that uses a Large Language Model (LLM) to decide the flow of an application
 
+- System Prompts
+- Tools
+- Memory (Short-term/Long-term)
+
 ## Anatomy of agent
 
 ![Anatomy of agent](images/agent-anatomy.svg)
