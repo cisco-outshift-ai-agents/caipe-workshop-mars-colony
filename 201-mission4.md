@@ -363,8 +363,11 @@ Currently there is a open discussion on how to unify different RAG systems, and 
 
 The Github agent can be used as is. Please refer to the [Github agent documentation](https://github.com/cnoe-io/ai-platform-engineering/tree/main/ai_platform_engineering/agents/github) for more details.
 
+<br>
+<hr>
 
 ## 🛠 Troubleshooting
+<br>
 
 ### Port already in use
 
