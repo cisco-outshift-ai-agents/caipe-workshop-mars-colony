@@ -6,7 +6,7 @@
       if (!window._mission6TimerActive) {
         window._mission6TimerActive = true;
         createCountdown({
-          duration: 900,
+          duration: 10,
           target: 'timer1',
           doneText: 'FINISHED!',
           onComplete: () => { window._mission6TimerActive = false; }
