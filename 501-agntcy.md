@@ -115,7 +115,7 @@ docker compose logs -f
 </div>
 
 ```bash
-docker compose down
+cd $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/corto && docker compose down
 ```
 
 ## Lungo
@@ -185,5 +185,5 @@ docker compose logs -f
 </div>
 
 ```bash
-docker compose down
+cd $HOME/work/coffeeAgntcy/coffeeAGNTCY/coffee_agents/lungo && docker compose down
 ```
