@@ -61,6 +61,12 @@ cd $HOME/work/ai-platform-engineering
 </div>
 
 ```bash
+if [ ! -f .env ] || [ ! -s .env ]; then
+  cp .env.example .env
+fi
+```
+
+```bash
 source $HOME/.env_vars && \
 sed -i \
   -e 's|^LLM_PROVIDER=.*|LLM_PROVIDER=azure-openai|' \
