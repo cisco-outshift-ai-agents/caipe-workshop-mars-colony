@@ -24,6 +24,11 @@
 </div>
 
 
+##add warning
+agent isn't authenticted when using through backstage. this will be fixed in the coming weeks.
+
+
+
 ## Overview
 
 🚀 **Mission Status**: Advanced Mars Inhabitant, you're now ready to deploy the full Community AI Platform Engineering stack to establish the colony's complete AI infrastructure.
@@ -46,7 +51,7 @@ For anyone going through the workshop on their own, you can also checkout our [v
 ```bash
 idpbuilder create \
   --use-path-routing \
-  --package https://github.com/cnoe-io/stacks//ref-implementation \
+  --package https://github.com/suwhang-cisco/stacks//ref-implementation-workshop \
   --package https://github.com/suwhang-cisco/stacks//ai-platform-engineering
 ```
 
@@ -77,10 +82,6 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.pas
     <li>Follow the steps below to set <code>&#36;LABURL</code> (Step 1) and then open ArgoCD using <code>https://&#36;LABURL:6101/argocd/</code> (Step 3.2).</li>
   </ul>
 </div>
-
-<a href="https://outshift-lab-d8n6400.demos.eticloud.io:6101/argocd" target="_blank" style="display: inline-block; font-size: 1.25em; font-weight: 600; background: #007cba; color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none;">
-  🚀 Open ArgoCD
-</a>
 
 This command will:
 
@@ -140,12 +141,12 @@ kubectl get pods --all-namespaces
 
 ## Step 3: Access ArgoCD and Monitor Deployments
 
-<div style="border-left: 4px solid #007cba; background: #f0f8ff; padding: 14px 18px; margin: 16px 0; border-radius: 6px;">
-  <strong>📝 Note:</strong>
-  <ul style="margin-top: 8px;">
-    <li><strong>Lab Environment:</strong> Use the URLs with your \$LABURL, environment variable as shown below.</li>
-    <li><strong>Local Environment:</strong> Replace https://\$LABURL:6101,6102 with https://cnoe.localtest.me:8443 in all commands.</li>
-  </ul>
+<div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; padding: 16px; margin: 16px 0; border-radius: 4px;">
+<strong>📝 Note:</strong>
+<ul>
+<li><strong>Lab Environment</strong>: Use the URLs with your <code>$LABURL</code> environment variable as shown below</li>
+<li><strong>Local Environment</strong>: Replace <code>https://$LABURL:6101,6102</code> with <code>https://cnoe.localtest.me:8443</code> in all commands</li>
+</ul>
 </div>
 
 Once the cluster is created, IDPBuilder outputs the ArgoCD URL for monitoring your colony's platform deployment.
@@ -155,20 +156,14 @@ Once the cluster is created, IDPBuilder outputs the ArgoCD URL for monitoring yo
 First, extract admin credentials for the ArgoCD UI:
 
 ```bash
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d; echo
+idpbuilder get secrets -p argocd
 ```
 
 ### 3.2: Access ArgoCD to Monitor Platform Deployment
 
-<a href="https://outshift-lab-d8n6400.demos.eticloud.io:6101/argocd" target="_blank" style="display: inline-block; font-size: 1.25em; font-weight: 600; background: #007cba; color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none;">
-  🚀 Open ArgoCD
-</a>
+Open ArgoCD in your browser:
 
-- _[Optional]_
-
-```bash
-echo "ARGOCD_URL=https://$LABURL:6101/argocd/"
-```
+<a href="/argocd/" onclick="javascript:event.target.port=6101" target="_blank">Open ArgoCD by clicking here (opens in new tab)</a>
 
 ### 3.3: Login to ArgoCD
 
@@ -349,13 +344,72 @@ Then, we need to restart the agent pods to pick up the new secrets:
 kubectl delete pod --all -n ai-platform-engineering
 ```
 
-## Step 4: Access Colony Developer Portal (Backstage)
+## Step 5: Access Colony Developer Portal (Backstage)
 
----
+Configure and access the main developer portal for the colony.
 
-### Lab reset: Reinitialize Postgres and Backstage
+### 5.1: Verify Backstage Deployment
 
-Due to the lab environment and snapshotting, we'll reset Postgres data and restart Backstage so it re-initializes with the password in `backstage-env-vars`:
+First, ensure Backstage is synced in ArgoCD. If there are issues, go to ArgoCD and click sync. Select only the postgres and backstage deployment resources if they're marked as missing.
+
+### 5.2: Pause Auto-Sync for Configuration
+
+Pause syncing for Backstage and Keycloak deployments so we can make lab-specific changes:
+
+```bash
+kubectl -n argocd patch application backstage --type=merge -p='{"spec":{"syncPolicy":{"automated":{"prune":false,"selfHeal":false}}}}'
+kubectl -n argocd patch application keycloak --type=merge -p='{"spec":{"syncPolicy":{"automated":{"prune":false,"selfHeal":false}}}}'
+```
+
+### 5.3: Configure Lab Environment URLs
+
+Update Keycloak configuration for the lab environment:
+
+```bash
+export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
+kubectl get configmap keycloak-config -n keycloak -o yaml | \
+  sed "s/hostname=cnoe.localtest.me/hostname=${LABURL}/" | \
+  sed 's/hostname-port=8443/hostname-port=6101/' | \
+  sed "s/hostname-admin=cnoe.localtest.me:8443/hostname-admin=${LABURL}:6101/" | \
+  kubectl apply -f -
+```
+
+Update Backstage external secrets configuration:
+
+```bash
+export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
+kubectl -n backstage patch externalsecret backstage-oidc --type=merge -p="{\"spec\":{\"target\":{\"template\":{\"data\":{\"AGENT_FORGE_URL\":\"https://${LABURL}:6101/ai-platform-engineering\",\"BACKSTAGE_FRONTEND_URL\":\"https://${LABURL}:6101\",\"KEYCLOAK_NAME_METADATA\":\"https://${LABURL}:6101/keycloak/realms/cnoe/.well-known/openid-configuration\"}}}}}"
+```
+
+Update Backstage app configuration:
+
+```bash
+# Get current config, modify specific lines, and escape for JSON
+MODIFIED_CONFIG=$(kubectl -n backstage get configmap backstage-config -o jsonpath='{.data.app-config\.yaml}' | \
+  sed 's|^    baseUrl: https://cnoe.localtest.me:8443|    baseUrl: https://'${LABURL}':6101|' | \
+  sed 's|^      baseUrl: https://cnoe.localtest.me:8443|      baseUrl: https://'${LABURL}':6101|' | \
+  sed 's|^        origin: https://cnoe.localtest.me:8443|        origin: https://'${LABURL}':6101|' | \
+  sed 's/\\/\\\\/g' | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
+
+kubectl -n backstage patch configmap backstage-config --type merge -p "{\"data\":{\"app-config.yaml\":\"$MODIFIED_CONFIG\"}}"
+```
+
+### 5.4: Update Environment Variables
+
+Set the Backstage deployment environment variables:
+
+```bash
+LABURL=$(head -n 3 /usr/share/etilabs/details | tail -1)
+kubectl -n backstage set env deploy/backstage \
+  APP_CONFIG_app_baseUrl=https://$LABURL:6101 \
+  APP_CONFIG_backend_baseUrl=https://$LABURL:6101 \
+  KEYCLOAK_NAME_METADATA=https://$LABURL:6101/keycloak/realms/cnoe/.well-known/openid-configuration \
+  APP_CONFIG_backend_cors_origin=https://$LABURL:6101
+```
+
+### 5.5: Reset Database and Services
+
+Reset the PostgreSQL database and restart services:
 
 ```bash
 # Namespace
@@ -376,33 +430,108 @@ kubectl delete pv "$PV" || true
 kubectl -n $NS scale sts/postgresql --replicas=1
 kubectl -n $NS rollout status sts/postgresql
 
-# Restart Backstage to connect to fresh DB
+# Restart Backstage to connect to fresh DB and pick up overrides
 kubectl -n $NS rollout restart deploy/backstage
 kubectl -n $NS rollout status deploy/backstage
 ```
 
-### Get Colony Portal Credentials
-
-Run the below command to get the colony user credentials:
+Also restart the keycloak pod:
 
 ```bash
-idpbuilder get secrets | grep USER_PASSWORD | sed 's/.*USER_PASSWORD=\([^,]*\).*/\1/'
+kubectl -n keycloak rollout restart deploy/keycloak
+kubectl -n keycloak rollout status deploy/keycloak
 ```
 
-### Login to Colony Developer Portal
+### 5.6: Get Keycloak Admin Credentials
+
+In a new terminal:
+
+```bash
+kubectl -n keycloak port-forward svc/keycloak 18080:8080 &
+```
+
+Then back in the original terminal, run below commands to get the keycloak admin credentials:
+
+```bash
+KC=http://127.0.0.1:18080/keycloak
+ADMIN_PASS=$(kubectl -n keycloak get secret keycloak-config -o jsonpath='{.data.KEYCLOAK_ADMIN_PASSWORD}' | base64 -d)
+
+# Fresh token
+TOKEN=$(curl -sS -X POST -H 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'username=cnoe-admin' --data-urlencode "password=$ADMIN_PASS" \
+  --data 'grant_type=password' --data 'client_id=admin-cli' \
+  $KC/realms/master/protocol/openid-connect/token | jq -r .access_token)
+
+MID=$(curl -sS -H "Authorization: Bearer $TOKEN" \
+  "$KC/admin/realms/master/clients?clientId=security-admin-console" | jq -r '.[0].id')
+
+# Backstage client id
+CID=$(curl -sS -H "Authorization: Bearer $TOKEN" \
+  "$KC/admin/realms/cnoe/clients?clientId=backstage" | jq -r '.[0].id')
+```
+
+```bash
+curl -sS -H "Authorization: Bearer $TOKEN" "$KC/admin/realms/master/clients/$MID" \
+| jq --arg origin "https://${LABURL}:6101" \
+     --arg r1 "https://cnoe.localtest.me:8443/keycloak/admin/master/console/*" \
+     --arg r2 "https://${LABURL}:6101/keycloak/admin/master/console/*" '
+  .webOrigins   = ((.webOrigins   // []) + [$origin]    | unique) |
+  .redirectUris = ((.redirectUris // []) + [$r1, $r2]    | unique)
+' > /tmp/sec-admin.json
+```
+
+```bash
+curl -sS -X PUT -H 'Content-Type: application/json' -H "Authorization: Bearer $TOKEN" \
+  --data @/tmp/sec-admin.json "$KC/admin/realms/master/clients/$MID"
+```
+
+```bash
+# Add exact LAB redirect + origin (run immediately)
+LABURL=$(head -n 3 /usr/share/etilabs/details | tail -1)
+LAB_CB="https://${LABURL}:6101/api/auth/keycloak-oidc/handler/frame"
+LAB_ORIGIN="https://${LABURL}:6101"
+
+CFG=$(curl -sS -H "Authorization: Bearer $TOKEN" "$KC/admin/realms/cnoe/clients/$CID")
+echo "$CFG" \
+| jq --arg cb "$LAB_CB" --arg origin "$LAB_ORIGIN" \
+   '.redirectUris = ((.redirectUris // []) + [$cb] | unique)
+  | .webOrigins   = ((.webOrigins   // []) + [$origin] | unique)' \
+> /tmp/client.json
+```
+
+```bash
+curl -sS -X PUT -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  --data @/tmp/client.json \
+  "$KC/admin/realms/cnoe/clients/$CID"
+```
+
+### 5.7: Optional: Get Colony Portal Credentials
+
+Now check keycloak admin console:
+
+```bash
+kubectl -n keycloak get secret keycloak-config -o jsonpath='{.data.KEYCLOAK_ADMIN_PASSWORD}' | base64 -d; echo
+```
+
+Username: cnoe-admin
+Password: <from the command above>
+
+### 5.8: Login to Colony Developer Portal
 
 Open Backstage in your browser:
 
-```bash
-echo "Click this link to open Backstage: https://$LABURL:6101/"
-```
+<a href="/" onclick="javascript:event.target.port=6101" target="_blank">Open Backstage by clicking here (opens in new tab)</a>
 
 Then login with:
 
 - Username: `user1`
 - Password: `<from the command above>`
 
-## Step 5: Activate Colony AI Assistant
+## Step 6: Activate Colony AI Assistant
+
+Access and test the multi-agent AI system integrated into Backstage.
+
+### 6.1: Access the AI Assistant
 
 Once logged into the Developer Portal:
 
@@ -410,47 +539,45 @@ Once logged into the Developer Portal:
 2. 🚀 Click to open the colony AI assistant
 3. 💬 Start interacting with the multi-agent platform engineering system
 
-Try these colony operations:
+### 6.2: Test Basic Functionality
+
+Try these essential colony operations:
 
 ```bash
 What can you do?
 ```
 
-If you have pagerduty secrets configured, you can also ask:
+### 6.3: Test Agent-Specific Features
 
+If you configured additional agent secrets, test their functionality:
+
+**PagerDuty Agent** (if configured):
 ```bash
 Who is on call right now?
 ```
 
-If you have jira secrets configured, you can also ask:
-
+**Jira Agent** (if configured):
 ```bash
 Show me existing projects in Jira.
 ```
 
-Feel free to ask anything else and experiment with the multi-agent system!
+### 6.4: Explore the Platform
 
 ## Useful URLs
 
-Run the below commands to open the various colony services in your browser:
+Use the links below to open the various colony services in your browser:
 
-```bash
-echo "Click this link to open ArgoCD: https://$LABURL:6101/argocd/"
-echo "Click this link to open Gitea: https://$LABURL:6101/gitea/"
-echo "Vault accessible via kubectl port-forward on localhost:8200"
-echo "Click this link to open Backstage: https://$LABURL:6101/"
-echo "Click this link to open Keycloak: https://$LABURL:6101/keycloak/admin/master/console/"
-```
+<a href="/argocd/" onclick="javascript:event.target.port=6101" target="_blank">Open ArgoCD (opens in new tab)</a>
 
-## Step 6: Tear down the colony platform
+<a href="/gitea/" onclick="javascript:event.target.port=6101" target="_blank">Open Gitea (opens in new tab)</a>
 
-<div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
-  <strong>🛑 Before You Proceed: Tear Down Your KIND Cluster</strong>
-  <ul style="margin: 8px 0 0 16px;">
-    <li><strong>Important:</strong> Run <code>kind delete cluster --name localdev</code> in your terminal to delete the KIND cluster and clean up all platform resources before moving on to the next steps.</li>
-    <li>This ensures a clean environment and frees up system resources.</li>
-  </ul>
-</div>
+Vault accessible via kubectl port-forward on localhost:8200
+
+<a href="/" onclick="javascript:event.target.port=6101" target="_blank">Open Backstage (opens in new tab)</a>
+
+<a href="/keycloak/admin/master/console/" onclick="javascript:event.target.port=6101" target="_blank">Open Keycloak Admin Console (opens in new tab)</a>
+
+## Step 7: Tear down the colony platform
 
 ```bash
 kind delete cluster --name localdev
