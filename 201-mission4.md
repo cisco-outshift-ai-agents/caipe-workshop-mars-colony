@@ -2,7 +2,17 @@
 
 <div style="display: flex; align-items: center; gap: 12px;">
   <button
-    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    onclick="
+      if (!window._mission4TimerActive) {
+        window._mission4TimerActive = true;
+        createCountdown({
+          duration: 900,
+          target: 'timer1',
+          doneText: 'FINISHED!',
+          onComplete: () => { window._mission4TimerActive = false; }
+        }).start();
+      }
+    "
     style="
       background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
       color: #fff;
@@ -262,7 +272,7 @@ Research and write a report on mars surface in markdown format, then commit/uplo
 
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>👀 Observe:</strong> 
+  <strong>👀 Observe:</strong>
   Back in the CLI chat client, the agent should have:
   <ul style="margin: 0 0 0 18px;">
   <li>Created a report with name: <strong><code>%%LABNAME%%-report.md</code></strong></li>
