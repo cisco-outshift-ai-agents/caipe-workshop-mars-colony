@@ -2,7 +2,17 @@
 
 <div style="display: flex; align-items: center; gap: 12px;">
   <button
-    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    onclick="
+      if (!window._mission3TimerActive) {
+        window._mission3TimerActive = true;
+        createCountdown({
+          duration: 900,
+          target: 'timer1',
+          doneText: 'FINISHED!',
+          onComplete: () => { window._mission3TimerActive = false; }
+        }).start();
+      }
+    "
     style="
       background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
       color: #fff;
@@ -312,6 +322,10 @@ IMAGE_TAG=latest MCP_MODE=stdio docker compose -f workshop/docker-compose.missio
 <strong>⚠️ Important:</strong> If you are already running agents in HTTP mode, first stop the docker compose before switching to STDIO mode:
 
 ```bash
+cd $HOME/work/ai-platform-engineering
+```
+
+```bash
 docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mission3.yaml --profile=p2p down
 ```
 </div>
@@ -319,6 +333,10 @@ docker compose -f $HOME/work/ai-platform-engineering/workshop/docker-compose.mis
 <div style="border: 1px solid #007cba; border-left: 4px solid #007cba; background-color: #f0f8ff; padding: 16px; margin: 16px 0; border-radius: 4px;">
 <strong>🌟 Bonus Challenge:</strong> Run this with AGNTCY SLIM Gateway in the middle
 </div>
+
+```bash
+cd $HOME/work/ai-platform-engineering
+```
 
 ```bash
 IMAGE_TAG=latest MCP_MODE=http docker compose -f workshop/docker-compose.mission3.yaml --profile=slim up

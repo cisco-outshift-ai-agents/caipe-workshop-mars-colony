@@ -2,7 +2,17 @@
 
 <div style="display: flex; align-items: center; gap: 12px;">
   <button
-    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    onclick="
+      if (!window._mission6TimerActive) {
+        window._mission6TimerActive = true;
+        createCountdown({
+          duration: 900,
+          target: 'timer1',
+          doneText: 'FINISHED!',
+          onComplete: () => { window._mission6TimerActive = false; }
+        }).start();
+      }
+    "
     style="
       background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
       color: #fff;

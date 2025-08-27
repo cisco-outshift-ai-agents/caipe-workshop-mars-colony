@@ -1,8 +1,18 @@
-# Mission Check 4 - Reconnaissance & Reporting back (RAG + Git agent)
+# Mission Check 4 & 5 - Reconnaissance & Reporting back (RAG + Git agent)
 
 <div style="display: flex; align-items: center; gap: 12px;">
   <button
-    onclick="createCountdown({duration: 900, target: 'timer1', doneText: 'FINISHED!', onComplete: () => alert('Timer complete!')}).start()"
+    onclick="
+      if (!window._mission4TimerActive) {
+        window._mission4TimerActive = true;
+        createCountdown({
+          duration: 900,
+          target: 'timer1',
+          doneText: 'FINISHED!',
+          onComplete: () => { window._mission4TimerActive = false; }
+        }).start();
+      }
+    "
     style="
       background: linear-gradient(90deg, #007cba 0%, #28a745 100%);
       color: #fff;
@@ -262,7 +272,7 @@ Research and write a report on mars surface in markdown format, then commit/uplo
 
 
 <div style="border: 1px solid #17a2b8; border-left: 4px solid #17a2b8; background-color: #f0ffff; color: #117a8b; padding: 14px; margin: 16px 0; border-radius: 4px;">
-  <strong>👀 Observe:</strong> 
+  <strong>👀 Observe:</strong>
   Back in the CLI chat client, the agent should have:
   <ul style="margin: 0 0 0 18px;">
   <li>Created a report with name: <strong><code>%%LABNAME%%-report.md</code></strong></li>
@@ -376,7 +386,7 @@ The Github agent can be used as is. Please refer to the [Github agent documentat
 
 ### Port already in use
 
-If you get a port already in use error from docker, you may still be running containers from previous missions. You can run `docker ps` to see what containers are running, and `docker stop <container_id>` to stop them. 
+If you get a port already in use error from docker, you may still be running containers from previous missions. You can run `docker ps` to see what containers are running, and `docker stop <container_id>` to stop them.
 
 <div style="border: 1px solid #dc3545; border-left: 6px solid #dc3545; background-color: #fff5f5; padding: 16px; margin: 16px 0; border-radius: 4px;">
   <strong>🛑 Do not stop essential containers</strong>
@@ -408,7 +418,7 @@ docker logs platform-engineer-p2p
 If you see an error similar to this:
 
 ```
-Could not find message from source agent github_tools_agent. Found names: {'platform_engineer_supervisor'} 
+Could not find message from source agent github_tools_agent. Found names: {'platform_engineer_supervisor'}
 ```
 
 There might be an issue with the communication between the agents. Try restarting the docker-compose stack by running:
