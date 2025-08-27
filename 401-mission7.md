@@ -79,6 +79,10 @@ sed -i \
 ```
 
 ```bash
+cat .env | grep -Ei 'azure|github|langfuse' | sed -E 's/(=.{3}).+/\1****/'
+```
+
+```bash
 # Define key-value pairs
 declare -A ENV_VARS=(
   ["ENABLE_TRACKING"]="true"
