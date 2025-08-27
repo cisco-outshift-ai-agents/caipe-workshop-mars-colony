@@ -93,7 +93,7 @@ sed -i \
 
 ```bash
 export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
-export VITE_EXCHANGE_APP_API_URL=$LABURL:6103
+export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
 ```
 
 
@@ -157,7 +157,7 @@ sed -i \
 
 ```bash
 export LABURL=`head -n 3 /usr/share/etilabs/details | tail -1`
-export VITE_EXCHANGE_APP_API_URL=$LABURL:6103
+export VITE_EXCHANGE_APP_API_URL=$LABURL:6104
 ```
 
 ```bash
