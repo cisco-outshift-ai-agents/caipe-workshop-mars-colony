@@ -81,11 +81,23 @@ EOF
 ```
 
 ```bash
-read -s -p "Enter your LANGFUSE_SECRET_KEY (pasted text won't show, just press enter): " LF_SEC_KEY; echo; sed -i "s|^LANGFUSE_SECRET_KEY=.*|LANGFUSE_SECRET_KEY=$LF_SEC_KEY|" .env
+# LANGFUSE_SECRET_KEY
+read -s -p "Enter your LANGFUSE_SECRET_KEY (pasted text won't show, just press enter): " LF_SEC_KEY; echo
+if grep -q "^LANGFUSE_SECRET_KEY=" .env; then
+  sed -i "s|^LANGFUSE_SECRET_KEY=.*|LANGFUSE_SECRET_KEY=$LF_SEC_KEY|" .env
+else
+  echo "LANGFUSE_SECRET_KEY=$LF_SEC_KEY" >> .env
+fi
 ```
 
 ```bash
-read -s -p "Enter your LANGFUSE_PUBLIC_KEY (pasted text won't show anything, just press enter): " LF_PUB_KEY; echo; sed -i "s|^LANGFUSE_PUBLIC_KEY=.*|LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY|" .env
+# LANGFUSE_PUBLIC_KEY
+read -s -p "Enter your LANGFUSE_PUBLIC_KEY (pasted text won't show, just press enter): " LF_PUB_KEY; echo
+if grep -q "^LANGFUSE_PUBLIC_KEY=" .env; then
+  sed -i "s|^LANGFUSE_PUBLIC_KEY=.*|LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY|" .env
+else
+  echo "LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY" >> .env
+fi
 ```
 
 1) Start Mission 7 services
