@@ -43,25 +43,36 @@ Steps:
 
    - Open your .env file and add the following (replace with your generated keys).
 
-   Example:
-   ```
+   ```bash
+   cat <<EOF > .env
    LANGFUSE_PUBLIC_KEY=pk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
    LANGFUSE_SECRET_KEY=sk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
    LANGFUSE_TRACING_ENABLED=True
    LANGFUSE_HOST=https://langfuse.dev.outshift.io
+   EOF
+   ```
+
+   ```bash
+   read -p "Enter your LANGFUSE_PUBLIC_KEY: " LF_PUB_KEY && sed -i "s|^LANGFUSE_PUBLIC_KEY=.*|LANGFUSE_PUBLIC_KEY=$LF_PUB_KEY|" .env
+   ```
+
+   ```bash
+   read -p "Enter your LANGFUSE_SECRET_KEY: " LF_SEC_KEY && sed -i "s|^LANGFUSE_SECRET_KEY=.*|LANGFUSE_SECRET_KEY=$LF_SEC_KEY|" .env
    ```
 
 4) Start Mission 7 services
 
    - Run:
-   ```
+
+   ```bash
    IMAGE_TAG=latest docker-compose -f workshop/docker-compose.mission7.yaml up
    ```
 
 5) Run the chat CLI and make an example query
 
    - Run:
-   ```
+
+   ```bash
    docker run -it --network=host ghcr.io/cnoe-io/agent-chat-cli:stable
    ```
    - Ask the app: *What's the weather in london?*
