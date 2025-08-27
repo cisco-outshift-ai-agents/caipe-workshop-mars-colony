@@ -148,6 +148,10 @@ kubectl get pods --all-namespaces
 </ul>
 </div>
 
+<a href="https://outshift-lab-d8n6400.demos.eticloud.io:6101/argocd" target="_blank" style="display: inline-block; font-size: 1.25em; font-weight: 600; background: #007cba; color: #fff; padding: 14px 28px; border-radius: 8px; text-decoration: none;">
+  🚀 Open ArgoCD
+</a>
+
 Once the cluster is created, IDPBuilder outputs the ArgoCD URL for monitoring your colony's platform deployment.
 
 ### 3.1: Get ArgoCD Administrative Access
