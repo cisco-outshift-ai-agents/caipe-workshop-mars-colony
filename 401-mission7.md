@@ -74,8 +74,7 @@ sed -i \
 
 ```bash
 cat <<EOF >> .env
-LANGFUSE_PUBLIC_KEY=pk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-LANGFUSE_SECRET_KEY=sk-lf-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+ENABLE_TRACKING=true
 LANGFUSE_TRACING_ENABLED=True
 LANGFUSE_HOST=https://langfuse.dev.outshift.io
 EOF
