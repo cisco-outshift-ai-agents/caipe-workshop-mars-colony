@@ -143,8 +143,8 @@ kubectl get pods --all-namespaces
 <div style="border-left: 4px solid #007cba; background: #f0f8ff; padding: 14px 18px; margin: 16px 0; border-radius: 6px;">
   <strong>📝 Note:</strong>
   <ul style="margin-top: 8px;">
-    <li><strong>Lab Environment:</strong> Use the URLs with your ${LABURL} environment variable as shown below.</li>
-    <li><strong>Local Environment:</strong> Replace https://$LABURL:6101,6102 with https://cnoe.localtest.me:8443 in all commands.</li>
+    <li><strong>Lab Environment:</strong> Use the URLs with your ${LABURL}, environment variable as shown below.</li>
+    <li><strong>Local Environment:</strong> Replace https://${LABURL}:6101,6102 with https://cnoe.localtest.me:8443 in all commands.</li>
   </ul>
 </div>
 
