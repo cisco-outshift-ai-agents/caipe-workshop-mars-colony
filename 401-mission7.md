@@ -49,9 +49,7 @@ Steps:
        workshop@outshift.io
        ```
        - **Password:**
-        ```
-        workshop-mars-colony
-        ```
+       > Ask in [Webex Space](https://eurl.io/#bOa9oXKAn)
 
 ## 2. Create an API key
 
