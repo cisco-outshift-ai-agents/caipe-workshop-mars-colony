@@ -28,6 +28,7 @@ This jam-style session is all about exploration, learning, and hands-on deployme
 After months of preparation, your crew has finally landed on Mars 🟠. Now it's time to establish Mission Control operations with Agentic AI 📡🤖🚀 to keep the colony running smoothly.
 
 ### Your Mission
+
 Set up 🛰️ communication and 🌦️ weather monitoring systems to support life in the new habitat, while staying connected to Earth 🌍 with regular updates on your progress. Most importantly, bring up the full **CAIPE system** — your command center for running Mission Control — so every operation is coordinated, automated, and mission-ready.
 
 ---
@@ -39,6 +40,7 @@ Set up 🛰️ communication and 🌦️ weather monitoring systems to support l
 CAIPE provides a secure, scalable, persona-driven reference implementation with built-in knowledge base retrieval that streamlines platform operations, accelerates workflows, and fosters innovation for modern engineering teams.
 
 ### 🌟 Why "CAIPE"?
+
 Just as a 🦸‍♂️ cape empowers a superhero, CAIPE empowers platform engineers with 🤖 Agentic AI automation! 🚀
 
 ---
@@ -47,6 +49,7 @@ Just as a 🦸‍♂️ cape empowers a superhero, CAIPE empowers platform engin
 
 The workshop is organized into a series of hands-on missions. Click a mission below to get started:
 
+- [Mission Overview](00-overview.md)
 - [Mission 1: Start Ignition — Download Mission and Learn the Controls](workshop-mars-colony/101-mission1.md)
 - [Mission 2: Run Standalone Petstore Agent](workshop-mars-colony/102-mission2.md)
 - [Mission 3: Multi-Agent System — Petstore + Weather + Supervisor](workshop-mars-colony/103-mission3.md)
