@@ -23,7 +23,7 @@ This jam-style session is all about exploration, learning, and hands-on deployme
 
 ---
 
-## 🎯 Workshop Overview
+## 🎯 Workshop Mission
 
 After months of preparation, your crew has finally landed on Mars 🟠. Now it's time to establish Mission Control operations with Agentic AI 📡🤖🚀 to keep the colony running smoothly.
 
@@ -70,60 +70,6 @@ Happy exploring and good luck 🚀
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions from the community! Here's how you can get involved:
-
-1. **⭐ Star the repository** - Show your support
-2. **🐛 Report bugs** - Help improve the platform
-3. **💡 Suggest features** - Share your ideas
-4. **📝 Improve documentation** - Help others learn
-5. **🔧 Submit pull requests** - Contribute code
-
-### Development Setup
-```bash
-# Fork and clone the repository
-git clone https://github.com/your-username/ai-platform-engineering.git
-
-# Create a feature branch
-git checkout -b feature/amazing-feature
-
-# Make your changes and commit
-git commit -m "Add amazing feature"
-
-# Push to your fork
-git push origin feature/amazing-feature
-
-# Create a pull request
-```
-
----
-
-## 📄 License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **CNOE Community** - For fostering the AI Platform Engineering ecosystem
-- **Outshift Team** - For creating JARVIS and advancing agentic AI
-- **Open Source Contributors** - For building the foundation of modern AI platforms
-- **Workshop Participants** - For testing, feedback, and community building
-
----
-
-## 🆘 Support & Community
-
-- **🔍 Demo Lab Navigation** - Use toggles in the top right corner to switch between Lab Guide, Terminal, and IDE
-- **💻 Workspace Directory** - Located at `/home/ubuntu/work` in lab environment
-- **🆘 Need Help?** - Raise your hand during sessions for breakout support
-- **🤝 Breakout Sessions** - Dedicated Webex breakout rooms available for assistance
-- **⏳ Lab Availability** - Active for 36 hours after workshop completion
-
----
-
 ## 🌟 Final Call
 
 Suit up, power up your consoles, and get ready to take control of the **next frontier of AI-driven operations**. The future of our Mars colony — and the safety of your crew — depends on your engineering skills.
@@ -142,3 +88,9 @@ Suit up, power up your consoles, and get ready to take control of the **next fro
 **[⭐ Star us on GitHub](https://github.com/cnoe-io/ai-platform-engineering)**
 
 </div>
+
+---
+
+## 📄 License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
