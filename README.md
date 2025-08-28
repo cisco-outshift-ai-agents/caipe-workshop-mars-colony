@@ -1,8 +1,14 @@
 # 🚀 Mission Control for the Mars Colony - AI Platform Engineering Workshop
 
 <div align="center">
-  <img src="images/caipe.svg" alt="CAIPE Logo" style="max-width:120px; margin:16px 0;">
+  <img src="images/caipe.svg" alt="CAIPE Logo" style="max-width:60px; margin:16px 0;"><br>
+  <strong>
+    <a href="https://github.com/cnoe-io/ai-platform-engineering" style="text-decoration:none;">
+      ⭐ Star us on GitHub
+    </a>
+  </strong>
 </div>
+
 
 **Get ready to ⚡ level up with [Community AI Platform Engineering](https://cnoe-io.github.io/ai-platform-engineering/) in this hands-on workshop where you'll explore, run, modify, deploy, and master Outshift's open-source, secure, enterprise-ready, distributed multi-agent system.**
 
